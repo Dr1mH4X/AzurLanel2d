@@ -240,6 +240,10 @@ def main():
     )
     print(f"成功找到信息: 版本号 -> {version_string}")
 
+    if "GITHUB_OUTPUT" in os.environ:
+        with open(os.environ["GITHUB_OUTPUT"], "a") as f:
+            print(f"version_string={version_string}", file=f)
+
     json_download_url = urllib.parse.urljoin(BASE_URL, json_filename_from_js)
     new_json_filename = f"live2dMaster{version_string}.json"
     master_json_path = os.path.join(TARGET_SUBDIR, new_json_filename)
