@@ -1,0 +1,154 @@
+{
+  "Version": 3,
+  "Name": "banerwei_3",
+  "FileReferences": {
+    "Moc": "banerwei_3.moc3",
+    "Textures": [
+      "textures/texture_00.webp"
+    ],
+
+    "Physics": "banerwei_3.physics3.json",
+    "Motions": {
+      "login": [
+        {
+          "File": "motions/login.motion3.json",
+          "Text": "指挥官，您来了。请品尝这杯因祈祷而变得更加美味的芭菲吧……啊——",
+          "Audio": ""
+        }
+      ],
+      "home": [
+        {
+          "File": "motions/home.motion3.json",
+          "Text": "啊，您终于回来了……芭菲的量没变少？因为一直想着您的事，想等您一起回来再吃……///",
+          "Audio": ""
+        }
+      ],
+      "main_1": [
+        {
+          "File": "motions/main_1.motion3.json",
+          "Text": "指挥官，那个……不，不行，这样好像太贪心了……唔，算了，即使贪心，我也想和您一直待在一起呢……///",
+          "Audio": ""
+        }
+      ],
+      "main_2": [
+        {
+          "File": "motions/main_2.motion3.json",
+          "Text": "果然，又聊到心愿了呢……嗯，指挥官可以对我说出一个愿望哦。我会试试看能不能帮指挥官达成的哦~",
+          "Audio": ""
+        }
+      ],
+      "main_3": [
+        {
+          "File": "motions/main_3.motion3.json",
+          "Text": "通过芭菲融化出来的形状也是可以预测当日运势的哦……嗯嗯，今天的运势是……啊！是非常适宜与指挥官约会的幸运日呢！",
+          "Audio": ""
+        }
+      ],
+      "mail": [
+        {
+          "File": "motions/mail.motion3.json",
+          "Text": "新的邮件……呼……希望是好消息。",
+          "Audio": ""
+        }
+      ],
+      "mission": [
+        {
+          "File": "motions/mission.motion3.json",
+          "Text": "马上就要到今天的幸运时间段了呢……指挥官，要是利用这段时间完成任务的话，应该会格外顺利吧？",
+          "Audio": ""
+        }
+      ],
+      "mission_complete": [
+        {
+          "File": "motions/mission_complete.motion3.json",
+          "Text": "您出色地完成了所有任务呢……看来幸运时间段有起作用……！太好了！",
+          "Audio": ""
+        }
+      ],
+      "complete": [
+        {
+          "File": "motions/complete.motion3.json",
+          "Text": "委托组回来了。出发时我给她们推荐了今天的幸运物品，所以一定会是个大丰收的……！",
+          "Audio": ""
+        }
+      ],
+      "wedding": [
+        {
+          "File": "motions/wedding.motion3.json",
+          "Text": "我有很多很多愿望……但此时此刻，我的脑海全部被一个愿望完全占据了。而且，这个愿望即将实现。指挥官，谢谢您帮我实现了这个愿望，能喜欢上您……真的太好了……",
+          "Audio": ""
+        }
+      ],
+      "touch_head": [
+        {
+          "File": "motions/touch_head.motion3.json"
+        }
+      ],
+      "touch_body": [
+        {
+          "File": "motions/touch_body.motion3.json",
+          "Text": "是喜欢伴尔维的新衣服吗……？",
+          "Audio": ""
+        }
+      ],
+      "touch_special": [
+        {
+          "File": "motions/touch_special.motion3.json",
+          "Text": "那、那个，冰淇淋会蹭到到处都是哦……！",
+          "Audio": ""
+        }
+      ],
+      "touch_drag1": [
+        {
+          "File": "motions/touch_drag1.motion3.json"
+        }
+      ],
+      "touch_drag2": [
+        {
+          "File": "motions/touch_drag2.motion3.json"
+        }
+      ],
+      "idle": [
+        {
+          "File": "motions/idle.motion3.json"
+        }
+      ],
+      "touch_idle1": [
+        {
+          "File": "motions/touch_idle1.motion3.json"
+        }
+      ],
+      "idle1": [
+        {
+          "File": "motions/idle1.motion3.json"
+        }
+      ],
+      "touch_idle2": [
+        {
+          "File": "motions/touch_idle2.motion3.json"
+        }
+      ],
+      "effect": [
+        {
+          "File": "motions/effect.motion3.json"
+        }
+      ]
+    },
+    "Expressions": []
+  },
+  "Groups": [
+    {
+      "Target": "Parameter",
+      "Name": "EyeBlink",
+      "Ids": [
+        "ParamEyeROpen",
+        "ParamEyeLOpen"
+      ]
+    },
+    {
+      "Target": "Parameter",
+      "Name": "LipSync",
+      "Ids": []
+    }
+  ]
+}

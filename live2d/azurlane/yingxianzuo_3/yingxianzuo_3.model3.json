@@ -1,0 +1,155 @@
+{
+	"Version": 3,
+	"FileReferences": {
+		"Moc": "yingxianzuo_3.moc3",
+		"Textures": [
+			"textures/texture_00.webp",
+			"textures/texture_01.webp"
+		],
+		"Physics": "yingxianzuo_3.physics3.json",
+		"Expressions": [
+			{
+				"Name": "touch_drag1.exp3.json",
+				"File": "expressions/touch_drag1.exp3.json"
+			},
+			{
+				"Name": "touch_drag2.exp3.json",
+				"File": "expressions/touch_drag2.exp3.json"
+			},
+			{
+				"Name": "touch_drag7.exp3.json",
+				"File": "expressions/touch_drag7.exp3.json"
+			},
+			{
+				"Name": "all.exp3.json",
+				"File": "expressions/all.exp3.json"
+			},
+			{
+				"Name": "mian.exp3.json",
+				"File": "expressions/mian.exp3.json"
+			}
+		],
+		"Motions": {
+			"": [
+				{
+					"File": "motions/login.motion3.json",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/2/2a/l1m29yqaw9vip70ljrpy71jc9rrnaxl.mp3",
+					"Text": "……嗯？指挥官，是不想做早起的鸟儿了么？……我？我不一样哦。我今天扮演的是在早春打盹的虫子，嗯。"   
+				},
+				{
+					"File": "motions/home.motion3.json",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/e/ee/kq029y5gtswql0pn8uiwqx0vjfe0mzb.mp3",
+					"Text": "终于回来了。指挥官，你还真是精力旺盛欸……"   
+				},
+				{
+					"File": "motions/main_1.motion3.json",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/b/b7/2mefs1vvjznnb1aw89uql5n3ivr088b.mp3",
+					"Text": "嗯，真是个美好的节日，只需要躺着享受，自然有人投喂……嗯？不是这样的么？"   
+				},
+				{
+					"File": "motions/main_2.motion3.json",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/6/63/k3y2497te6jz7ickbji1h5hsk9c40l5.mp3",
+					"Text": "忒修斯，好像很享受春节热闹的样子。其实我也一样……在享受节日这件事上。哈啊……（哈欠）"   
+				},
+				{
+					"File": "motions/main_3.motion3.json",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/8/86/qifx02c0vt820uvr9pl1uelznsd4wv9.mp3",
+					"Text": "贺岁大炮……？真是独特的构想呢……糟糕，有点感兴趣了……"   
+				},
+				{
+					"File": "motions/mail.motion3.json",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/0/05/7bgbf0p2sql9otfsgz16b3w08jkjy4d.mp3",
+					"Text": "有你的春节问候邮件，指挥官。"   
+				},
+				{
+					"File": "motions/mission.motion3.json"
+				},
+				{
+					"File": "motions/complete.motion3.json"
+				},
+				{
+					"File": "motions/mission_complete.motion3.json"
+				},
+				{
+					"File": "motions/wedding.motion3.json"
+				},
+				{
+					"File": "motions/touch_head.motion3.json",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/4/46/nsymg4qsg7zod207rzwx08fg1riigr0.mp3",
+					"Text": "……唔，指挥官，负起责任给我梳头哦。"
+
+				},
+				{
+					"File": "motions/touch_body.motion3.json",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/6/64/6zezz2h06t0ofx1rv8c1d5r4pl6kax3.mp3",
+					"Text": "……想一起躺会？没问题。春节，就是来睡懒觉的节日呢……"
+				},
+				{
+					"File": "motions/touch_special.motion3.json",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/c/cc/2xmag9j9whsgfq6ghbtj0fxcj0p4j6m.mp3",
+					"Text": "……包子还是年糕？指挥官，你这人啊……"
+				},
+				{
+					"File": "motions/touch_drag3.motion3.json"
+				},
+				{
+					"File": "motions/touch_drag4.motion3.json"
+				},
+				{
+					"File": "motions/touch_drag5.motion3.json"
+				},
+				{
+					"File": "motions/touch_drag11.motion3.json"
+				},
+				{
+					"File": "motions/touch_drag12.motion3.json"
+				},
+				{
+					"File": "motions/touch_drag13.motion3.json"
+				},
+				{
+					"File": "motions/touch_idle.motion3.json"
+				},
+				{
+					"File": "motions/idle.motion3.json"
+				},
+				{
+					"File": "motions/touch_idle1.motion3.json"
+				},
+				{
+					"File": "motions/idle1.motion3.json"
+				},
+				{
+					"File": "motions/touch_idle2.motion3.json"
+				},
+				{
+					"File": "motions/idle2.motion3.json"
+				},
+				{
+					"File": "motions/touch_idle3.motion3.json"
+				},
+				{
+					"File": "motions/effect.motion3.json"
+				}
+			]
+		}
+	},
+	"Groups": [
+		{
+			"Target": "Parameter",
+			"Name": "LipSync",
+			"Ids": [
+				"ParamMouthOpenY"
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Name": "EyeBlink",
+			"Ids": [
+				"ParamEyeLOpen",
+				"ParamEyeROpen"
+			]
+		}
+	],
+	"HitAreas": []
+}

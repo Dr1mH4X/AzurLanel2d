@@ -1,0 +1,96 @@
+{
+  "Version": 3,
+  "FileReferences": {
+    "Moc": "aijier_2.moc3",
+    "Textures": [
+      "textures/texture_00.webp"
+    ],
+    "Physics": "aijier_2.physics3.json",
+    "Expressions": [],
+    "Motions": {
+      "": [
+        {
+          "File": "motions/login.motion3.json",
+          "Text": "是你啊。咳、早上好，主……果然还是算了！ ",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/6/62/ckj5ma8c6krvmgfh13rfv6rl0196t6w.mp3"
+        },
+        {
+          "File": "motions/home.motion3.json",
+          "Text": "算好指挥官回来的时间，把茶水和点心备上……很好，这样就没问题了，应该？ ",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/b/ba/9euik12jylprxz84ltxsy6ddi5bl48y.mp3"
+        },
+        {
+          "File": "motions/main_1.motion3.json",
+          "Text": "这小家伙……碍着我了，闪一边去！被我压着就一点也动不了了吗？ ",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/3/36/ls1iwydds5qbbe4cql7ovvakcxardk1.mp3"
+        },
+        {
+          "File": "motions/main_2.motion3.json",
+          "Text": "扫除是宴会准备的一环？反正之后都会弄得乱七八糟的，为什么现在要…… ",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/6/65/sk9rt8bh7orebm5jcj8ij0tgm6sfutm.mp3"
+        },
+        {
+          "File": "motions/main_3.motion3.json",
+          "Text": "帕塞瓦尔好像乐在其中呢……光是“被当成女仆”这事我就很不甘心！你有在听吗？ ",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/4/4f/avvsm8h7fllzva2uw18zwyk99ieoai5.mp3"
+        },
+        {
+          "File": "motions/mail.motion3.json"
+        },
+        {
+          "File": "motions/mission.motion3.json"
+        },
+        {
+          "File": "motions/mission_complete.motion3.json",
+          "Text": "任务结束了。去拿你的报酬吧。 ",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/f/f7/f4elxjge00h28xjahcjl86lis22pyjo.mp3"
+        },
+        {
+          "File": "motions/complete.motion3.json",
+          "Text": "委托完成了。…你不会想要我去迎接吧…… ",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/9/9b/jqgjv80xxnztbherbfrdzlonm8tz42d.mp3"
+        },
+        {
+          "File": "motions/wedding.motion3.json"
+        },
+
+        {
+          "File": "motions/touch_head.motion3.json"
+        },
+        {
+          "File": "motions/touch_body.motion3.json",
+          "Text": "……呜！？ ",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/9/96/29jexyqepn1rdnp5bpkeu64bd3uh8gs.mp3"
+        },
+        {
+          "File": "motions/touch_special.motion3.json",
+          "Text": "……！？早知道就不当什么女仆了！",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/2/22/24ask9meowoeymx85nwiyc2t8gpt5jj.mp3"
+        },
+        {
+          "File": "motions/idle.motion3.json"
+        },
+        {
+          "File": "motions/effect.motion3.json"
+        }
+      ]
+    }
+  },
+  "Groups": [
+    {
+      "Target": "Parameter",
+      "Name": "LipSync",
+      "Ids": [
+        "ParamMouthOpenY"
+      ]
+    },
+    {
+      "Target": "Parameter",
+      "Name": "EyeBlink",
+      "Ids": [
+        "ParamEyeLOpen",
+        "ParamEyeROpen"
+      ]
+    }
+  ]
+}

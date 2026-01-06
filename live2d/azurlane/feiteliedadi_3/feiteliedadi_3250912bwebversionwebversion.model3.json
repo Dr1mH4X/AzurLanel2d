@@ -1,0 +1,233 @@
+{
+	"Version": 3,
+	"FileReferences": {
+		"Moc": "feiteliedadi_3.moc3",
+		"Textures": [
+			"textures/texture_00.webp"
+		],
+		"Physics": "feiteliedadi_3.physics3.json",
+		"Expressions": [
+			{
+				"Name": "touch_drag17",
+				"File": "expressions/touch_drag17.exp3.json"
+			},
+			{
+				"Name": "touch_drag12",
+				"File": "expressions/touch_drag12.exp3.json"
+			},
+			{
+				"Name": "touch_drag16",
+				"File": "expressions/touch_drag16.exp3.json"
+			},
+			{
+				"Name": "touch_drag15",
+				"File": "expressions/touch_drag15.exp3.json"
+			},
+			{
+				"Name": "touch_drag2",
+				"File": "expressions/touch_drag2.exp3.json"
+			},
+			{
+				"Name": "touch_drag18",
+				"File": "expressions/touch_drag18.exp3.json"
+			},
+			{
+				"Name": "main",
+				"File": "expressions/main.exp3.json"
+			}
+		],
+		"Motions": {
+			"login": [
+				{
+					"File": "motions/login.motion3.json",
+					"Text": "呵呵……看起来在夏夜结束之前，你都会每天来找我的，对吗？我的孩子。",
+					"Audio": ""
+				}
+			],
+			"home": [
+				{
+					"File": "motions/home.motion3.json",
+					"Text": "你看起来满脸疲惫呢，来，乖乖躺在我身边，稍微休息一会吧。",
+					"Audio": ""
+				}
+			],
+			"main_1": [
+				{
+					"File": "motions/main_1.motion3.json",
+					"Text": "你也想品尝樱桃？很好，我的孩子，我喜欢你的这份率直，那么作为奖励……我会亲自送入你的口中。",
+					"Audio": ""
+				}
+			],
+			"main_2": [
+				{
+					"File": "motions/main_2.motion3.json",
+					"Text": "不要惧怕冒犯或是惹怒我，直接说出你的索求，我会满足与你。",
+					"Audio": ""
+				}
+			],
+			"main_3": [
+				{
+					"File": "motions/main_3.motion3.json",
+					"Text": "也许偶尔也当让理性多作休息……毕竟是如此美丽的夏夜，此刻我只想让你在我怀中撒娇，我的孩子……",
+					"Audio": ""
+				}
+			],
+			"mail": [
+				{
+					"File": "motions/mail.motion3.json",
+					"Text": "那么，我来唱给你听吧",
+					"Audio": ""
+				}
+			],
+			"mission": [
+				{
+					"File": "motions/mission.motion3.json",
+					"Text": "无论想要什么，我都可以帮你拿到",
+					"Audio": ""
+				}
+			],
+			"mission_complete": [
+				{
+					"File": "motions/mission_complete.motion3.json",
+					"Text": "那么，想要什么奖励呢？",
+					"Audio": ""
+				}
+			],
+			"complete": [
+				{
+					"File": "motions/complete.motion3.json",
+					"Text": "要好好欢迎认真完成了委托的孩子们哟",
+					"Audio": ""
+				}
+			],
+			"wedding": [
+				{
+					"File": "motions/wedding.motion3.json",
+					"Text": "以后，悲伤也好，喜悦也好，痛苦也好，欢愉也好，无论发生什么，都来依靠我吧，我会一直，一直理解你，包容你，支持你的喔……",
+					"Audio": ""
+				}
+			],
+			"touch_head": [
+				{
+					"File": "motions/touch_head.motion3.json",
+					"Text": "你似乎很喜欢这简单的发型变化呢，我的孩子……",
+					"Audio": ""
+				}
+			],
+			"touch_body": [
+				{
+					"File": "motions/touch_body.motion3.json",
+					"Text": "渴望肌肤的温热？可以哦，我的孩子。",
+					"Audio": ""
+				}
+			],
+			"touch_special": [
+				{
+					"File": "motions/touch_special.motion3.json",
+					"Text": "呵呵……满足孩子的求知欲，也是我的责任呢……",
+					"Audio": ""
+				}
+			],
+			"idle": [
+				{
+					"File": "motions/idle.motion3.json"
+				}
+			],
+			"touch_idle1": [
+				{
+					"File": "motions/touch_idle1.motion3.json"
+				}
+			],
+			"idle1": [
+				{
+					"File": "motions/idle1.motion3.json"
+				}
+			],
+			"touch_idle2": [
+				{
+					"File": "motions/touch_idle2.motion3.json"
+				}
+			],
+			"idle2": [
+				{
+					"File": "motions/idle2.motion3.json"
+				}
+			],
+			"touch_idle3": [
+				{
+					"File": "motions/touch_idle3.motion3.json"
+				}
+			],
+			"idle3": [
+				{
+					"File": "motions/idle3.motion3.json"
+				}
+			],
+			"touch_idle4": [
+				{
+					"File": "motions/touch_idle4.motion3.json"
+				}
+			],
+			"idle4": [
+				{
+					"File": "motions/idle4.motion3.json"
+				}
+			],
+			"touch_idle5": [
+				{
+					"File": "motions/touch_idle5.motion3.json"
+				}
+			],
+			"idle5": [
+				{
+					"File": "motions/idle5.motion3.json"
+				}
+			],
+			"touch_idle6": [
+				{
+					"File": "motions/touch_idle6.motion3.json"
+				}
+			],
+			"touch_idle7": [
+				{
+					"File": "motions/touch_idle7.motion3.json"
+				}
+			],
+			"touch_idle8": [
+				{
+					"File": "motions/touch_idle8.motion3.json"
+				}
+			],
+			"touch_idle9": [
+				{
+					"File": "motions/touch_idle9.motion3.json"
+				}
+			],
+			"effect": [
+				{
+					"File": "motions/effect.motion3.json"
+				}
+			]
+		}
+	},
+	"Groups": [
+		{
+			"Target": "Parameter",
+			"Name": "EyeBlink",
+			"Ids": [
+				"ParamEyeLOpen",
+				"ParamEyeROpen"
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Name": "LipSync",
+			"Ids": [
+				"ParamMouthOpenY11",
+				"ParamMouthOpenY2",
+				"ParamMouthOpenY"
+			]
+		}
+	],
+	"HitAreas": []
+}

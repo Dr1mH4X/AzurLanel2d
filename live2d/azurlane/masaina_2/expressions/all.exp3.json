@@ -1,0 +1,20 @@
+{
+	"Type": "Live2D Expression",
+	"Parameters": [
+		{
+			"Id": "Touchdrag1",
+			"Value": 1,
+			"Blend": "Add"
+		},
+		{
+			"Id": "Touchdrag2",
+			"Value": 1,
+			"Blend": "Add"
+		},
+		{
+			"Id": "Touchdrag3",
+			"Value": 1,
+			"Blend": "Add"
+		}
+	]
+}

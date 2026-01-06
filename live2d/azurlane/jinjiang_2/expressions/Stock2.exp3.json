@@ -1,0 +1,15 @@
+{
+	"Type": "Live2D Expression",
+	"Parameters": [
+		{
+			"Id": "Stock1",
+			"Value": 1,
+			"Blend": "Add"
+		},
+		{
+			"Id": "Stock2",
+			"Value": 1,
+			"Blend": "Add"
+		}
+	]
+}

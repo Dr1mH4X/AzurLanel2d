@@ -1,0 +1,319 @@
+{
+  "Version": 3,
+  "Name": "xiafei_4",
+  "FileReferences": {
+    "Moc": "xiafei_4.moc3",
+    "Textures": [
+      "textures/texture_00.webp",
+      "textures/texture_01.webp"
+    ],
+    "Physics": "xiafei_4.physics3.json",
+    "Motions": {
+      "login": [
+        {
+          "File": "motions/login.motion3.json",
+          "Text": "欢迎回来，指挥官。在下场比赛开始之前，先确认一下赛车的状态如何？我也会协助您的。",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/8/8a/emrr88z2trceik6e0on3h5clnmq0ijh.mp3"
+        }
+      ],
+      "home": [
+        {
+          "File": "motions/home.motion3.json",
+          "Text": "建议您先进一次维修站，对赛车进行一下整备。毕竟……不管是人还是物，持续过度使用的话，可是会招致不幸的哦？",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/2/20/mmuxz43si6kwaniud8rhe4wux57hueu.mp3"
+        }
+      ],
+      "main_1": [
+        {
+          "File": "motions/main_1.motion3.json",
+          "Text": "看来您刷新了自己的记录呢。恭喜您。能取得这样的好成绩，一定是因为鸢尾的庇佑吧。",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/c/c6/dzxzm1201y9dmkatyt7dyv2piztl426.mp3"
+        }
+      ],
+      "main_2": [
+        {
+          "File": "motions/main_2.motion3.json",
+          "Text": "呼（吹气）……给您的前窗吹雾气就到此为止了。嗯，愿您能像这样……获得“喜欢”的祝福。",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/9/98/dofjx9phtam8z95s8gez3ifa4vgfroz.mp3"
+        }
+      ],
+      "main_3": [
+        {
+          "File": "motions/main_3.motion3.json",
+          "Text": "炒热同伴们比赛的气氛，其志可嘉。但请务必牢记安全第一——霞飞也要注意安全？呵呵，谢谢您。",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/5/5e/rjjeqp6uxvgkh2peuli6pelz5adx72h.mp3"
+        }
+      ],
+      "mail": [
+        {
+          "File": "motions/mail.motion3.json",
+          "Text": "看来是新邮件。确认下吧。",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/5/57/o28pj1ti8sipy08jhqb6pt05t07bj0h.mp3"
+        }
+      ],
+      "mission": [
+        {
+          "File": "motions/mission.motion3.json",
+          "Text": "任务……嗯，可以推迟再做也没关系。因为霞飞已经做出了这样的“裁决”哦。",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/d/d1/rnvbq0pced19y9h9lyseizugba3okaf.mp3"
+        }
+      ],
+      "mission_complete": [
+        {
+          "File": "motions/mission_complete.motion3.json",
+          "Text": "任务奖励下发了。接受吧，不要贪心。",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/b/bc/45ivlptwqfesk0smsc8tlqhy4lj2mau.mp3"
+        }
+      ],
+      "complete": [
+        {
+          "File": "motions/complete.motion3.json",
+          "Text": "委托组好像回来了。我去让她们稍等片刻。",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/f/f9/1b553kqq8sbwjjzdncq0y5zvypxt6cm.mp3"
+        }
+      ],
+      "wedding": [
+        {
+          "File": "motions/wedding.motion3.json",
+          "Text": "以鸢尾之名，与你立下永远的誓约……这下我就失去制裁你的资格了呢。不过这也没什么。我会充分用好这份刚获得的，爱你的资格的。",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/7/79/m9inscxq2rhswuwctjhfwl3mptkdciy.mp3"
+        }
+      ],
+      "touch_head": [
+        {
+          "File": "motions/touch_head.motion3.json",
+          "Text": "",
+          "Audio": ""
+        }
+      ],
+      "touch_body": [
+        {
+          "File": "motions/touch_body.motion3.json",
+          "Text": "难道，您忘记了有玻璃这回事？",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/5/5d/47imxe0ctebxu9tub1cj8dmx0wmt5zl.mp3"
+        }
+      ],
+      "touch_special": [
+        {
+          "File": "motions/touch_special.motion3.json",
+          "Text": "……唔。应该不用对霞飞进行清洁吧……？",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/8/8e/hgu3r9clq3g7tel21ljdz93q3c8sev4.mp3"
+        }
+      ],
+      "touch_drag1": [
+        {
+          "File": "motions/touch_drag1.motion3.json"
+        }
+      ],
+      "idle": [
+        {
+          "File": "motions/idle.motion3.json"
+        }
+      ],
+      "touch_idle1": [
+        {
+          "File": "motions/touch_idle1.motion3.json"
+        }
+      ],
+      "idle1": [
+        {
+          "File": "motions/idle1.motion3.json"
+        }
+      ],
+      "touch_idle2": [
+        {
+          "File": "motions/touch_idle2.motion3.json"
+        }
+      ],
+      "idle2": [
+        {
+          "File": "motions/idle2.motion3.json"
+        }
+      ],
+      "touch_idle3": [
+        {
+          "File": "motions/touch_idle3.motion3.json"
+        }
+      ],
+      "idle3": [
+        {
+          "File": "motions/idle3.motion3.json"
+        }
+      ],
+      "touch_idle4": [
+        {
+          "File": "motions/touch_idle4.motion3.json"
+        }
+      ],
+      "idle4": [
+        {
+          "File": "motions/idle4.motion3.json"
+        }
+      ],
+      "touch_idle5": [
+        {
+          "File": "motions/touch_idle5.motion3.json"
+        }
+      ],
+      "idle5": [
+        {
+          "File": "motions/idle5.motion3.json"
+        }
+      ],
+      "touch_idle6": [
+        {
+          "File": "motions/touch_idle6.motion3.json"
+        }
+      ],
+      "idle6": [
+        {
+          "File": "motions/idle6.motion3.json"
+        }
+      ],
+      "touch_idle7": [
+        {
+          "File": "motions/touch_idle7.motion3.json"
+        }
+      ],
+      "idle7": [
+        {
+          "File": "motions/idle7.motion3.json"
+        }
+      ],
+      "touch_idle8": [
+        {
+          "File": "motions/touch_idle8.motion3.json"
+        }
+      ],
+      "idle8": [
+        {
+          "File": "motions/idle8.motion3.json"
+        }
+      ],
+      "touch_idle9": [
+        {
+          "File": "motions/touch_idle9.motion3.json"
+        }
+      ],
+      "touch_idle10": [
+        {
+          "File": "motions/touch_idle10.motion3.json"
+        }
+      ],
+      "touch_idle11": [
+        {
+          "File": "motions/touch_idle11.motion3.json"
+        }
+      ],
+      "touch_idle12": [
+        {
+          "File": "motions/touch_idle12.motion3.json"
+        }
+      ],
+      "touch_idle13": [
+        {
+          "File": "motions/touch_idle13.motion3.json"
+        }
+      ],
+      "touch_idle14": [
+        {
+          "File": "motions/touch_idle14.motion3.json"
+        }
+      ],
+      "touch_idle15": [
+        {
+          "File": "motions/touch_idle15.motion3.json"
+        }
+      ],
+      "touch_idle16": [
+        {
+          "File": "motions/touch_idle16.motion3.json"
+        }
+      ],
+      "touch_idle17": [
+        {
+          "File": "motions/touch_idle17.motion3.json"
+        }
+      ],
+      "touch_idle18": [
+        {
+          "File": "motions/touch_idle18.motion3.json"
+        }
+      ],
+      "touch_idle19": [
+        {
+          "File": "motions/touch_idle19.motion3.json"
+        }
+      ],
+     
+      "touch_idle20": [
+        {
+          "File": "motions/touch_idle20.motion3.json"
+        }
+      ],
+      "touch_idle21": [
+        {
+          "File": "motions/touch_idle21.motion3.json"
+        }
+      ],
+      "touch_idle22": [
+        {
+          "File": "motions/touch_idle22.motion3.json"
+        }
+      ],
+      "touch_idle23": [
+        {
+          "File": "motions/touch_idle23.motion3.json"
+        }
+      ],
+      "touch_idle24": [
+        {
+          "File": "motions/touch_idle24.motion3.json"
+        }
+      ],
+      "touch_idle25": [
+        {
+          "File": "motions/touch_idle25.motion3.json"
+        }
+      ],
+      "touch_idle26": [
+        {
+          "File": "motions/touch_idle26.motion3.json"
+        }
+      ],
+      "touch_idle27": [
+        {
+          "File": "motions/touch_idle27.motion3.json"
+        }
+      ],
+      "touch_idle28": [
+        {
+          "File": "motions/touch_idle28.motion3.json"
+        }
+      ],
+      "effect": [
+        {
+          "File": "motions/effect.motion3.json"
+        }
+      ]
+    },
+    "Expressions": []
+  },
+  "Groups": [
+    {
+      "Target": "Parameter",
+      "Name": "EyeBlink",
+      "Ids": [
+        "ParamEyeLOpen",
+        "ParamEyeROpen"
+      ]
+    },
+    {
+      "Target": "Parameter",
+      "Name": "LipSync",
+      "Ids": [
+        "ParamMouthOpenY"
+      ]
+    }
+  ]
+}

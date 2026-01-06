@@ -1,0 +1,325 @@
+{
+	"Version": 3,
+	"FileReferences": {
+		"Moc": "dafeng_7.moc3",
+		"Textures": [
+			"textures/texture_00.webp",
+			"textures/texture_01.webp"
+		],
+		"Physics": "dafeng_7.physics3.json",
+		"Expressions": [
+			{
+				"Name": "touch_drag1",
+				"File": "expressions/touch_drag1.exp3.json"
+			},
+			{
+				"Name": "touch_drag2",
+				"File": "expressions/touch_drag2.exp3.json"
+			},
+			{
+				"Name": "touch_drag3",
+				"File": "expressions/touch_drag3.exp3.json"
+			},
+			{
+				"Name": "touch_drag4",
+				"File": "expressions/touch_drag4.exp3.json"
+			},
+			{
+				"Name": "main",
+				"File": "expressions/main.exp3.json"
+			}
+		],
+		"Motions": {
+			"login": [
+				{
+					"File": "motions/login.motion3.json",
+					"Text": "呼...指挥官大人，您的技术还是这么好呢～下一球想打哪里都可以，准备好了随时叫大凤来就好♡",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/6/60/fkl6e4a967ertz4ha00zgl7yj3s081g.mp3"
+				}
+			],
+			"home": [
+				{
+					"File": "motions/home.motion3.json",
+					"Text": "哈...欢迎回来，指挥官大人～大凤一直一直一直在这里等着您呢♡",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/5/5b/nqquh8q2umycqlpmy559lstna7l2zzo.mp3"
+				}
+			],
+			"main_1": [
+				{
+					"File": "motions/main_1.motion3.json",
+					"Text": "该从哪里进攻呢...请用手指轻轻指给大凤看呢♡随时都准备就绪哦～",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/9/94/nevtfwa7k9mxwpjjw55130j1yod7wqx.mp3"
+				}
+			],
+			"main_2": [
+				{
+					"File": "motions/main_2.motion3.json",
+					"Text": "如果要打库射的话，得好好计算反射角度，预先让球朝着想要打进的袋角调整杆头......指，指挥官大人！？突然变得太专业了，大凤跟不上节奏了...！",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/0/05/arqf5a2cbt1lvnxjq07p323mrgvbtni.mp3"
+				}
+			],
+			"main_3": [
+				{
+					"File": "motions/main_3.motion3.json",
+					"Text": "指挥官大人又在发呆呢...不用管大凤，就这样瞄准吧～要用大凤来支撑球杆也可以哦♡",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/9/93/1tnr6e77vtja6bt6kt9vq7gr2nwug7s.mp3"
+				}
+			],
+			"mail": [
+				{
+					"File": "motions/mail.motion3.json",
+					"Text": "指挥官，新邮件~大凤已经用舌头检查过没有毒了唷~",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/4/46/cgk3al337gc1ripb4znyxysxza1sxmk.mp3"
+				}
+			],
+			"mission": [
+				{
+					"File": "motions/mission.motion3.json",
+					"Text": "有新的任务了～啧，偏偏在这种时候...…",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/6/6b/6si6t7zbuxlzvod1n5pp3nj845cu487.mp3"
+				}
+			],
+			"mission_complete": [
+				{
+					"File": "motions/mission_complete.motion3.json",
+					"Text": "任务完成了哦～光是大凤一个人还不够做指挥官大人的奖励吗？",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/d/de/n6usu27y0sqqibmn7lluklsebvfylid.mp3"
+				}
+			],
+			"complete": [
+				{
+					"File": "motions/complete.motion3.json",
+					"Text": "委托完成了哦～呵呵，不过指挥官大人得先起来才行呢♡",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/2/26/eip8vhz41270x8ho4pyfbjy7za3zfbn.mp3"
+				}
+			],
+			"wedding": [
+				{
+					"File": "motions/wedding.motion3.json",
+					"Text": "终于送到大凤手里了呢~如果不是上面写着大凤的名字，早就把它处理掉了呢嘻嘻一一嗯？为什么会知道？指挥官的全~部大凤都知道的呦，从今往后也会全心想着您的~",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/3/3f/nh7u68z4omi7t1azeoadzc5uvgbeuzb.mp3"
+				}
+			],
+			"touch_head": [
+				{
+					"File": "motions/touch_head.motion3.json",
+					"Text": "指挥官大人～就把一切都交给大凤吧♡",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/e/e4/j9l6dg2qj767pri2hnmc1eh9bqh8rh3.mp3"
+				}
+			],
+			"touch_body": [
+				{
+					"File": "motions/touch_body.motion3.json",
+					"Text": "指挥官大人怎么了？不是说好要和大凤一起练习台球的吗？♡",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/7/79/ce1aki3aspxq1wc8eo9n3pktab978w4.mp3"
+				}
+			],
+			"touch_special": [
+				{
+					"File": "motions/touch_special.motion3.json",
+					"Text": "指挥官大人♡请更多更多地宠爱大凤吧♡",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/6/6c/lrot5aj1e7fz81s7wkofqvay4vbounz.mp3"
+				}
+			],
+			"touch_drag7": [
+				{
+					"File": "motions/touch_drag7.motion3.json"
+				}
+			],
+			"idle": [
+				{
+					"File": "motions/idle.motion3.json"
+				}
+			],
+			"touch_idle1": [
+				{
+					"File": "motions/touch_idle1.motion3.json"
+				}
+			],
+			"idle1": [
+				{
+					"File": "motions/idle1.motion3.json"
+				}
+			],
+			"touch_idle2": [
+				{
+					"File": "motions/touch_idle2.motion3.json"
+				}
+			],
+			"idle2": [
+				{
+					"File": "motions/idle2.motion3.json"
+				}
+			],
+			"touch_idle3": [
+				{
+					"File": "motions/touch_idle3.motion3.json"
+				}
+			],
+			"idle3": [
+				{
+					"File": "motions/idle3.motion3.json"
+				}
+			],
+			"touch_idle4": [
+				{
+					"File": "motions/touch_idle4.motion3.json"
+				}
+			],
+			"idle4": [
+				{
+					"File": "motions/idle4.motion3.json"
+				}
+			],
+			"touch_idle5": [
+				{
+					"File": "motions/touch_idle5.motion3.json"
+				}
+			],
+			"idle5": [
+				{
+					"File": "motions/idle5.motion3.json"
+				}
+			],
+			"touch_idle6": [
+				{
+					"File": "motions/touch_idle6.motion3.json"
+				}
+			],
+			"idle6": [
+				{
+					"File": "motions/idle6.motion3.json"
+				}
+			],
+			"touch_idle7": [
+				{
+					"File": "motions/touch_idle7.motion3.json"
+				}
+			],
+			"idle7": [
+				{
+					"File": "motions/idle7.motion3.json"
+				}
+			],
+			"idle8": [
+				{
+					"File": "motions/idle8.motion3.json"
+				}
+			],
+			"touch_idle8": [
+				{
+					"File": "motions/touch_idle8.motion3.json"
+				}
+			],
+			"touch_idle9": [
+				{
+					"File": "motions/touch_idle9.motion3.json"
+				}
+			],
+			"touch_idle11": [
+				{
+					"File": "motions/touch_idle11.motion3.json"
+				}
+			],
+			"idle11": [
+				{
+					"File": "motions/idle11.motion3.json"
+				}
+			],
+			"touch_idle12": [
+				{
+					"File": "motions/touch_idle12.motion3.json"
+				}
+			],
+			"idle12": [
+				{
+					"File": "motions/idle12.motion3.json"
+				}
+			],
+			"touch_idle13": [
+				{
+					"File": "motions/touch_idle13.motion3.json"
+				}
+			],
+			"idle13": [
+				{
+					"File": "motions/idle13.motion3.json"
+				}
+			],
+			"touch_idle14": [
+				{
+					"File": "motions/touch_idle14.motion3.json"
+				}
+			],
+			"idle14": [
+				{
+					"File": "motions/idle14.motion3.json"
+				}
+			],
+			"touch_idle15": [
+				{
+					"File": "motions/touch_idle15.motion3.json"
+				}
+			],
+			"touch_idle16": [
+				{
+					"File": "motions/touch_idle16.motion3.json"
+				}
+			],
+			"touch_idle17": [
+				{
+					"File": "motions/touch_idle17.motion3.json"
+				}
+			],
+			"idle17": [
+				{
+					"File": "motions/idle17.motion3.json"
+				}
+			],
+			"touch_idle18": [
+				{
+					"File": "motions/touch_idle18.motion3.json"
+				}
+			],
+			"idle18": [
+				{
+					"File": "motions/idle18.motion3.json"
+				}
+			],
+			"touch_idle19": [
+				{
+					"File": "motions/touch_idle19.motion3.json"
+				}
+			],
+			"touch_idle20": [
+				{
+					"File": "motions/touch_idle20.motion3.json"
+				}
+			],
+			"effect": [
+				{
+					"File": "motions/effect.motion3.json"
+				}
+			]
+		}
+	},
+	"Groups": [
+		{
+			"Target": "Parameter",
+			"Name": "EyeBlink",
+			"Ids": [
+				"ParamEyeLOpen",
+				"ParamEyeROpen"
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Name": "LipSync",
+			"Ids": [
+				"ParamMouthOpenY_SD",
+				"ParamMouthOpenY2"
+			]
+		}
+	],
+	"HitAreas": []
+}

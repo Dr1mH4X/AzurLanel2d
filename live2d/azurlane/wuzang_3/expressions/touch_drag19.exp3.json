@@ -1,0 +1,15 @@
+{
+	"Type": "Live2D Expression",
+	"Parameters": [
+		{
+			"Id": "touch_drag19",
+			"Value": 1,
+			"Blend": "Add"
+		},
+		{
+			"Id": "BANZI",
+			"Value": 1,
+			"Blend": "Add"
+		}
+	]
+}

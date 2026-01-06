@@ -1,0 +1,338 @@
+{
+	"Version": 3,
+	"FileReferences": {
+		"Moc": "baifeng_2.moc3",
+		"Textures": [
+			"textures/texture_00.webp",
+			"textures/texture_01.webp"
+		],
+		"Physics": "baifeng_2.physics3.json",
+		"Expressions": [
+			{
+				"Name": "touch_drag1",
+				"File": "expressions/touch_drag1.exp3.json"
+			},
+			{
+				"Name": "touch_drag2",
+				"File": "expressions/touch_drag2.exp3.json"
+			},
+			{
+				"Name": "touch_drag3",
+				"File": "expressions/touch_drag3.exp3.json"
+			},
+			{
+				"Name": "touch_drag4",
+				"File": "expressions/touch_drag4.exp3.json"
+			},
+			{
+				"Name": "touch_drag20",
+				"File": "expressions/touch_drag20.exp3.json"
+			},
+			{
+				"Name": "main",
+				"File": "expressions/main.exp3.json"
+			}
+		],
+		"Motions": {
+			"login": [
+				{
+					"File": "motions/login.motion3.json",
+					"Text": "被主公大人压制得太狼狈了呢，您想好该怎么对我负责了吗？……释放？这可真是令人意外的选择……",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/8/82/9auu3xa2wyopiq2bauglg93hu0vlqh1.mp3"
+				}
+			],
+			"home": [
+				{
+					"File": "motions/home.motion3.json",
+					"Text": "您回来得真快……哎呀，这把刀怎么出鞘了？真危险，赶紧合上吧……但如果白凤以死相逼，想必主公大人也会心软地同意我留下吧？",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/9/99/ih9q3oge4ikcqafeeow6fz4m13ueqqa.mp3"
+				}
+			],
+			"main_1": [
+				{
+					"File": "motions/main_1.motion3.json",
+					"Text": "主公大人觉得，像白凤这样失败的“刺客”，还有改进空间吗？比如潜入技巧？……呵呵，先把杀意藏起来吗？这确实是我的失误……",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/7/70/gly371wr73x0jnx1q4x3aykwplbcwwj.mp3"
+				}
+			],
+			"main_2": [
+				{
+					"File": "motions/main_2.motion3.json",
+					"Text": "为什么能轻松找到您的位置？我留在您身上的香气可不会骗人啊，主公大人~",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/6/6d/p3vim9eczi3pbru8s0rft3n7x7aacbs.mp3"
+				}
+			],
+			"main_3": [
+				{
+					"File": "motions/main_3.motion3.json",
+					"Text": "能用来捆住白凤的绳子，还剩这么多呢……主公大人，不要浪费了白凤的心意哦……~",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/8/8d/59029wnc5raakpwi1pjnwna853gdmu2.mp3"
+				}
+			],
+			"main_4": [
+				{
+					"File": "motions/main_4.motion3.json",
+					"Text": "呼……呼……难道就没有回旋的余地了吗，明明白凤已经对主公大人毫无保留……",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/c/c1/hs605zuzcc71kveoot7gvw25y4ktsqh.mp3"
+				}
+			],
+			"mail": [
+				{
+					"File": "motions/mail.motion3.json",
+					"Text": "新邮件来了哦，已经帮您熏过香了~这香味合您心意吗？",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/4/48/hxxmho66n3t7y5vf4jmwrqe7fa6k56v.mp3"
+				}
+			],
+			"mission": [
+				{
+					"File": "motions/mission.motion3.json",
+					"Text": "主公大人，新任务来了哦，只要能在您身边，白凤就一定会给您帮上忙的~",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/b/bd/mcfakfs0283rmyo08tlj1pp977zf7lu.mp3"
+				}
+			],
+			"mission_complete": [
+				{
+					"File": "motions/mission_complete.motion3.json",
+					"Text": "如此便算完成了~作为辛苦工作的奖励，请允许我为您熏燃新香~",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/6/61/nkixjgehvgzz5es9x5x5dv4pxebdass.mp3"
+				}
+			],
+			"complete": [
+				{
+					"File": "motions/complete.motion3.json",
+					"Text": "要去迎接委托队了嘛？白凤已经备好了迎接仪式，愿与您一同前往~",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/3/3f/55emj4j1w94bx8m9h75qmj8xqtbbsob.mp3"
+				}
+			],
+			"wedding": [
+				{
+					"File": "motions/wedding.motion3.json",
+					"Text": "我好开心，好开心，指挥官大人果然牵挂着我呢……嗯？您是不是开始困了呢？那就再睡会儿吧——我会陪着您……就在这静悄悄的，黎明前的永恒之夜……",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/4/44/cxcjplxt0o6d46dqt8gc7au2jxgvcni.mp3"
+				}
+			],
+			"touch_head": [
+				{
+					"File": "motions/touch_head.motion3.json",
+					"Text": "白凤博得您的欢心了吗~",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/d/de/1tves1x26t0mct4ov50b3x9yxbkubb9.mp3"
+				}
+			],
+			"touch_body": [
+				{
+					"File": "motions/touch_body.motion3.json",
+					"Text": "抓住您了，主公大人~呵呵，您不该这样毫无防备地靠近呢……",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/e/ee/0bhoyg4dpfvmzapyp0xxumzqyx8cip7.mp3"
+				}
+			],
+			"touch_special": [
+				{
+					"File": "motions/touch_special.motion3.json",
+					"Text": "主公大人现在是白凤的俘虏了呢，呵呵……",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/3/37/am6kxojuw0aikwyqlxb2xor74yqlkz1.mp3"
+				}
+			],
+			"touch_drag5": [
+				{
+					"File": "motions/touch_drag5.motion3.json"
+				}
+			],
+			"touch_drag6": [
+				{
+					"File": "motions/touch_drag6.motion3.json"
+				}
+			],
+			"touch_drag7": [
+				{
+					"File": "motions/touch_drag7.motion3.json"
+				}
+			],
+			"touch_drag8": [
+				{
+					"File": "motions/touch_drag8.motion3.json"
+				}
+			],
+			"touch_drag9": [
+				{
+					"File": "motions/touch_drag9.motion3.json"
+				}
+			],
+			"touch_drag10": [
+				{
+					"File": "motions/touch_drag10.motion3.json"
+				}
+			],
+			"touch_drag11": [
+				{
+					"File": "motions/touch_drag11.motion3.json"
+				}
+			],
+			"touch_drag12": [
+				{
+					"File": "motions/touch_drag12.motion3.json"
+				}
+			],
+			"touch_drag15": [
+				{
+					"File": "motions/touch_drag15.motion3.json"
+				}
+			],
+			"touch_drag19": [
+				{
+					"File": "motions/touch_drag19.motion3.json"
+				}
+			],
+			"idle": [
+				{
+					"File": "motions/idle.motion3.json"
+				}
+			],
+			"touch_idle1": [
+				{
+					"File": "motions/touch_idle1.motion3.json"
+				}
+			],
+			"idle1": [
+				{
+					"File": "motions/idle1.motion3.json"
+				}
+			],
+			"touch_idle2": [
+				{
+					"File": "motions/touch_idle2.motion3.json"
+				}
+			],
+			"idle2": [
+				{
+					"File": "motions/idle2.motion3.json"
+				}
+			],
+			"idle3": [
+				{
+					"File": "motions/idle3.motion3.json"
+				}
+			],
+			"idle4": [
+				{
+					"File": "motions/idle4.motion3.json"
+				}
+			],
+			"idle5": [
+				{
+					"File": "motions/idle5.motion3.json"
+				}
+			],
+			"idle6": [
+				{
+					"File": "motions/idle6.motion3.json"
+				}
+			],
+			"idle7": [
+				{
+					"File": "motions/idle7.motion3.json"
+				}
+			],
+			"touch_idle8": [
+				{
+					"File": "motions/touch_idle8.motion3.json"
+				}
+			],
+			"idle8": [
+				{
+					"File": "motions/idle8.motion3.json"
+				}
+			],
+			"idle9": [
+				{
+					"File": "motions/idle9.motion3.json"
+				}
+			],
+			"touch_idle11": [
+				{
+					"File": "motions/touch_idle11.motion3.json"
+				}
+			],
+			"idle11": [
+				{
+					"File": "motions/idle11.motion3.json"
+				}
+			],
+			"touch_idle12": [
+				{
+					"File": "motions/touch_idle12.motion3.json"
+				}
+			],
+			"touch_idle13": [
+				{
+					"File": "motions/touch_idle13.motion3.json"
+				}
+			],
+			"touch_idle14": [
+				{
+					"File": "motions/touch_idle14.motion3.json"
+				}
+			],
+			"touch_idle15": [
+				{
+					"File": "motions/touch_idle15.motion3.json"
+				}
+			],
+			"touch_idle16": [
+				{
+					"File": "motions/touch_idle16.motion3.json"
+				}
+			],
+			"touch_idle17": [
+				{
+					"File": "motions/touch_idle17.motion3.json"
+				}
+			],
+			"idle17": [
+				{
+					"File": "motions/idle17.motion3.json"
+				}
+			],
+			"touch_idle18": [
+				{
+					"File": "motions/touch_idle18.motion3.json"
+				}
+			],
+			"touch_idle19": [
+				{
+					"File": "motions/touch_idle19.motion3.json"
+				}
+			],
+			"idle19": [
+				{
+					"File": "motions/idle19.motion3.json"
+				}
+			],
+			"idle20": [
+				{
+					"File": "motions/idle20.motion3.json"
+				}
+			],
+			"effect": [
+				{
+					"File": "motions/effect.motion3.json"
+				}
+			]
+		}
+	},
+	"Groups": [
+		{
+			"Target": "Parameter",
+			"Name": "EyeBlink",
+			"Ids": [
+				"ParamEyeLOpen",
+				"ParamEyeROpen"
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Name": "LipSync",
+			"Ids": []
+		}
+	],
+	"HitAreas": []
+}

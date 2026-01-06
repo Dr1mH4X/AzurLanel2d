@@ -1,0 +1,283 @@
+{
+	"Version": 3,
+	"FileReferences": {
+		"Moc": "chaijun_5.moc3",
+		"Textures": [
+			"textures/texture_00.webp"
+		],
+		"Physics": "chaijun_5.physics3.json",
+		"Expressions": [
+			{
+				"Name": "touch_drag4",
+				"File": "expressions/touch_drag4.exp3.json"
+			},
+			{
+				"Name": "touch_drag5",
+				"File": "expressions/touch_drag5.exp3.json"
+			},
+			{
+				"Name": "touch_drag7",
+				"File": "expressions/touch_drag7.exp3.json"
+			},
+			{
+				"Name": "touch_drag9",
+				"File": "expressions/touch_drag9.exp3.json"
+			},
+			{
+				"Name": "touch_drag6-实际为白丝",
+				"File": "expressions/touch_drag6.exp3.json"
+			},
+			
+			{
+				"Name": "touch_drag6-4",
+				"File": "expressions/touch_drag6-4.exp3.json"
+			},
+			{
+				"Name": "touch_drag6-9",
+				"File": "expressions/touch_drag6-9.exp3.json"
+			},
+			{
+				"Name": "main",
+				"File": "expressions/main.exp3.json"
+			}
+		],
+		"Motions": {
+			"login": [
+				{
+					"File": "motions/login.motion3.json",
+					"Text": "亲~爱~的~！嘿嘿，快让我抱抱~软乎乎软乎乎~现在的柴郡抱起来怎么样呀？是不是比平时还要舒服？ ",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/0/0a/np3m7obax39yioxbynwjzxmcf149h2p.mp3"			
+				}
+			],
+			"home": [
+				{
+					"File": "motions/home.motion3.json",
+					"Text": "亲爱的，欢迎回来！想要柴郡给亲爱的跳支兔子舞吗？还是想让柴郡给你表演魔术呢~ ",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/c/cc/evm4wn5k0pci3qimmyjd2xbg2no2gzg.mp3"	
+				}
+			],
+			"main_1": [
+				{
+					"File": "motions/main_1.motion3.json",
+					"Text": "亲爱的，参加了这么久的宴会很累了吧？要躺到柴郡身边吗？还是要躺在柴郡腿上呢？ ",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/c/c2/lwb86bwz1e0olbl7of28w6fn9iz4zi8.mp3"	
+				}
+			],
+			"main_2": [
+				{
+					"File": "motions/main_2.motion3.json",
+					"Text": "亲爱的，看好啦！柴郡要给你表演一个厉害的大魔术！锵锵~变出了一个更爱你的柴郡哦~ ",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/7/70/kp0t1k7nraz3qft8sj322nknbhz2u6o.mp3"	
+				}
+			],
+			"main_3": [
+				{
+					"File": "motions/main_3.motion3.json",
+					"Text": "亲爱的，其实现在魔术师柴郡有一个可以让你看到柴郡对你的爱有多少的魔术哦~嘿咻……嗯~亲爱的看到了吗？是最高值哦！ ",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/c/c0/c3kli7vpdpxlisvzlkw2rgsh0w612m7.mp3"	
+				}
+			],
+			"main_4": [
+				{
+					"File": "motions/main_4.motion3.json",
+					"Text": "亲爱的~要不要试试把手伸进柴郡的帽子里试试？什么？软软的？一定是藏在里面的“兔子”吧~嘿嘿~ ",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/d/d2/skyoselv1ysww88gc7p8rckazhy5lif.mp3"	
+				}
+			],
+			"mail": [
+				{
+					"File": "motions/mail.motion3.json",
+					"Text": "柴郡用魔术把邮件藏进纸牌里了~嘿嘿~开玩笑啦。 ",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/a/ab/n6vvhwzodrds0pgw5fwg1f5cnmqc9dj.mp3"	
+				}
+			],
+			"mission": [
+				{
+					"File": "motions/mission.motion3.json",
+					"Text": "亲爱的~还有任务没完成哦，有什么需要大魔术师柴郡帮忙的吗？ ",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/2/27/lhfxy4sm4ovccn74dsncjzlbsg35l3y.mp3"	
+				}
+			],
+			"mission_complete": [
+				{
+					"File": "motions/mission_complete.motion3.json",
+					"Text": "领取完任务奖励之后，亲爱的要和柴郡一起去看烟花吗~ ",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/6/60/g4qlq25clsbqtuczla74x4nkgpqitt3.mp3"	
+				}
+			],
+			"complete": [
+				{
+					"File": "motions/complete.motion3.json",
+					"Text": "委托组回来了？说不定带回了柴郡给亲爱的准备的礼物呢~ ",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/b/b8/25tyupi6980edf5vrosmypvnqzcrjx1.mp3"	
+				}
+			],
+			"wedding": [
+				{
+					"File": "motions/wedding.motion3.json",
+					"Text": "既然亲爱的都这么表现出对柴郡的重视了，嘻嘻~那作为回报，接下来，我要说一百遍“我喜欢你”！我要开始啦，你可要听清楚了！在听完之前，哪里也不许去哦！亲爱的~",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/1/1c/7iyav1gr4gm6tb9p5efanawq6t9b6nh.mp3"	
+				}
+			],
+			"touch_head": [
+				{
+					"File": "motions/touch_head.motion3.json",
+					"Text": "亲爱的，一直摸头会把帽子弄掉啦，不如试试摸其它地方？ ",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/4/4c/8ng07xk6mj1gqu731bzj7lyi24ai9fa.mp3"	
+				}
+			],
+			"touch_body": [
+				{
+					"File": "motions/touch_body.motion3.json",
+					"Text": "呀~亲爱的好坏，嗯？怎么突然害羞啦，一定是迷上柴郡了对不对~ ",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/d/dc/getocvs20g4m83irzzo6l154skr5o0m.mp3"	
+				}
+			],
+			"touch_special": [
+				{
+					"File": "motions/touch_special.motion3.json",
+					"Text": "亲·爱·的~柴郡可是看出你的小小坏心思了，不过可以哦~ ",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/c/c1/092ad4cgkq0feq6i2g0o1u1eyaijjx9.mp3"	
+				}
+			],
+			"touch_drag1": [
+				{
+					"File": "motions/touch_drag1.motion3.json"
+				}
+			],
+			"touch_drag2": [
+				{
+					"File": "motions/touch_drag2.motion3.json"
+				}
+			],
+			"touch_drag3": [
+				{
+					"File": "motions/touch_drag3.motion3.json"
+				}
+			],
+			"touch_drag5": [
+				{
+					"File": "motions/touch_drag5.motion3.json"
+				}
+			],
+			"touch_drag20": [
+				{
+					"File": "motions/touch_drag20.motion3.json"
+				}
+			],
+			"touch_idle": [
+				{
+					"File": "motions/touch_idle.motion3.json"
+				}
+			],
+			"idle": [
+				{
+					"File": "motions/idle.motion3.json"
+				}
+			],
+			"touch_idle1": [
+				{
+					"File": "motions/touch_idle1.motion3.json"
+				}
+			],
+			"idle1": [
+				{
+					"File": "motions/idle1.motion3.json"
+				}
+			],
+			"touch_idle2": [
+				{
+					"File": "motions/touch_idle2.motion3.json"
+				}
+			],
+			"idle2": [
+				{
+					"File": "motions/idle2.motion3.json"
+				}
+			],
+			"touch_idle3": [
+				{
+					"File": "motions/touch_idle3.motion3.json"
+				}
+			],
+			"idle3": [
+				{
+					"File": "motions/idle3.motion3.json"
+				}
+			],
+			"touch_idle4": [
+				{
+					"File": "motions/touch_idle4.motion3.json"
+				}
+			],
+			"idle4": [
+				{
+					"File": "motions/idle4.motion3.json"
+				}
+			],
+			"touch_idle5": [
+				{
+					"File": "motions/touch_idle5.motion3.json"
+				}
+			],
+			"idle5": [
+				{
+					"File": "motions/idle5.motion3.json"
+				}
+			],
+			"touch_idle6": [
+				{
+					"File": "motions/touch_idle6.motion3.json"
+				}
+			],
+			"idle6": [
+				{
+					"File": "motions/idle6.motion3.json"
+				}
+			],
+			"idle7": [
+				{
+					"File": "motions/idle7.motion3.json"
+				}
+			],
+			"touch_idle17": [
+				{
+					"File": "motions/touch_idle17.motion3.json"
+				}
+			],
+			"touch_idle18": [
+				{
+					"File": "motions/touch_idle18.motion3.json"
+				}
+			],
+			"touch_idle19": [
+				{
+					"File": "motions/touch_idle19.motion3.json"
+				}
+			],	
+			"effect": [
+				{
+					"File": "motions/effect.motion3.json"
+				}
+			]
+		}
+	},
+	"Groups": [
+		{
+			"Target": "Parameter",
+			"Name": "EyeBlink",
+			"Ids": [
+				"ParamEyeLOpen",
+				"ParamEyeROpen"
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Name": "LipSync",
+			"Ids": [
+				"ParamMouthOpenY"
+			]
+		}
+	],
+	"HitAreas": []
+}

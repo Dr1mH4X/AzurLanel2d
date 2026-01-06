@@ -1,0 +1,115 @@
+{
+  "Version": 3,
+  "FileReferences": {
+    "Moc": "ankeleiqi_2.moc3",
+    "Textures": [
+      "textures/texture_00.webp"
+    ],
+    "Physics": "ankeleiqi_2.physics3.json",
+    "Expressions": [
+      {
+          "Name": "touch_drag1.exp3.json",
+          "File": "expressions/touch_drag1.exp3.json"
+      },
+      {
+          "Name": "touch_drag2.exp3.json",
+          "File": "expressions/touch_drag2.exp3.json"
+      },
+      {
+          "Name": "all.exp3.json",
+          "File": "expressions/all.exp3.json"
+      },
+      {
+          "Name": "main.exp3.json",
+          "File": "expressions/main.exp3.json"
+      }
+  ],
+    "Motions": {
+      "": [
+        {
+          "File": "motions/login.motion3.json",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/9/99/99mhr0u4a3c7a0vk85tt8nsx5vyd4l0.mp3",
+          "Text": "嘿咻…嗯…老师…？安克雷奇，做得好吗？蹬腿…好，好像又要掉下去了…"
+        },
+        {
+          "File": "motions/home.motion3.json",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/4/46/2whj3hpnikeh85td7112t4tz62tmtq3.mp3",
+          "Text": "老师，去哪里了…？安克雷奇，一个人，没法好好游…啊！老师！诶嘿嘿♪"
+        },
+        {
+          "File": "motions/main_1.motion3.json",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/4/43/oho73czs8jbx7low9l4z09xgsn2t7i3.mp3",
+          "Text": "老师，在梦里，也会教安克雷奇很多吗…？诶嘿嘿~"
+        },
+        {
+          "File": "motions/main_2.motion3.json",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/5/52/7e3wo9q7vde2o5j85txfdf5zv3g4x2w.mp3",
+          "Text": "巴尔的摩，好会游…！安克雷奇，能变得那么会游吗？诶嘿嘿，老师教我的话，一定…"
+        },
+        {
+          "File": "motions/main_3.motion3.json",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/9/95/7nus5k3s90p2ni8xsubo5l7ra6qqp7m.mp3",
+          "Text": "鲨鱼，滑溜溜…安克雷奇，努力不掉下去！嗯！"
+        },
+        {
+          "File": "motions/mail.motion3.json",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/1/15/r5gynfcvhsijazvyicgem11pvbgmrtg.mp3",
+          "Text": "“邮件”，不能掉到水里，…嗯…做到了！"
+        },
+        {
+          "File": "motions/mission.motion3.json"
+        },
+        {
+          "File": "motions/complete.motion3.json",
+          "Text": "“委托”…要等大家回来…对吧？ ",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/f/ff/0oznpb2mvfti8mqa0ky9a1lz5mgkx7c.mp3"
+        },
+        {
+          "File": "motions/mission_complete.motion3.json"
+        },
+        {
+          "File": "motions/wedding.motion3.json"
+        },
+        {
+          "File": "motions/touch_head.motion3.json"
+        },
+        {
+          "File": "motions/touch_body.motion3.json",
+          "Text": "湿透了…老师，没事吗…？",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/1/14/0nyyou9afps7ypas5m0y300ke0bjr62.mp3"
+        },
+        {
+          "File": "motions/touch_special.motion3.json",
+          "Text": "摸摸…老师…喜欢？",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/8/81/fqaph3h845sv44q6712l76rpeaic4e7.mp3"
+        },
+        {
+          "File": "motions/touch_drag3.motion3.json"
+        },
+        {
+          "File": "motions/idle.motion3.json"
+        },
+        {
+          "File": "motions/effect.motion3.json"
+        }
+      ]
+    }
+  },
+  "Groups": [
+    {
+      "Target": "Parameter",
+      "Name": "LipSync",
+      "Ids": [
+        "ParamMouthOpenY"
+      ]
+    },
+    {
+      "Target": "Parameter",
+      "Name": "EyeBlink",
+      "Ids": [
+        "ParamEyeLOpen",
+        "ParamEyeROpen"
+      ]
+    }
+  ]
+}

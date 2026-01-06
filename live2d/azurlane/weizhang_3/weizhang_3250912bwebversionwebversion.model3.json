@@ -1,0 +1,217 @@
+{
+  "Version": 3,
+  "Name": "weizhang_3",
+  "FileReferences": {
+    "Moc": "weizhang_3.moc3",
+    "Textures": [
+      "textures/texture_00.webp",
+      "textures/texture_01.webp"
+    ],
+    "Physics": "weizhang_3.physics3.json",
+    "Motions": {
+      "login": [
+        {
+          "File": "motions/login.motion3.json",
+          "Text": "你来了，想好要让我帮你实现什么愿望了吗~？什么都可以哦，不要小看我！",
+          "Audio": ""
+        }
+      ],
+      "home": [
+        {
+          "File": "motions/home.motion3.json",
+          "Text": "想休息一会儿？这是你现在的愿望么？那用一个拥抱来交换，我就满足你！",
+          "Audio": ""
+        }
+      ],
+      "main_1": [
+        {
+          "File": "motions/main_1.motion3.json",
+          "Text": "这个？这个当然是用来惩罚不守约定的客人的！当然，也可以有其他用途哦，比如……什么？你好奇了？",
+          "Audio": ""
+        }
+      ],
+      "main_2": [
+        {
+          "File": "motions/main_2.motion3.json",
+          "Text": "新鲜的蔬菜真的很美味呢~你也觉得好吃吗？待会一起去收菜吧~什么？恶魔一般不吃蔬菜的么？",
+          "Audio": ""
+        }
+      ],
+      "main_3": [
+        {
+          "File": "motions/main_3.motion3.json",
+          "Text": "哦？想实现我的愿望吗？还真是大胆的提议呢！那我就认真想想我的愿望吧！",
+          "Audio": ""
+        }
+      ],
+      "mail": [
+        {
+          "File": "motions/mail.motion3.json",
+          "Text": "你的信，都检查过了哦，没有诅咒的气息，安心拆开看吧~",
+          "Audio": ""
+        }
+      ],
+      "mission": [
+        {
+          "File": "motions/mission.motion3.json",
+          "Text": "工作还没做完？什么工作还能在这里做……？算了，我帮你吧！作为等价交换，工作结束后，陪我一起吃饭吧！",
+          "Audio": ""
+        }
+      ],
+      "mission_complete": [
+        {
+          "File": "motions/mission_complete.motion3.json",
+          "Text": "嗯？工作就做完了？我还什么都没做呢……？总之还是一起吃饭吧！",
+          "Audio": ""
+        }
+      ],
+      "complete": [
+        {
+          "File": "motions/complete.motion3.json",
+          "Text": "啊！这些东西看起来都好危险！让我来清点吧~恶魔之主才不会觉得害怕！",
+          "Audio": ""
+        }
+      ],
+      "wedding": [
+        {
+          "File": "motions/wedding.motion3.json",
+          "Text": "真是的！该说是无论何时何地我都很在意，还是该说指挥官这个存在本身就太具有破坏力了…总之，我是彻底迷上你了！到这种情况…已经束手无策了…对吧？",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/7/7b/56m20n3pptpnz043k6u9zy8rqrg4joj.mp3"
+        }
+      ],
+      "touch_head": [
+        {
+          "File": "motions/touch_head.motion3.json",
+          "Text": "小心别被划伤手哦！在恶魔栖息之城中落下鲜甜的血液……可能会被吃掉哦！大概！",
+          "Audio": ""
+        }
+      ],
+      "touch_body": [
+        {
+          "File": "motions/touch_body.motion3.json",
+          "Text": "怎么？这么想靠近我吗？那恶魔之主就特别准许你在这里坐下啦♪~",
+          "Audio": ""
+        }
+      ],
+      "touch_special": [
+        {
+          "File": "motions/touch_special.motion3.json",
+          "Text": "满足了吗？之后呢，还想要什么？无论什么，我都可以实现哦♡~",
+          "Audio": ""
+        }
+      ],
+      "touch_drag1": [
+        {
+          "File": "motions/touch_drag1.motion3.json"
+        }
+      ],
+      "idle": [
+        {
+          "File": "motions/idle.motion3.json"
+        }
+      ],
+      "idle1": [
+        {
+          "File": "motions/idle1.motion3.json"
+        }
+      ],
+      "touch_idle2": [
+        {
+          "File": "motions/touch_idle2.motion3.json"
+        }
+      ],
+      "idle2": [
+        {
+          "File": "motions/idle2.motion3.json"
+        }
+      ],
+      "touch_idle3": [
+        {
+          "File": "motions/touch_idle3.motion3.json"
+        }
+      ],
+      "idle3": [
+        {
+          "File": "motions/idle3.motion3.json"
+        }
+      ],
+      "touch_idle4": [
+        {
+          "File": "motions/touch_idle4.motion3.json"
+        }
+      ],
+      "idle4": [
+        {
+          "File": "motions/idle4.motion3.json"
+        }
+      ],
+      "touch_idle5": [
+        {
+          "File": "motions/touch_idle5.motion3.json"
+        }
+      ],
+      "idle5": [
+        {
+          "File": "motions/idle5.motion3.json"
+        }
+      ],
+      "touch_idle6": [
+        {
+          "File": "motions/touch_idle6.motion3.json"
+        }
+      ],
+      "idle8": [
+        {
+          "File": "motions/idle8.motion3.json"
+        }
+      ],
+      "touch_idle9": [
+        {
+          "File": "motions/touch_idle9.motion3.json"
+        }
+      ],
+      "idle9": [
+        {
+          "File": "motions/idle9.motion3.json"
+        }
+      ],
+      "touch_idle11": [
+        {
+          "File": "motions/touch_idle11.motion3.json"
+        }
+      ],
+      "touch_idle12": [
+        {
+          "File": "motions/touch_idle12.motion3.json"
+        }
+      ],
+      "touch_idle13": [
+        {
+          "File": "motions/touch_idle13.motion3.json"
+        }
+      ],
+      "effect": [
+        {
+          "File": "motions/effect.motion3.json"
+        }
+      ]
+    },
+    "Expressions": []
+  },
+  "Groups": [
+    {
+      "Target": "Parameter",
+      "Name": "EyeBlink",
+      "Ids": [
+        "ParamEyeROpen"
+      ]
+    },
+    {
+      "Target": "Parameter",
+      "Name": "LipSync",
+      "Ids": [
+        "ParamMouthOpenY"
+      ]
+    }
+  ]
+}

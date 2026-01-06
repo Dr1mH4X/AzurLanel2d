@@ -1,0 +1,257 @@
+{
+	"Version": 3,
+	"FileReferences": {
+		"Moc": "ankeleiqi_3.moc3",
+		"Textures": [
+			"textures/texture_00.webp"
+		],
+		"Physics": "ankeleiqi_3.physics3.json",
+		"Expressions": [
+			{
+				"Name": "touch_drag18.exp3.json",
+				"File": "expressions/touch_drag18.exp3.json"
+			},
+			{
+				"Name": "touch_drag19.exp3.json",
+				"File": "expressions/touch_drag19.exp3.json"
+			},
+			{
+				"Name": "touch_drag20.exp3.json",
+				"File": "expressions/touch_drag20.exp3.json"
+			},
+			{
+				"Name": "main.exp3.json",
+				"File": "expressions/main.exp3.json"
+			}
+		],
+		"Motions": {
+			"": [
+				{
+					"File": "motions/login.motion3.json",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/4/42/7ab3lb4ozz0efqzgvzft10doddecmvm.mp3",
+					"Text": "……安克雷奇，一直在等老师……好寂寞……抱抱……月亮好漂亮……安克雷奇和老师……一起看！"
+				},
+				{
+					"File": "motions/home.motion3.json",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/e/e5/5y7sy0lrg7vuxmvo0kdkgw8b5us4xvj.mp3",
+					"Text": "回来了，老师……坐船？老师和安克雷奇……一起？去看月亮……！"
+				},
+				{
+					"File": "motions/main_1.motion3.json",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/3/32/0pyj2peanzclsserd45dy7koaqf01un.mp3",
+					"Text": "风，好舒服……老师……也试试？……危险？哦……安克雷奇……会注意安全！"
+				},
+				{
+					"File": "motions/main_2.motion3.json",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/7/79/eqoiub7qles4x2v5rgy6trtcvxnovqn.mp3",
+					"Text": "老师……快看！月亮和灯…都漂亮！安克雷奇也漂亮……？嘿嘿~安克雷奇，喜欢！月亮和灯……还有老师，也喜欢……"
+				},
+				{
+					"File": "motions/main_3.motion3.json",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/e/e7/b3aptl37nfdg5gnjs4n2f6gz5n7hzg1.mp3",
+					"Text": "船，摇摇晃晃的……站不稳……但是，和老师一起游湖……开心！喜欢！"
+				},
+				{
+					"File": "motions/main_4.motion3.json",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/0/02/d1n1keufip24giy575ok4tjzgd0740x.mp3",
+					"Text": "……拍照？……pose是什么……这样？好难懂……老师喜欢……安克雷奇也……！"
+				},
+				{
+					"File": "motions/mail.motion3.json",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/2/28/gqwjphcofv0anz6c1l6aff57k8vof8k.mp3",
+					"Text": "新邮件……好难懂……老师，能看懂……好厉害……"
+				},
+				{
+					"File": "motions/mission.motion3.json"
+				},
+				{
+					"File": "motions/complete.motion3.json",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/9/95/s0oqlmy9rb0jgot8qja9oj4yj7gbrrz.mp3",
+					"Text": "委托……没有带安克雷奇……下次……想一起去…… "
+				},
+				{
+					"File": "motions/mission_complete.motion3.json",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/d/d0/siwgcawa3tq0lfkgvm53v3rgm7lz6o7.mp3",
+					"Text": "任务……完成了！老师要陪安克雷奇……？游湖！看月亮……！开心……！"
+				},
+				{
+					"File": "motions/wedding.motion3.json"
+				},
+				{
+					"File": "motions/touch_head.motion3.json",
+					"Text": "摸摸头？……舒服……安克雷奇，喜欢……",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/4/42/gtit4zekej94g6oxzo2lhis42e7pjon.mp3"
+				},
+				{
+					"File": "motions/touch_body.motion3.json",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/6/62/76txhhfovdd5w1eu01zas8xcdi6yy4x.mp3",
+					"Text": "摸摸……安克雷奇也想……摸摸老师……"
+				},
+				{
+					"File": "motions/touch_special.motion3.json",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/6/68/2uu9hmtuvja328q686i6pakdh04zhiq.mp3",
+					"Text": "这里……老师会开心？pose……这样？好难懂……老师喜欢……安克雷奇也……！"
+				},
+				{
+					"File": "motions/touch_drag1.motion3.json"
+				},
+				{
+					"File": "motions/touch_drag2.motion3.json"
+				},
+				{
+					"File": "motions/touch_drag3.motion3.json"
+				},
+				{
+					"File": "motions/touch_drag4.motion3.json"
+				},
+				{
+					"File": "motions/touch_drag5.motion3.json"
+				},
+				{
+					"File": "motions/touch_drag6.motion3.json"
+				},
+				{
+					"File": "motions/touch_drag7.motion3.json"
+				},
+				{
+					"File": "motions/touch_drag8.motion3.json"
+				},
+				{
+					"File": "motions/touch_drag9.motion3.json"
+				},
+				{
+					"File": "motions/touch_drag10.motion3.json"
+				},
+				{
+					"File": "motions/touch_drag11.motion3.json"
+				},
+				{
+					"File": "motions/idle.motion3.json"
+				},
+				{
+					"File": "motions/touch_idle1.motion3.json"
+				},
+				{
+					"File": "motions/idle1.motion3.json"
+				},
+				{
+					"File": "motions/touch_idle2.motion3.json"
+				},
+				{
+					"File": "motions/idle2.motion3.json"
+				},
+				{
+					"File": "motions/touch_idle3.motion3.json"
+				},
+				{
+					"File": "motions/idle3.motion3.json"
+				},
+				{
+					"File": "motions/touch_idle4.motion3.json"
+				},
+				{
+					"File": "motions/idle4.motion3.json"
+				},
+				{
+					"File": "motions/touch_idle5.motion3.json"
+				},
+				{
+					"File": "motions/idle5.motion3.json"
+				},
+				{
+					"File": "motions/touch_idle6.motion3.json"
+				},
+				{
+					"File": "motions/idle6.motion3.json"
+				},
+				{
+					"File": "motions/touch_idle7.motion3.json"
+				},
+				{
+					"File": "motions/idle7.motion3.json"
+				},
+				{
+					"File": "motions/touch_idle8.motion3.json"
+				},
+				{
+					"File": "motions/idle8.motion3.json"
+				},
+				{
+					"File": "motions/touch_idle9.motion3.json"
+				},
+				{
+					"File": "motions/idle9.motion3.json"
+				},
+				{
+					"File": "motions/touch_idle10.motion3.json"
+				},
+				{
+					"File": "motions/touch_idle11.motion3.json"
+				},
+				{
+					"File": "motions/touch_idle12.motion3.json"
+				},
+				{
+					"File": "motions/touch_idle13.motion3.json"
+				},
+				{
+					"File": "motions/touch_idle14.motion3.json"
+				},
+				{
+					"File": "motions/idle14.motion3.json"
+				},
+				{
+					"File": "motions/touch_idle15.motion3.json"
+				},
+				{
+					"File": "motions/idle15.motion3.json"
+				},
+				{
+					"File": "motions/touch_idle16.motion3.json"
+				},
+				{
+					"File": "motions/idle16.motion3.json"
+				},
+				{
+					"File": "motions/touch_idle17.motion3.json"
+				},
+				{
+					"File": "motions/idle17.motion3.json"
+				},
+				{
+					"File": "motions/touch_idle18.motion3.json"
+				},
+				{
+					"File": "motions/idle18.motion3.json"
+				},
+				{
+					"File": "motions/touch_idle19.motion3.json"
+				},
+				{
+					"File": "motions/touch_idle20.motion3.json"
+				},
+				{
+					"File": "motions/effect.motion3.json"
+				}
+			]
+		}
+	},
+	"Groups": [
+		{
+			"Target": "Parameter",
+			"Name": "LipSync",
+			"Ids": [
+				"ParamMouthOpenY"
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Name": "EyeBlink",
+			"Ids": [
+				"ParamEyeLOpen",
+				"ParamEyeROpen"
+			]
+		}
+	],
+	"HitAreas": []
+}

@@ -1,0 +1,338 @@
+{
+	"Version": 3,
+	"FileReferences": {
+		"Moc": "tianlangxing_5.moc3",
+		"Textures": [
+			"textures/texture_00.webp",
+			"textures/texture_01.webp"
+		],
+		"Physics": "tianlangxing_5.physics3.json",
+		"Expressions": [
+			{
+				"Name": "touch_drag17",
+				"File": "expressions/touch_drag17.exp3.json"
+			},
+			{
+				"Name": "touch_drag18",
+				"File": "expressions/touch_drag18.exp3.json"
+			},
+			{
+				"Name": "touch_drag15",
+				"File": "expressions/touch_drag15.exp3.json"
+			},
+			{
+				"Name": "touch_drag16",
+				"File": "expressions/touch_drag16.exp3.json"
+			},
+			{
+				"Name": "touch_drag20",
+				"File": "expressions/touch_drag20.exp3.json"
+			},
+			{
+				"Name": "main",
+				"File": "expressions/main.exp3.json"
+			}
+		],
+		"Motions": {
+			"login": [
+				{
+					"File": "motions/login.motion3.json",
+					"Text": "欢迎回来，为了缓解主人的疲劳，天狼星这就为您献上练习许久的舞蹈。",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/9/9d/7r2arvtjuriodwrxiqr3q6yun6wp1zu.mp3"
+				}
+			],
+			"home": [
+				{
+					"File": "motions/home.motion3.json",
+					"Text": "呜……丝带打结了，没办法在此刻迎接您是天狼星的失职……请主人惩罚我这个笨拙的女仆吧……",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/e/ec/cta1o38namp5lnijff27kmm3tlc8ypc.mp3"
+				}
+			],
+			"main_1": [
+				{
+					"File": "motions/main_1.motion3.json",
+					"Text": "像天狼星这样笨拙的女仆能散发出今天的光彩，全部都是因为我骄傲的主人，是因为您在天狼星身边。",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/2/25/g2pprmaawdb76hmloj040wwhht0abay.mp3"
+				}
+			],
+			"main_2": [
+				{
+					"File": "motions/main_2.motion3.json",
+					"Text": "本来天狼星也想帮忙准备餐食……但天狼星在那里好像只会添麻烦，所以……",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/5/54/6b3hs1rlmblisl4m07zd3egj6immoiy.mp3"
+				}
+			],
+			"main_3": [
+				{
+					"File": "motions/main_3.motion3.json",
+					"Text": "这套衣服是为了我骄傲的主人特别准备的。为了让您能有更好的游园体验，天狼星也会全力以赴的！",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/5/51/263ic8x25gjbpxo0svlu7d7mmum7bdm.mp3"
+				}
+			],
+			"mail": [
+				{
+					"File": "motions/mail.motion3.json",
+					"Text": "要用这样的姿势把信给主人……为了骄傲的主人，天狼星能做到！",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/1/1b/buwq3w54chmsohorphx79z3sebf7mb0.mp3"
+				}
+			],
+			"mission": [
+				{
+					"File": "motions/mission.motion3.json",
+					"Text": "这点任务算不上什么，对吧？我骄傲的主人",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/a/aa/lb570prjktuunpdvfrqc59pqidbtr6b.mp3"
+				}
+			],
+			"mission_complete": [
+				{
+					"File": "motions/mission_complete.motion3.json",
+					"Text": "主人，任务的报酬已经送达了",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/5/5c/k8qoya6z41301wh6oi1p93zglxz5ovd.mp3"
+				}
+			],
+			"complete": [
+				{
+					"File": "motions/complete.motion3.json",
+					"Text": "这是这次的清单……对不起，掉下去了！我这就把它捞上来！",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/f/f7/su69kaumblhxk9wregojzsz7f98mx9b.mp3"
+				}
+			],
+			"wedding": [
+				{
+					"File": "motions/wedding.motion3.json",
+					"Text": "居然能得到主人的誓约…现在，请允许我闭上双眼，品尝您的温暖，我骄傲的…主人",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/f/f7/nt9im15jkzcz6zq7gd6ftcz73h2gsmq.mp3"
+				}
+			],
+			"touch_head": [
+				{
+					"File": "motions/touch_head.motion3.json",
+					"Text": "您喜欢我头上的耳朵吗，我骄傲的主人？",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/8/80/lj8vt425z7jur0jmzd8cb5nob5sz8z3.mp3"
+				}
+			],
+			"touch_body": [
+				{
+					"File": "motions/touch_body.motion3.json",
+					"Text": "主人的体温……我会全部记在心里的，所以请更多地触碰我吧，我骄傲的主人！",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/c/ca/8tibk6i85m5ak3l9aer63v1lnqubcqe.mp3"
+				}
+			],
+			"touch_special": [
+				{
+					"File": "motions/touch_special.motion3.json",
+					"Text": "主人在这里也……天狼星已经准备好了！欸？您不是这个意思吗……",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/8/8c/ci24ml6scjvuagn7elgtqzvguc28q2r.mp3"
+				}
+			],
+			"touch_drag1": [
+				{
+					"File": "motions/touch_drag1.motion3.json"
+				}
+			],
+			"touch_drag2": [
+				{
+					"File": "motions/touch_drag2.motion3.json"
+				}
+			],
+			"touch_drag3": [
+				{
+					"File": "motions/touch_drag3.motion3.json"
+				}
+			],
+			"touch_drag4": [
+				{
+					"File": "motions/touch_drag4.motion3.json"
+				}
+			],
+			"touch_drag5": [
+				{
+					"File": "motions/touch_drag5.motion3.json"
+				}
+			],
+			"touch_drag6": [
+				{
+					"File": "motions/touch_drag6.motion3.json"
+				}
+			],
+			"touch_drag7": [
+				{
+					"File": "motions/touch_drag7.motion3.json"
+				}
+			],
+			"touch_drag8": [
+				{
+					"File": "motions/touch_drag8.motion3.json"
+				}
+			],
+			"touch_drag9": [
+				{
+					"File": "motions/touch_drag9.motion3.json"
+				}
+			],
+			"touch_drag11": [
+				{
+					"File": "motions/touch_drag11.motion3.json"
+				}
+			],
+			"touch_drag12": [
+				{
+					"File": "motions/touch_drag12.motion3.json"
+				}
+			],
+			"touch_drag13": [
+				{
+					"File": "motions/touch_drag13.motion3.json"
+				}
+			],
+			"idle": [
+				{
+					"File": "motions/idle.motion3.json"
+				}
+			],
+			"touch_idle1": [
+				{
+					"File": "motions/touch_idle1.motion3.json"
+				}
+			],
+			"idle1": [
+				{
+					"File": "motions/idle1.motion3.json"
+				}
+			],
+			"touch_idle2": [
+				{
+					"File": "motions/touch_idle2.motion3.json"
+				}
+			],
+			"idle2": [
+				{
+					"File": "motions/idle2.motion3.json"
+				}
+			],
+			"touch_idle3": [
+				{
+					"File": "motions/touch_idle3.motion3.json"
+				}
+			],
+			"idle3": [
+				{
+					"File": "motions/idle3.motion3.json"
+				}
+			],
+			"touch_idle4": [
+				{
+					"File": "motions/touch_idle4.motion3.json"
+				}
+			],
+			"idle4": [
+				{
+					"File": "motions/idle4.motion3.json"
+				}
+			],
+			"touch_idle5": [
+				{
+					"File": "motions/touch_idle5.motion3.json"
+				}
+			],
+			"idle5": [
+				{
+					"File": "motions/idle5.motion3.json"
+				}
+			],
+			"touch_idle6": [
+				{
+					"File": "motions/touch_idle6.motion3.json"
+				}
+			],
+			"idle6": [
+				{
+					"File": "motions/idle6.motion3.json"
+				}
+			],
+			"touch_idle7": [
+				{
+					"File": "motions/touch_idle7.motion3.json"
+				}
+			],
+			"idle7": [
+				{
+					"File": "motions/idle7.motion3.json"
+				}
+			],
+			"touch_idle8": [
+				{
+					"File": "motions/touch_idle8.motion3.json"
+				}
+			],
+			"idle8": [
+				{
+					"File": "motions/idle8.motion3.json"
+				}
+			],
+			"touch_idle9": [
+				{
+					"File": "motions/touch_idle9.motion3.json"
+				}
+			],
+			"idle9": [
+				{
+					"File": "motions/idle9.motion3.json"
+				}
+			],
+			"touch_idle10": [
+				{
+					"File": "motions/touch_idle10.motion3.json"
+				}
+			],
+			"idle10": [
+				{
+					"File": "motions/idle10.motion3.json"
+				}
+			],
+			"touch_idle15": [
+				{
+					"File": "motions/touch_idle15.motion3.json"
+				}
+			],
+			"touch_idle16": [
+				{
+					"File": "motions/touch_idle16.motion3.json"
+				}
+			],
+			"touch_idle17": [
+				{
+					"File": "motions/touch_idle17.motion3.json"
+				}
+			],
+			"touch_idle18": [
+				{
+					"File": "motions/touch_idle18.motion3.json"
+				}
+			],
+			"effect": [
+				{
+					"File": "motions/effect.motion3.json"
+				}
+			]
+		}
+	},
+	"Groups": [
+		{
+			"Target": "Parameter",
+			"Name": "EyeBlink",
+			"Ids": [
+				"ParamEyeLOpen",
+				"ParamEyeROpen"
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Name": "LipSync",
+			"Ids": [
+				"ParamMouthOpenY"
+			]
+		}
+	],
+	"HitAreas": []
+}

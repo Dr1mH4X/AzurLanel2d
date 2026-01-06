@@ -1,0 +1,135 @@
+{
+	"Version": 3,
+	"FileReferences": {
+		"Moc": "aijier_3.moc3",
+		"Textures": [
+			"textures/texture_00.webp",
+			"textures/texture_01.webp"
+		],
+		"Physics": "aijier_3.physics3.json",
+		"Expressions": [
+			{
+				"Name": "touch_drag1.exp3.json",
+				"File": "expressions/touch_drag1.exp3.json"
+			},
+			{
+				"Name": "touch_drag2.exp3.json",
+				"File": "expressions/touch_drag2.exp3.json"
+			},
+			{
+				"Name": "touch_drag3.exp3.json",
+				"File": "expressions/touch_drag3.exp3.json"
+			},
+			{
+				"Name": "touch_drag4.exp3.json",
+				"File": "expressions/touch_drag4.exp3.json"
+			},
+			{
+				"Name": "all.exp3.json",
+				"File": "expressions/all.exp3.json"
+			},
+			{
+				"Name": "main.exp3.json",
+				"File": "expressions/main.exp3.json"
+			}
+		],
+		"Motions": {
+			"": [
+				{
+					"File": "motions/login.motion3.json",
+					 "Audio": "https://patchwiki.biligame.com/images/blhx/6/61/e8ou5pz68hlciincdp636wrwq9erq51.mp3",
+					 "Text": "回来了？呵呵，是想我了么？还是只是单纯的累了？"
+				},
+				{
+					"File": "motions/home.motion3.json",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/f/f2/g1gw02b29918ej8s3as9umzvplh7x4t.mp3",
+					"Text": "叱咤海洋的猛兽，也有需要休息的时刻。正好屋内有静心养神的香薰，到我身边来好好坐会吧？"
+				},
+				{
+					"File": "motions/main_1.motion3.json",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/a/a1/cihayuwvlvz8juzhpr195e45wv02igw.mp3",
+					"Text": "毛笔……应该怎么握来着？这样？还是……这样？嗯……我知道你会这个，别光看着了，快来教教我！"
+				},
+				{
+					"File": "motions/main_2.motion3.json",
+					"Audio": "原来“舞龙”是这样的啊……当初听到这个名字时，我还以为要弄一个像铁血舰装那样“龙”呢。 ",
+					"Text": "原来“舞龙”是这样的啊……当初听到这个名字时，我还以为要弄一个像铁血舰装那样“龙”呢。"
+				},
+				{
+					"File": "motions/main_3.motion3.json",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/9/9d/s9xhpv9kkstzsg42467abe2n14i4mth.mp3",
+					"Text": "布伦希尔德，这些是你收藏的东煌古玩么。这个碗确实做工精致……你的品位还挺不错的。"
+				},
+				{
+					"File": "motions/mail.motion3.json"
+				},
+				{
+					"File": "motions/mission.motion3.json",
+					"Text": "正值佳节时，指挥官却因任务而无法抽身……这种事情我可不允许，我也来帮你一把好了。 ",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/1/11/nr86bzm0eli9c962wuf6wv37tng2ngo.mp3"
+				},
+				{
+					"File": "motions/complete.motion3.json",
+					"Text": "委托完成了哦。去吧，别冷落了在节日还在辛苦付出的同伴们。 。",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/e/ef/9hcovaycuk9f4kq905nnpobcrw621l5.mp3"
+				},
+				{
+					"File": "motions/mission_complete.motion3.json",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/3/3c/7z2oz0rf8t8s1a18dnjge5dxfif3czo.mp3",
+					"Text": "任务完成了，接下来就该专心享受节日了。"
+				},
+				{
+					"File": "motions/wedding.motion3.json"
+				},
+				{
+					"File": "motions/touch_head.motion3.json",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/7/74/6yema9tur0za7pya5y4lssy2ud4hh36.mp3",
+					"Text": "喂，角上的挂饰不是拿来玩的！"
+				},
+				{
+					"File": "motions/touch_body.motion3.json",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/2/2d/0a3qfvgqf2as66ocoq0tcoqpazo860x.mp3",
+					"Text": "要出去走走吗？好啊。那就帮我把鞋子穿上吧？"
+				},
+				{
+					"File": "motions/touch_special.motion3.json",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/6/6d/7g1r06w4etse22qmfnhp864cnc38fei.mp3",
+					"Text": "等，等一下？！都怪你，墨汁沾到上面了……我，我自己擦就行了！！"
+				},
+				{
+					"File": "motions/touch_idle.motion3.json"
+				},
+				{
+					"File": "motions/idle.motion3.json"
+				},
+				{
+					"File": "motions/touch_idle1.motion3.json"
+				},
+				{
+					"File": "motions/idle1.motion3.json"
+				},
+				{
+					"File": "motions/effect.motion3.json"
+				}
+			]
+		}
+	},
+	"Groups": [
+		{
+			"Target": "Parameter",
+			"Name": "LipSync",
+			"Ids": [
+				"ParamMouthOpenY"
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Name": "EyeBlink",
+			"Ids": [
+				"ParamEyeLOpen",
+				"ParamEyeROpen"
+			]
+		}
+	],
+	"HitAreas": []
+}

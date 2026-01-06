@@ -1,0 +1,110 @@
+{
+	"Type": "Live2D Expression",
+	"Parameters": [
+		{
+			"Id": "touch_drag3",
+			"Value": 0,
+			"Blend": "Add"
+		},
+		{
+			"Id": "touch_drag2",
+			"Value": 5,
+			"Blend": "Add"
+		},
+		{
+			"Id": "touch_drag1",
+			"Value": 0,
+			"Blend": "Add"
+		},
+		{
+			"Id": "touch_drag2X",
+			"Value": 1,
+			"Blend": "Add"
+		},
+		{
+			"Id": "touch_drag2Y",
+			"Value": 1,
+			"Blend": "Add"
+		},
+		{
+			"Id": "touch_drag3X",
+			"Value": 1,
+			"Blend": "Add"
+		},
+		{
+			"Id": "touch_drag3Y",
+			"Value": 1,
+			"Blend": "Add"
+		},
+		{
+			"Id": "touch_drag4X",
+			"Value": 1,
+			"Blend": "Add"
+		},
+		{
+			"Id": "touch_drag4Y",
+			"Value": 1,
+			"Blend": "Add"
+		},
+		{
+			"Id": "touch_drag5X",
+			"Value": 1,
+			"Blend": "Add"
+		},
+		{
+			"Id": "touch_drag5Y",
+			"Value": 1,
+			"Blend": "Add"
+		},
+		{
+			"Id": "touch_drag1Y",
+			"Value": 1,
+			"Blend": "Add"
+		},
+		{
+			"Id": "touch_drag1X",
+			"Value": 1,
+			"Blend": "Add"
+		},
+		{
+			"Id": "touch_drag10",
+			"Value": 1,
+			"Blend": "Add"
+		},
+		{
+			"Id": "touch_drag8",
+			"Value": 1,
+			"Blend": "Add"
+		},
+		{
+			"Id": "touch_drag9",
+			"Value": 1,
+			"Blend": "Add"
+		},
+		{
+			"Id": "touch_drag6X",
+			"Value": 0,
+			"Blend": "Add"
+		},
+		{
+			"Id": "touch_drag4",
+			"Value": 1,
+			"Blend": "Add"
+		},
+		{
+			"Id": "touch_drag6",
+			"Value": 1,
+			"Blend": "Add"
+		},
+		{
+			"Id": "touch_drag7",
+			"Value": 4,
+			"Blend": "Add"
+		},
+		{
+			"Id": "touch_drag5",
+			"Value": 1,
+			"Blend": "Add"
+		}
+	]
+}

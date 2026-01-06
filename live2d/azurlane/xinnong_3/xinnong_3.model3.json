@@ -1,0 +1,165 @@
+{
+	"Version": 3,
+	"Name": "xinnong_3",
+	"FileReferences": {
+	  "Moc": "xinnong_3.moc3",
+	  "Textures": [
+		"textures/texture_00.webp"
+	  ],
+	  "Physics": "xinnong_3.physics3.json",
+	  "Expressions": [
+			  {
+				  "Name": "touch_drag1.exp3.json",
+				  "File": "expressions/touch_drag1.exp3.json"
+			  },
+			  {
+				  "Name": "touch_drag2.exp3.json",
+				  "File": "expressions/touch_drag2.exp3.json"
+			  },
+			  {
+				  "Name": "touch_drag3.exp3.json",
+				  "File": "expressions/touch_drag3.exp3.json"
+			  },
+			  {
+				  "Name": "touch_drag4.exp3.json",
+				  "File": "expressions/touch_drag4.exp3.json"
+			  },
+			  {
+				  "Name": "touch_drag5.exp3.json",
+				  "File": "expressions/touch_drag5.exp3.json"
+			  },
+			  {
+				  "Name": "all.exp3.json",
+				  "File": "expressions/all.exp3.json"
+			  },
+			  {
+				  "Name": "main.exp3.json",
+				  "File": "expressions/main.exp3.json"
+			  }
+		  ],
+	  "Motions": {
+		"login": [
+		  {
+			"File": "motions/login.motion3.json",
+			"Text": "嗯……呼…如此便好吗…？信浓会在此全力应援汝之奋斗的——预祝初战告捷……",
+			"Audio": "https://patchwiki.biligame.com/images/blhx/4/49/dx43ftp9w3a39ose5ic6a1md4k9p49e.mp3"
+		  }
+		],
+		"home": [
+		  {
+			"File": "motions/home.motion3.json",
+			"Text": "希望这不会不堪妾身躯体之重……汝所希望之责，并不容易…之后向翔鹤和大凤她们请教一二吧…",
+			"Audio": "https://patchwiki.biligame.com/images/blhx/5/52/4nct1x9k4lkejce8xta5scvd7xptv5t.mp3"
+		  }
+		],
+		"main_1": [
+		  {
+			"File": "motions/main_1.motion3.json",
+			"Text": "银轮闪烁，轰鸣交融…比赛的结果到底如何……啊，妾身虽然想看但无法实现……非常抱歉…",
+			"Audio": "https://patchwiki.biligame.com/images/blhx/0/0b/9d9a7rm899btv3n6us8xdyhiz6n3xcn.mp3"
+		  }
+		],
+		"main_2": [
+		  {
+			"File": "motions/main_2.motion3.json",
+			"Text": "众目睽睽之下此般的高温……即使兴致高昂，但实在谈不上安宁……汝是否也和妾身一般辗转难安呢？",
+			"Audio": "https://patchwiki.biligame.com/images/blhx/0/0c/lbljur561qx4j2uazlfnka3k3rsgig6.mp3"
+		  }
+		],
+		"main_3": [
+		  {
+			"File": "motions/main_3.motion3.json",
+			"Text": "当初还以为汝有所图谋……既然知道了这是为了炒热比赛气氛，接下这份职责自然是乐意的……",
+			"Audio": "https://patchwiki.biligame.com/images/blhx/9/97/hc1rda8alla5v9zbvn25olgspazsrjs.mp3"
+		  }
+		],
+		"mail": [
+		  {
+			"File": "motions/mail.motion3.json"
+		  }
+		],
+		"mission": [
+		  {
+			"File": "motions/mission.motion3.json",
+			"Text": "虽说是一直以来的事务，不过汝的职责很重要……快快完成吧……",
+			"Audio": "https://patchwiki.biligame.com/images/blhx/d/d9/74yrc2dqb5qtk8utltywr1tbjme330r.mp3"
+		  }
+		],
+		"mission_complete": [
+		  {
+			"File": "motions/mission_complete.motion3.json",
+			"Text": "赐予的奖赏是…啊，这西洋的酒，妾身可能……只需打开就好吗……？",
+			"Audio": "https://patchwiki.biligame.com/images/blhx/9/90/bw92px398t9uw6n2cf7qmi9y466cfvq.mp3"
+		  }
+		],
+		"complete": [
+		  {
+			"File": "motions/complete.motion3.json"
+		  }
+		],
+		"wedding": [
+		  {
+			"File": "motions/wedding.motion3.json"
+		  }
+		],
+		"touch_head": [
+		  {
+			"File": "motions/touch_head.motion3.json",
+			"Text": "啊……耳朵有点……",
+			"Audio": "https://patchwiki.biligame.com/images/blhx/4/44/22lronlqmab3nqicaq6o79omb2mwq2o.mp3"
+		  }
+		],
+		"touch_body": [
+		  {
+			"File": "motions/touch_body.motion3.json",
+			"Text": "需要换个姿势吗…？嗯…既然是职责所在，妾身自当尽力……",
+			"Audio": "https://patchwiki.biligame.com/images/blhx/0/08/nykc17mi3vk7b8z5qholcagl7agm9yj.mp3"
+		  }
+		],
+		"touch_special": [
+		  {
+			"File": "motions/touch_special.motion3.json",
+			"Text": "如果说这是对汝奋斗的奖赏的话……",
+			"Audio": "https://patchwiki.biligame.com/images/blhx/e/e9/jjcvl2z1kx9x1sg0jnz7floalwopnvw.mp3"
+		  }
+		],
+		"touch_drag1": [
+		  {
+			"File": "motions/touch_drag1.motion3.json"
+		  }
+		],
+		"touch_drag4": [
+		  {
+			"File": "motions/touch_drag4.motion3.json"
+		  }
+		],
+		"effect": [
+		  {
+			"File": "motions/effect.motion3.json"
+		  }
+		],
+		"idle": [
+		  {
+			"File": "motions/idle.motion3.json"
+		  }
+		]
+	  }
+	},
+	"Groups": [
+	  {
+		"Target": "Parameter",
+		"Name": "EyeBlink",
+		"Ids": [
+		  "ParamEyeLOpen",
+		  "ParamEyeROpen"
+		]
+	  },
+	  {
+		"Target": "Parameter",
+		"Name": "LipSync",
+		"Ids": [
+		  "ParamMouthOpenY"
+		]
+	  }
+	]
+  }

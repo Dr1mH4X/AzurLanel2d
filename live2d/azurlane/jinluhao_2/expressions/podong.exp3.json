@@ -1,0 +1,25 @@
+{
+	"Type": "Live2D Expression",
+	"Parameters": [
+		{
+			"Id": "podong1",
+			"Value": 10,
+			"Blend": "Add"
+		},
+		{
+			"Id": "podong2",
+			"Value": 10,
+			"Blend": "Add"
+		},
+		{
+			"Id": "podong3",
+			"Value": 10,
+			"Blend": "Add"
+		},
+		{
+			"Id": "podong4",
+			"Value": 10,
+			"Blend": "Add"
+		}
+	]
+}

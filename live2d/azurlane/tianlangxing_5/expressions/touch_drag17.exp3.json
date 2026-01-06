@@ -1,0 +1,10 @@
+{
+	"Type": "Live2D Expression",
+	"Parameters": [
+		{
+			"Id": "touch_drag17",
+			"Value": 10,
+			"Blend": "Add"
+		}
+	]
+}

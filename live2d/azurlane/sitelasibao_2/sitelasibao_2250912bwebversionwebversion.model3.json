@@ -1,0 +1,278 @@
+{
+  "Version": 3,
+  "Name": "sitelasibao_2",
+  "FileReferences": {
+    "Moc": "sitelasibao_2.moc3",
+    "Textures": [
+      "textures/texture_00.webp"
+    ],
+    "Physics": "sitelasibao_2.physics3.json",
+    "Motions": {
+      "login": [
+        {
+          "File": "motions/login.motion3.json",
+          "Text": "指·挥·官~在看哪儿？在看哪儿呢？呵呵…刚刚到这里就被我迷住了吗？",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/9/9a/51ypzcgsqdpcia6dlf92vukrtbucf58.mp3"
+        }
+      ],
+      "home": [
+        {
+          "File": "motions/home.motion3.json",
+          "Text": "比赛结束了呢，是指挥官，来一杯冰冰凉凉的饮料？想用冷水泼在身上好好冷静冷静？还是说~？",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/a/ad/m8toq00ngh4pwy50dtid4rmdjlyl3iq.mp3"
+        }
+      ],
+      "main_1": [
+        {
+          "File": "motions/main_1.motion3.json",
+          "Text": "机械就和乐器一样，有着明确的逻辑和可见的规则，不错呢，确实值得探究……不过指挥官一来，我的注意力就全——部到指挥官身上了呢。",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/1/12/9uqjl8f3n1oh2df71ix0cfpgnawohkc.mp3"
+        }
+      ],
+      "main_2": [
+        {
+          "File": "motions/main_2.motion3.json",
+          "Text": "准备OK，这样就万无一失了，指挥官和我的默契越来越深了呢……就保持这个感觉继续吧！",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/a/a0/t0mraj88ff94clo0pntqjr26qx7a65t.mp3"
+        }
+      ],
+      "main_3": [
+        {
+          "File": "motions/main_3.motion3.json",
+          "Text": "好累……指挥官，不要动。现在指挥官乱动的话我可能就会因为劳累过度倒在地上最后动弹不得了哦？指挥官要负起责任来的吧？既然如此，就这样让我靠着吧~就我们两个人。",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/f/fb/nu0cngtwapuaw5kxzqwyq3f4dpwr7rq.mp3"
+        }
+      ],
+      "mail": [
+        {
+          "File": "motions/mail.motion3.json",
+          "Text": "有新的邮件，来——我放在这里了，您会准时看的，对吧？",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/5/53/jsd6m96s51klr3pz3x13akbt966bls3.mp3"
+        }
+      ],
+      "mission": [
+        {
+          "File": "motions/mission.motion3.json",
+          "Text": "有新的任务哦，真是忙碌呢——指挥官~",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/a/a6/h2e654cyqqnhielbrw6x4deu3vlvuc0.mp3"
+        }
+      ],
+      "mission_complete": [
+        {
+          "File": "motions/mission_complete.motion3.json",
+          "Text": "任务完成，如同完美演奏的乐曲一般完美无缺，真好呢~",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/b/b6/j1vsa6wlylm5ksffg430zhp5dmi0ads.mp3"
+        }
+      ],
+      "complete": [
+        {
+          "File": "motions/complete.motion3.json",
+          "Text": "委托组们带回来了这些……这是我整理好的物资清单，指挥官，请您过目。做、做得好？咳，这句夸奖我就勉为其难收下了……",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/9/95/56s1m8vwa9rncc9grbx3nadfrjcmimf.mp3"
+        }
+      ],
+      "wedding": [
+        {
+          "File": "motions/wedding.motion3.json",
+          "Text": "我……是我吗？真的？为什么？明明还有别的女孩……指、指挥官，再说一次，拜托了！您选择了我，是这样的吧？您……你这样说的话，我是真的真的会当真，然后再也不放开你的，谁也别想在我面前把你夺走……有我们两个人就足够了。",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/1/17/hjirm6mf5r2q8ietkmy3gsvbziw3vub.mp3"
+        }
+      ],
+      "touch_head": [
+        {
+          "File": "motions/touch_head.motion3.json",
+          "Text": "啊！指、指挥官，别碰到耳机！",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/2/2a/p296yug5eadvjwvbegmonz2oxsj1k31.mp3"
+        }
+      ],
+      "touch_body": [
+        {
+          "File": "motions/touch_body.motion3.json",
+          "Text": "嗯～？是需要我了吗？",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/2/2d/57c802nkgahxapq4n2jrkwxsxsj8ylo.mp3"
+        }
+      ],
+      "touch_special": [
+        {
+          "File": "motions/touch_special.motion3.json",
+          "Text": "这么心急吗，指挥官？这样的话，去车里比较好呢♡",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/4/4a/7aif98xizkzznlbylfpzm1hm1ijupcy.mp3"
+        }
+      ],
+      "touch_drag1": [
+        {
+          "File": "motions/touch_drag1.motion3.json"
+        }
+      ],
+      "touch_drag2": [
+        {
+          "File": "motions/touch_drag2.motion3.json"
+        }
+      ],
+      "touch_drag3": [
+        {
+          "File": "motions/touch_drag3.motion3.json"
+        }
+      ],
+      "touch_drag4": [
+        {
+          "File": "motions/touch_drag4.motion3.json"
+        }
+      ],
+      "touch_drag5": [
+        {
+          "File": "motions/touch_drag5.motion3.json"
+        }
+      ],
+      "touch_drag7": [
+        {
+          "File": "motions/touch_drag7.motion3.json"
+        }
+      ],
+      "touch_drag8": [
+        {
+          "File": "motions/touch_drag8.motion3.json"
+        }
+      ],
+      "touch_drag9": [
+        {
+          "File": "motions/touch_drag9.motion3.json"
+        }
+      ],
+      "touch_drag11": [
+        {
+          "File": "motions/touch_drag11.motion3.json"
+        }
+      ],
+      "idle": [
+        {
+          "File": "motions/idle.motion3.json"
+        }
+      ],
+      "touch_idle1": [
+        {
+          "File": "motions/touch_idle1.motion3.json"
+        }
+      ],
+      "touch_idle2": [
+        {
+          "File": "motions/touch_idle2.motion3.json"
+        }
+      ],
+      "idle2": [
+        {
+          "File": "motions/idle2.motion3.json"
+        }
+      ],
+      "touch_idle3": [
+        {
+          "File": "motions/touch_idle3.motion3.json"
+        }
+      ],
+      "idle3": [
+        {
+          "File": "motions/idle3.motion3.json"
+        }
+      ],
+      "touch_idle4": [
+        {
+          "File": "motions/touch_idle4.motion3.json"
+        }
+      ],
+      "idle4": [
+        {
+          "File": "motions/idle4.motion3.json"
+        }
+      ],
+      "touch_idle5": [
+        {
+          "File": "motions/touch_idle5.motion3.json"
+        }
+      ],
+      "idle5": [
+        {
+          "File": "motions/idle5.motion3.json"
+        }
+      ],
+      "touch_idle7": [
+        {
+          "File": "motions/touch_idle7.motion3.json"
+        }
+      ],
+      "idle7": [
+        {
+          "File": "motions/idle7.motion3.json"
+        }
+      ],
+      "touch_idle8": [
+        {
+          "File": "motions/touch_idle8.motion3.json"
+        }
+      ],
+      "idle8": [
+        {
+          "File": "motions/idle8.motion3.json"
+        }
+      ],
+      "touch_idle9": [
+        {
+          "File": "motions/touch_idle9.motion3.json"
+        }
+      ],
+      "idle9": [
+        {
+          "File": "motions/idle9.motion3.json"
+        }
+      ],
+      "touch_idle10": [
+        {
+          "File": "motions/touch_idle10.motion3.json"
+        }
+      ],
+      "touch_idle11": [
+        {
+          "File": "motions/touch_idle11.motion3.json"
+        }
+      ],
+      "idle11": [
+        {
+          "File": "motions/idle11.motion3.json"
+        }
+      ],
+
+      "touch_idle12": [
+        {
+          "File": "motions/touch_idle12.motion3.json"
+        }
+      ],
+      "touch_idle13": [
+        {
+          "File": "motions/touch_idle13.motion3.json"
+        }
+      ],
+      "effect": [
+        {
+          "File": "motions/effect.motion3.json"
+        }
+      ]
+    },
+    "Expressions": []
+  },
+  "Groups": [
+    {
+      "Target": "Parameter",
+      "Name": "EyeBlink",
+      "Ids": [
+        "ParamEyeLOpen",
+        "ParamEyeROpen"
+      ]
+    },
+    {
+      "Target": "Parameter",
+      "Name": "LipSync",
+      "Ids": [
+        "ParamMouthOpenY"
+      ]
+    }
+  ]
+}

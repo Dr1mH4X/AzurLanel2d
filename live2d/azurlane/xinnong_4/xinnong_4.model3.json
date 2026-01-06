@@ -1,0 +1,297 @@
+{
+	"Version": 3,
+	"Name": "xinnong_4",
+	"FileReferences": {
+	  "Moc": "xinnong_4.moc3",
+	  "Textures": [
+		"textures/texture_00.webp",
+		"textures/texture_01.webp"
+	  ],
+	  "DisplayInfo": null,
+	  "Physics": "xinnong_4.physics3.json",
+	  "Expressions": [
+			  {
+				  "Name": "touch_drag2.exp3.json",
+				  "File": "expressions/touch_drag2.exp3.json"
+			  },
+			  {
+				  "Name": "main.exp3.json",
+				  "File": "expressions/main.exp3.json"
+			  }
+		  ],
+	  "Motions": {
+		"login": [
+		  {
+			"File": "motions/login.motion3.json",
+			"Text": "汝之所盼的海边装扮，于妾身而言却略显褊急……嗯…若与伙伴无异便好…",
+			"Audio": "https://patchwiki.biligame.com/images/blhx/4/40/ntcjvy9umy2ogp5e32cco2zo7ssdrhf.mp3"
+		  }
+		],
+		"home": [
+		  {
+			"File": "motions/home.motion3.json",
+			"Text": "若是看做终将消逝的南柯一梦，此等悖于自然法则的海天一色，亦无可厚非…若是汝之所望，直至梦醒刹那，亦可化作永恒—",
+			"Audio": "https://patchwiki.biligame.com/images/blhx/3/3b/5ucm0ybbiur4iddztv46oh2iebyoaq4.mp3"
+		  }
+		],
+		"main_1": [
+		  {
+			"File": "motions/main_1.motion3.json",
+			"Text": "不止现世，梦中也相逢交织…汝之思慕之情，跨越一切使妾身身心火热……情难自持，此般流露，在此致歉…",
+			"Audio": "https://patchwiki.biligame.com/images/blhx/1/12/p1fgztwm34tj3jmarejop9pbs57nk5o.mp3"
+		  }
+		],
+		"main_2": [
+		  {
+			"File": "motions/main_2.motion3.json",
+			"Text": "衣衫凌乱，并非本意……然，纵使急欲打理，却因小家伙作乱难有作为…此等困境，该如何是好…",
+			"Audio": "https://patchwiki.biligame.com/images/blhx/7/7d/qi5a68jy2zjw58kx27c9c3jyhwhcmar.mp3"
+		  }
+		],
+		"main_3": [
+		  {
+			"File": "motions/main_3.motion3.json",
+			"Text": "若是期盼凉风…嗯……像这般煽动尾巴的话…嗯…但愿送达于汝的并非热气…",
+			"Audio": "https://patchwiki.biligame.com/images/blhx/4/40/a33xa0827o0a3lxf6219c7jb5rdxw01.mp3"
+		  }
+		],
+		"main_4": [
+		  {
+			"File": "motions/main_4.motion3.json",
+			"Text": "",
+			"Audio": ""
+		  }
+		],
+		"main_5": [
+		  {
+			"File": "motions/main_5.motion3.json",
+			"Text": "",
+			"Audio": ""
+		  }
+		],
+		"mail": [
+		  {
+			"File": "motions/mail.motion3.json",
+			"Text": "信件承载着来自远方的思念，万不可轻视…",
+			"Audio": "https://patchwiki.biligame.com/images/blhx/e/ed/to81onhpo4nfou2gdimimvf3y9fslgl.mp3"
+		  }
+		],
+		"mission": [
+		  {
+			"File": "motions/mission.motion3.json",
+			"Text": "即使于梦中，也勤于尽忠职守，令人惊叹…",
+			"Audio": "https://patchwiki.biligame.com/images/blhx/5/52/27ivu4761q12o9pz6g4qlbhrhzn1czm.mp3"
+		  }
+		],
+		"mission_complete": [
+		  {
+			"File": "motions/mission_complete.motion3.json",
+			"Text": "获酬众多，硕果累累……愿天道酬勤，汝之所梦皆成真…",
+			"Audio": "https://patchwiki.biligame.com/images/blhx/e/eb/lt7pbdsz6kefbejhz7t5ao26c13y18y.mp3"
+		  }
+		],
+		"complete": [
+		  {
+			"File": "motions/complete.motion3.json",
+			"Text": "委托组的孩子们回来了…之后的迎接，便拜托了…",
+			"Audio": "https://patchwiki.biligame.com/images/blhx/9/99/e3hjoh6aflotxouuyr9rf4l06n191vl.mp3"
+		  }
+		],
+		"wedding": [
+		  {
+			"File": "motions/wedding.motion3.json",
+			"Text": "回想在此港区与汝经历之种种，皆是令人不禁微笑的美好回忆…是汝为妾身带来了截然不同的生活。从今往后，妾身会与汝一同，直面各种命运，无论幸或不幸——",
+			"Audio": "https://patchwiki.biligame.com/images/blhx/c/c5/1q1arfei4s4b07m6cqmgnkvcd6weekp.mp3"
+		  }
+		],
+		"touch_head": [
+		  {
+			"File": "motions/touch_head.motion3.json",
+			"Text": "汝何故要这般执拗地……嗯嗯…",
+			"Audio": "https://patchwiki.biligame.com/images/blhx/b/b4/e01ugmkik3q5ja20qt9i9av735ep2h2.mp3"
+		  }
+		],
+		"touch_body": [
+		  {
+			"File": "motions/touch_body.motion3.json",
+			"Text": "游术之邀…汝若钟意，妾身自当为伴…",
+			"Audio": "https://patchwiki.biligame.com/images/blhx/0/0e/3iat8dncml1gf9uta8t2rzmuzuv5pn6.mp3"
+		  }
+		],
+		"touch_special": [
+		  {
+			"File": "motions/touch_special.motion3.json",
+			"Text": "既是汝，妾身便甘之如饴…",
+			"Audio": "https://patchwiki.biligame.com/images/blhx/0/07/7ylkzf4vead7aatd0n6rorzb4xdd69o.mp3"
+		  }
+		],
+		"touch_drag3": [
+		  {
+			"File": "motions/touch_drag3.motion3.json"
+		  }
+		],
+		"idle": [
+		  {
+			"File": "motions/idle.motion3.json"
+		  }
+		],
+		"touch_idle1": [
+		  {
+			"File": "motions/touch_idle1.motion3.json"
+		  }
+		],
+		"idle1": [
+		  {
+			"File": "motions/idle1.motion3.json"
+		  }
+		],
+		"touch_idle2": [
+		  {
+			"File": "motions/touch_idle2.motion3.json"
+		  }
+		],
+		"idle2": [
+		  {
+			"File": "motions/idle2.motion3.json"
+		  }
+		],
+		"touch_idle3": [
+		  {
+			"File": "motions/touch_idle3.motion3.json"
+		  }
+		],
+		"idle3": [
+		  {
+			"File": "motions/idle3.motion3.json"
+		  }
+		],
+		"touch_idle4": [
+		  {
+			"File": "motions/touch_idle4.motion3.json"
+		  }
+		],
+		"idle4": [
+		  {
+			"File": "motions/idle4.motion3.json"
+		  }
+		],
+		"touch_idle5": [
+		  {
+			"File": "motions/touch_idle5.motion3.json"
+		  }
+		],
+		"idle5": [
+		  {
+			"File": "motions/idle5.motion3.json"
+		  }
+		],
+		"touch_idle6": [
+		  {
+			"File": "motions/touch_idle6.motion3.json"
+		  }
+		],
+		"idle6": [
+		  {
+			"File": "motions/idle6.motion3.json"
+		  }
+		],
+		"touch_idle7": [
+		  {
+			"File": "motions/touch_idle7.motion3.json"
+		  }
+		],
+		"idle7": [
+		  {
+			"File": "motions/idle7.motion3.json"
+		  }
+		],
+		"touch_idle8": [
+		  {
+			"File": "motions/touch_idle8.motion3.json"
+		  }
+		],
+		"idle8": [
+		  {
+			"File": "motions/idle8.motion3.json"
+		  }
+		],
+		"touch_idle9": [
+		  {
+			"File": "motions/touch_idle9.motion3.json"
+		  }
+		],
+		"idle9": [
+		  {
+			"File": "motions/idle9.motion3.json"
+		  }
+		],
+		"touch_idle11": [
+		  {
+			"File": "motions/touch_idle11.motion3.json"
+		  }
+		],
+		"touch_idle12": [
+		  {
+			"File": "motions/touch_idle12.motion3.json"
+		  }
+		],
+		"touch_idle13": [
+		  {
+			"File": "motions/touch_idle13.motion3.json"
+		  }
+		],
+		"touch_idle14": [
+		  {
+			"File": "motions/touch_idle14.motion3.json"
+		  }
+		],
+		"touch_idle15": [
+		  {
+			"File": "motions/touch_idle15.motion3.json"
+		  }
+		],
+		"touch_idle16": [
+		  {
+			"File": "motions/touch_idle16.motion3.json"
+		  }
+		],
+		"touch_idle17": [
+		  {
+			"File": "motions/touch_idle17.motion3.json"
+		  }
+		],
+		"touch_idle18": [
+		  {
+			"File": "motions/touch_idle18.motion3.json"
+		  }
+		],
+		"touch_idle19": [
+		  {
+			"File": "motions/touch_idle19.motion3.json"
+		  }
+		],
+		"effect": [
+		  {
+			"File": "motions/effect.motion3.json"
+		  }
+		]
+	  }
+	},
+	"Groups": [
+	  {
+		"Target": "Parameter",
+		"Name": "EyeBlink",
+		"Ids": [
+		  "ParamEyeLOpen",
+		  "ParamEyeROpen"
+		]
+	  },
+	  {
+		"Target": "Parameter",
+		"Name": "LipSync",
+		"Ids": [
+		  "ParamMouthOpenY"
+		]
+	  }
+	]
+  }

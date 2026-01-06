@@ -1,0 +1,210 @@
+{
+  "Version": 3,
+  "Name": "aersasi_2",
+  "FileReferences": {
+    "Moc": "aersasi_2.moc3",
+    "Textures": [
+      "textures/texture_00.webp",
+      "textures/texture_01.webp"
+    ],
+    "Physics": "aersasi_2.physics3.json",
+    "Motions": {
+      "login": [
+        {
+          "File": "motions/login.motion3.json",
+          "Text": "指挥官看起来很热的样子……难、难道说是指挥官看到了这样的阿尔萨斯要在邮轮上光天化日之下就……！不、不不行！阿、阿尔萨斯必须停止这种想法……",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/1/1c/kie5re2v07hyyafhyzgegsfmbhlhfi2.mp3"
+        }
+      ],
+      "home": [
+        {
+          "File": "motions/home.motion3.json",
+          "Text": "呼~果然还是泡在水里，阿尔萨斯的感情模块才能平稳运行……不能再去想指挥官……指挥官……指挥官的……哈，哈……",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/0/00/g457zk1yausc9gntn3xheu6oul4rq3e.mp3"
+        }
+      ],
+      "main_1": [
+        {
+          "File": "motions/main_1.motion3.json",
+          "Text": "阿尔萨斯和平时的感觉不太一样……？难、难道是和指挥官一起旅行太开心……感情模块的抑制功能失效了……",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/d/d8/k3trb3g51w43h8h76ybt6cdee0cnt9w.mp3"
+        }
+      ],
+      "main_2": [
+        {
+          "File": "motions/main_2.motion3.json",
+          "Text": "盛夏形态的阿尔萨斯非常可爱……指、指指挥官一定是故意说这种话的吧！这个战术非常有效，阿尔萨斯现在已经被迷得神魂颠倒……哈啊……有些迫不及待了……！♡",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/c/c2/h1whf5k3pm4vy3fvn7o9gemr52hvnym.mp3"
+        }
+      ],
+      "main_3": [
+        {
+          "File": "motions/main_3.motion3.json",
+          "Text": "等、等一下！阿尔萨斯的指挥官电波遮断器又掉了！谢谢你帮我捡……哈……你、你说水温突然升高了……是什么意思……",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/0/07/4w25nfu583gvh3d6ug8k1jx0g7pudty.mp3"
+        }
+      ],
+      "main_4": [
+        {
+          "File": "motions/main_4.motion3.json",
+          "Text": "虽、虽然现在是和指挥官独处……但请不要像阿尔萨斯一样无法控制自己……哈、哈啊……怎、怎么办，一想到只有我们两人，阿尔萨斯就不行了……♡",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/7/72/i3xxszap4mymeh8jxns3uiqa9c1ctsb.mp3"
+        }
+      ],
+      "mail": [
+        {
+          "File": "motions/mail.motion3.json",
+          "Text": "阿尔萨斯身上的水会弄湿邮件……也会，弄湿指挥官的……没，没关系么……？",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/e/e2/tgvydrayp0ii3zuqs4shuyw3xqsvc1u.mp3"
+        }
+      ],
+      "mission": [
+        {
+          "File": "motions/mission.motion3.json",
+          "Text": "指挥官，你还有任务尚未完成。口吻变了？嗯……阿尔萨斯感情模块的温度暂时降下来了。",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/9/9d/81swlo0dsmxycj3znt40l2qfvn9owmi.mp3"
+        }
+      ],
+      "mission_complete": [
+        {
+          "File": "motions/mission_complete.motion3.json",
+          "Text": "任务完成了，阿尔萨斯必须立刻回到水中……哈啊……温度又……",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/5/5c/d7y3xg8s68719wpg34lt1pbsi9fkf72.mp3"
+        }
+      ],
+      "complete": [
+        {
+          "File": "motions/complete.motion3.json",
+          "Text": "委托组回来了吗？指挥官，现在的阿尔萨斯暂时无法离开水中，还请你自行……",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/8/8a/be3mpdbsrbt22mbx00xuoh2zshd2af4.mp3"
+        }
+      ],
+      "wedding": [
+        {
+          "File": "motions/wedding.motion3.json",
+          "Text": "就算没能成功探索指挥官的情感模块，阿尔萨斯也依然感受到了指挥官的心意，这就是神奇的指挥官电波么……还有这个……只是看着它，阿尔萨斯的情感模块就要爆炸了……我要将这份情绪用阿尔萨斯电波加倍传给指挥官，然后我们一起……变、变得奇怪吧！",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/8/89/c2iio7k3ns64djgsl4r1w5nz3ctva1i.mp3"
+        }
+      ],
+      "touch_head": [
+        {
+          "File": "motions/touch_head.motion3.json",
+          "Text": "摸头吗……阿尔萨斯倒是不介意……等、等一下，阿尔萨斯的指挥官电波遮断器掉了……！哈……哈啊……不行，被注入了指挥官电波以后就算在水里身体还是燥热起来了……",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/d/d6/8lk8jqa6xruys4lmiwyc5a4qc3as94q.mp3"
+        }
+      ],
+      "touch_body": [
+        {
+          "File": "motions/touch_body.motion3.json",
+          "Text": "等、等一下……明明泡在水里为什么又感觉很燥热了……",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/7/70/swma23fahkcbo0glgdrtrihq7t8kbew.mp3"
+        }
+      ],
+      "touch_special": [
+        {
+          "File": "motions/touch_special.motion3.json",
+          "Text": "哈……指挥官……阿尔萨斯在这里也可以……",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/f/f9/50nfi2hyd444axc79o47sz8xhtoqtai.mp3"
+        }
+      ],
+      "touch_drag2": [
+        {
+          "File": "motions/touch_drag2.motion3.json"
+        }
+      ],
+      "touch_drag3": [
+        {
+          "File": "motions/touch_drag3.motion3.json"
+        }
+      ],
+      "touch_drag4": [
+        {
+          "File": "motions/touch_drag4.motion3.json"
+        }
+      ],
+      "touch_drag5": [
+        {
+          "File": "motions/touch_drag5.motion3.json"
+        }
+      ],
+      "idle": [
+        {
+          "File": "motions/idle.motion3.json"
+        }
+      ],
+      "touch_idle1": [
+        {
+          "File": "motions/touch_idle1.motion3.json"
+        }
+      ],
+      "touch_idle2": [
+        {
+          "File": "motions/touch_idle2.motion3.json"
+        }
+      ],
+      "idle2": [
+        {
+          "File": "motions/idle2.motion3.json"
+        }
+      ],
+      "touch_idle3": [
+        {
+          "File": "motions/touch_idle3.motion3.json"
+        }
+      ],
+      "idle3": [
+        {
+          "File": "motions/idle3.motion3.json"
+        }
+      ],
+      "touch_idle4": [
+        {
+          "File": "motions/touch_idle4.motion3.json"
+        }
+      ],
+      "touch_idle5": [
+        {
+          "File": "motions/touch_idle5.motion3.json"
+        }
+      ],
+      "idle5": [
+        {
+          "File": "motions/idle5.motion3.json"
+        }
+      ],
+      "effect": [
+        {
+          "File": "motions/effect.motion3.json"
+        }
+      ]
+     
+    },
+    "Expressions": [
+			{
+				"Name": "touch_drag1",
+				"File": "expressions/touch_drag1.exp3.json"
+			},
+			{
+				"Name": "mian",
+				"File": "expressions/mian.exp3.json"
+			}
+		]
+  },
+  "Groups": [
+    {
+      "Target": "Parameter",
+      "Name": "EyeBlink",
+      "Ids": [
+        "ParamEyeLOpen",
+        "ParamEyeROpen"
+      ]
+    },
+    {
+      "Target": "Parameter",
+      "Name": "LipSync",
+      "Ids": [
+        "ParamMouthOpenY"
+      ]
+    }
+  ]
+}

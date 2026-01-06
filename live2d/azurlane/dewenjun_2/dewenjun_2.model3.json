@@ -1,0 +1,133 @@
+{
+	"Version": 3,
+	"FileReferences": {
+		"Moc": "dewenjun_2.moc3",
+		"Textures": [
+			"textures/texture_00.webp",
+			"textures/texture_01.webp"
+		],
+		"Physics": "dewenjun_2.physics3.json",
+		"Expressions": [
+			{
+				"Name": "touch_drag6.exp3.json",
+				"File": "expressions/touch_drag6.exp3.json"
+			},
+			{
+				"Name": "main.exp3.json",
+				"File": "expressions/main.exp3.json"
+			}
+		],
+		"Motions": {
+			"": [
+				{
+					"File": "motions/login.motion3.json",
+					"Text": "“你这家伙，是在这里设置了存档点吗？”——这样的口吻如何呢，指挥官？"
+				},
+				{
+					"File": "motions/home.motion3.json",
+					"Text": "“这么快就回来了？看来你的实力还过得去嘛。”——在这个模式下，我暂时无法为您送上茶点，抱歉。"
+				},
+				{
+					"File": "motions/main_1.motion3.json",
+					"Text": "基于本次的游戏设定……我采取了和平时不同的模式。您看，像现在这种冰冷中又夹杂着一丝轻蔑的表情，就是练习的成果。"
+				},
+				{
+					"File": "motions/main_2.motion3.json",
+					"Text": "角色扮演模式——ON。“真是狂妄！你有自信能战胜……等等！什、什么啊！这些都是什么招数……！别，别这样……！”"
+				},
+				{
+					"File": "motions/main_3.motion3.json",
+					"Text": "没错，在本次的设定中，只要打倒我，您就可以继续通行。嗯？为什么您要摇头呢？…不想伤害我？"
+				},
+				{
+					"File": "motions/main_4.motion3.json",
+					"Text": "左右左右，BABA。——据说这样就可以快速通关，您要试试看吗？"
+				},
+				{
+					"File": "motions/mail.motion3.json"
+				},
+				{
+					"File": "motions/mission.motion3.json",
+					"Text": "“你的赏金任务……啧，竟然要我这个高等魔族来提醒你完成吗？”"
+				},
+				{
+					"File": "motions/complete.motion3.json"
+				},
+				{
+					"File": "motions/mission_complete.motion3.json",
+					"Text": "“这些赏金任务的报酬……就都拿去买甜甜圈，然后进贡给我吧！”"
+				},
+				{
+					"File": "motions/wedding.motion3.json"
+				},
+				{
+					"File": "motions/touch_head.motion3.json",
+					"Text": "“放肆……！区区冒险者而已，竟敢触碰我！”——原来如此，您想尝试的是这种口味呢。"
+				},
+				{
+					"File": "motions/touch_body.motion3.json",
+					"Text": "“如果是想求饶的话，现在已经晚了。”——啧，感觉气势还不够呢。"
+				},
+				{
+					"File": "motions/touch_special.motion3.json",
+					"Text": "“……呵呵，这是向我臣服的信号吗？”"
+				},
+				{
+					"File": "motions/touch_drag1.motion3.json"
+				},
+				{
+					"File": "motions/touch_drag2.motion3.json"
+				},
+				{
+					"File": "motions/touch_drag3.motion3.json"
+				},
+				{
+					"File": "motions/touch_drag4.motion3.json"
+				},
+				{
+					"File": "motions/touch_drag5.motion3.json"
+				},
+				{
+					"File": "motions/touch_drag7.motion3.json"
+				},
+				{
+					"File": "motions/touch_drag8.motion3.json"
+				},
+				{
+					"File": "motions/touch_drag10.motion3.json"
+				},
+				{
+					"File": "motions/idle.motion3.json"
+				},
+				{
+					"File": "motions/idle2.motion3.json"
+				},
+				{
+					"File": "motions/idle3.motion3.json"
+				},
+				{
+					"File": "motions/effect.motion3.json"
+				}
+				
+			]
+		}
+	},
+	"Groups": [
+		{
+			"Target": "Parameter",
+			"Name": "LipSync",
+			"Ids": [
+				"ParamMouthOpenY"
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Name": "EyeBlink",
+			"Ids": [
+				"ParamEyeLOpen",
+				"ParamEyeROpen"
+			]
+		}
+	],
+	"HitAreas": []
+}

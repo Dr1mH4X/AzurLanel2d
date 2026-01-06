@@ -1,0 +1,231 @@
+{
+	"Version": 3,
+	"FileReferences": {
+		"Moc": "adaerbote_3.moc3",
+		"Textures": [
+			"textures/texture_00.webp",
+			"textures/texture_01.webp"
+		],
+		"Physics": "adaerbote_3.physics3.json",
+		"Expressions": [
+		],
+		"Motions": {
+			"login": [
+				{
+					"File": "motions/login.motion3.json",
+					"Text": "你来了，可真是帮大忙了，指挥官……下次我肯定不会摔倒的啦，嗯。",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/e/e9/ajnktcc76s5xzq0blzilbgqp15n0mmf.mp3"
+				}
+			],
+			"home": [
+				{
+					"File": "motions/home.motion3.json",
+					"Text": "啊~指挥官进来的时候可以再慢点？地上很滑，别像我一样摔倒了。",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/9/97/0eyy2pyi2wslqpxnlai5o6mm6ursp1l.mp3"
+				}
+			],
+			"main_1": [
+				{
+					"File": "motions/main_1.motion3.json",
+					"Text": "唔、唔唔，这块肥皂是不是产生了太多的泡泡了……得让指挥官帮我把它们都冲干净啊……",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/d/d9/7mrnu3a7175j5qewblmf8fn379ydbts.mp3"
+				}
+			],
+			"main_2": [
+				{
+					"File": "motions/main_2.motion3.json",
+					"Text": "也不要一直用担忧的眼神看着我嘛，早就不痛了！而且像这样坐着洗好像也蛮舒服的~指挥官要试试吗？",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/f/f1/q6m6djg891d7p5iu588zoeuegx29qab.mp3"
+				}
+			],
+			"main_3": [
+				{
+					"File": "motions/main_3.motion3.json",
+					"Text": "指挥官还是慢一点比较好哦？不过就算你摔倒了，我也肯定能接住你就是了~",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/9/93/1vmfuwavpc8f7tjz72zbbfz3m8omlfc.mp3"
+				}
+			],
+			"main_4": [
+				{
+					"File": "motions/main_4.motion3.json"
+				}
+			],
+			"mail": [
+				{
+					"File": "motions/mail.motion3.json",
+					"Text": "咦？这里也有指挥官的信……哇啊，要被打湿啦！",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/a/ab/0zcga12rugvo6j7bud5hc24x9vlco7m.mp3"
+				}
+			],
+			"mission": [
+				{
+					"File": "motions/mission.motion3.json",
+					"Text": "任务清单……啊，我差点都忘了。嗯，不过丢进水里打湿就不用管了吧！",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/7/71/e2qtp95ligoj77kqzfgync8zcpt0x8j.mp3"
+				}
+			],
+			"mission_complete": [
+				{
+					"File": "motions/mission_complete.motion3.json",
+					"Text": "让我不用管任务，因为你已经都做完了？……哇！那也就是说，现在可以去领奖励了",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/4/46/4mcegm69lr541yz7wtieq1gct5kaq2v.mp3"
+				}
+			],
+			"complete": [
+				{
+					"File": "motions/complete.motion3.json",
+					"Text": "委托好像完成了？她们应该会带新的洗浴用品回来吧……总之就拜托指挥官去帮我看看吧~？",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/d/d5/ajisd81u28qfcpjsxctiqqc4kf6cp11.mp3"
+				}
+			],
+			"wedding": [
+				{
+					"File": "motions/wedding.motion3.json",
+					"Text": "这个的意思是，我们是关系非常非常好的朋友对吧！……比这还要更进一步？唔……那是不是还要再加两个“非常“才够？不管怎样，今后我也会一直在你身边的！我们约好了哦~",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/4/46/md83tj12bcjwi995oge1refjuxivtez.mp3"
+				}
+			],
+			"touch_head": [
+				{
+					"File": "motions/touch_head.motion3.json",
+					"Text": "嗯？想要给我洗头发么？那交给你了！",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/0/02/oldwa354n4hsbi9hpgoephueqqka9iq.mp3"
+				}
+			],
+			"touch_body": [
+				{
+					"File": "motions/touch_body.motion3.json",
+					"Text": "是想帮我搓一搓背么？没问题！",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/c/c6/cq5pswejvqm5ms3q3wyxhxskbwb9v9b.mp3"
+				}
+			],
+			"touch_special": [
+				{
+					"File": "motions/touch_special.motion3.json",
+					"Text": "指挥官，在这种场合来了兴致？ ",
+					"Audio": "https://patchwiki.biligame.com/images/blhx/b/b8/2nvwpzn54e5rlwd5tuk5vamcd7g6zby.mp3"
+				}
+			],
+			"touch_drag2": [
+				{
+					"File": "motions/touch_drag2.motion3.json"
+				}
+			],
+			"idle": [
+				{
+					"File": "motions/idle.motion3.json"
+				}
+			],
+			"touch_idle1": [
+				{
+					"File": "motions/touch_idle1.motion3.json"
+				}
+			],
+			"idle1": [
+				{
+					"File": "motions/idle1.motion3.json"
+				}
+			],
+			"touch_idle2": [
+				{
+					"File": "motions/touch_idle2.motion3.json"
+				}
+			],
+			"idle2": [
+				{
+					"File": "motions/idle2.motion3.json"
+				}
+			],
+			"touch_idle3": [
+				{
+					"File": "motions/touch_idle3.motion3.json"
+				}
+			],
+			"idle3": [
+				{
+					"File": "motions/idle3.motion3.json"
+				}
+			],
+			"touch_idle4": [
+				{
+					"File": "motions/touch_idle4.motion3.json"
+				}
+			],
+			"idle4": [
+				{
+					"File": "motions/idle4.motion3.json"
+				}
+			],
+			"touch_idle5": [
+				{
+					"File": "motions/touch_idle5.motion3.json"
+				}
+			],
+			"idle5": [
+				{
+					"File": "motions/idle5.motion3.json"
+				}
+			],
+			"touch_idle6": [
+				{
+					"File": "motions/touch_idle6.motion3.json"
+				}
+			],
+			"idle6": [
+				{
+					"File": "motions/idle6.motion3.json"
+				}
+			],
+			"touch_idle7": [
+				{
+					"File": "motions/touch_idle7.motion3.json"
+				}
+			],
+			"idle7": [
+				{
+					"File": "motions/idle7.motion3.json"
+				}
+			],
+			"touch_idle8": [
+				{
+					"File": "motions/touch_idle8.motion3.json"
+				}
+			],
+			"touch_idle9": [
+				{
+					"File": "motions/touch_idle9.motion3.json"
+				}
+			],
+			
+			"touch_idle10": [
+				{
+					"File": "motions/touch_idle10.motion3.json"
+				}
+			],
+			"effect": [
+				{
+					"File": "motions/effect.motion3.json"
+				}
+			]
+			
+		}
+	},
+	"Groups": [
+		{
+			"Target": "Parameter",
+			"Name": "EyeBlink",
+			"Ids": [
+				"ParamEyeROpen",
+				"ParamEyeLOpen"
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Name": "LipSync",
+			"Ids": [
+				"ParamMouthOpenY"
+			]
+		}
+	],
+	"HitAreas": []
+}
