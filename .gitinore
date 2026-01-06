@@ -1,4 +1,4 @@
-./venv
+.venv/
 ./json/index_250912b.js
 ./json/index_251024.js
 ./json/index_251113.js
@@ -11,4 +11,4 @@
 ./json/live2dMaster251113webversion.json
 ./json/live2dMaster251218b.json
 ./json/live2dMaster251218bwebversion.json
-./live2d
+live2d/
