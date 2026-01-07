@@ -1,5 +1,9 @@
 自动抓取[l2d.su](https://l2d.su/)的模型资源
 
+[1model.py](https://github.com/Dr1mH4X/AzurLanel2d/blob/main/1model.py)抓取模型资源
+
+[2model.py](https://github.com/Dr1mH4X/AzurLanel2d/blob/main/2audio.py)抓取音频资源
+
 # 运行
 
 python -m http.server
