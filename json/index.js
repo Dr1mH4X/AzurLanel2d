@@ -36,7 +36,117 @@ class l2dViewer{
 
 
         this._containers.set('Models', modelcontainer);
+        
+        // Initialize zoom handling
+        this._initZoomHandling();
 
+    }
+    
+    _initZoomHandling() {
+        const viewer = this._app.view;
+        
+        // Mouse wheel zoom
+        viewer.addEventListener('wheel', (e) => {
+            e.preventDefault();
+            const rect = viewer.getBoundingClientRect();
+            const screenX = e.clientX - rect.left;
+            const screenY = e.clientY - rect.top;
+            
+            // Convert screen coordinates to canvas coordinates
+            const canvasX = screenX;
+            const canvasY = screenY;
+            
+            // Check if mouse is over a model - iterate in reverse to check topmost model first
+            const models = this._containers.get('Models').children;
+            
+            for (let i = models.length - 1; i >= 0; i--) {
+                const model = models[i];
+                
+                // Use PIXI's built-in hit testing
+                if (model.containsPoint && model.containsPoint(new PIXI.Point(canvasX, canvasY))) {
+                    const zoomFactor = e.deltaY > 0 ? 0.95 : 1.05;
+                    const newScale = Math.max(0.01, Math.min(2, model.scale.x * zoomFactor));
+                    model.scale.set(newScale);
+                    break;
+                }
+                
+                // Fallback: manual bounding box check if containsPoint is not available
+                if (!model.containsPoint) {
+                    const bounds = model.getBounds ? model.getBounds() : {
+                        x: model.x - (model.width * model.scale.x) / 2,
+                        y: model.y - (model.height * model.scale.y) / 2,
+                        width: model.width * model.scale.x,
+                        height: model.height * model.scale.y
+                    };
+                    
+                    if (canvasX >= bounds.x && canvasX <= bounds.x + bounds.width &&
+                        canvasY >= bounds.y && canvasY <= bounds.y + bounds.height) {
+                        const zoomFactor = e.deltaY > 0 ? 0.95 : 1.05;
+                        const newScale = Math.max(0.01, Math.min(2, model.scale.x * zoomFactor));
+                        model.scale.set(newScale);
+                        break;
+                    }
+                }
+            }
+        }, { passive: false });
+        
+        // Touch zoom (pinch gesture)
+        let lastDistance = 0;
+        let lastScale = 1;
+        let touchCenterX = 0;
+        let touchCenterY = 0;
+        
+        viewer.addEventListener('touchstart', (e) => {
+            if (e.touches.length === 2) {
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                
+                // Calculate initial distance and center point
+                const dx = touch2.clientX - touch1.clientX;
+                const dy = touch2.clientY - touch1.clientY;
+                lastDistance = Math.sqrt(dx * dx + dy * dy);
+                
+                // Store touch center in screen coordinates
+                const rect = viewer.getBoundingClientRect();
+                touchCenterX = (touch1.clientX + touch2.clientX) / 2 - rect.left;
+                touchCenterY = (touch1.clientY + touch2.clientY) / 2 - rect.top;
+                
+                const models = this._containers.get('Models').children;
+                if (models.length > 0) {
+                    lastScale = models[models.length - 1].scale.x;
+                }
+            }
+        });
+        
+        viewer.addEventListener('touchmove', (e) => {
+            if (e.touches.length === 2) {
+                e.preventDefault();
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                
+                // Calculate current distance
+                const dx = touch2.clientX - touch1.clientX;
+                const dy = touch2.clientY - touch1.clientY;
+                const currentDistance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (lastDistance > 0) {
+                    const models = this._containers.get('Models').children;
+                    if (models.length > 0) {
+                        const model = models[models.length - 1];
+                        
+                        // Calculate scale factor based on distance ratio
+                        const ratio = currentDistance / lastDistance;
+                        const newScale = Math.max(0.01, Math.min(2, lastScale * ratio));
+                        model.scale.set(newScale);
+                    }
+                }
+            }
+        }, { passive: false });
+        
+        viewer.addEventListener('touchend', () => {
+            lastDistance = 0;
+            lastScale = 1;
+        });
     }
 
     _resizeViwer() {
@@ -346,30 +456,6 @@ class HeroModel{
     }
 
 }
-
-// SET UP GAME SELECT
-const setupGameSelect = (data) => {
-    let gameSelect = document.getElementById('gameSelect');
-    let inner = `<option value="">选择游戏</option>`;
-    
-    data.Master.forEach(game => {
-        inner += `<option value="${game.gameId}">${game.gameName}</option>`;
-    });
-
-    gameSelect.innerHTML = inner;
-
-    gameSelect.onchange = (e) => {
-        if (e.target.value === '') {
-            document.getElementById('characterSelect').innerHTML = '<option value="">选择角色</option>';
-            document.getElementById('costumeSelect').innerHTML = '<option value="">选择服装</option>';
-            return;
-        }
-
-        let gameId = e.target.value;
-        let gameData = data.Master.find(game => game.gameId == gameId);
-        setupCharacterSelect(gameData);
-    };
-};
 
 // SET UP CHAR SELECT
 const setupCharacterSelect = (gameData) => {
@@ -735,14 +821,14 @@ const setupModelSetting = (M) => {
 
 $(document).ready(async () => {
     let l2dmaster
-    await fetch('json/live2dMaster251218b.json')
+    await fetch('json/live2dMaster260122b.json')
         .then(response => {
             if (!response.ok) throw Error(response.statusText)
             return response.json()
         })
         .then(json => {
             l2dmaster = json
-            setupGameSelect(l2dmaster)
+            setupCharacterSelect(l2dmaster.Master[0])
         })
         .catch(error => {
             console.log('failed while loading live2dMaster.json.')
@@ -751,13 +837,12 @@ $(document).ready(async () => {
     l2dviewer = new l2dViewer(document.getElementById('viewer-place'))
 
     document.getElementById('addL2DModelBtn').onclick = async () => {
-        let gameValue = document.getElementById('gameSelect').value
         let charValue = document.getElementById('characterSelect').value
         let costValue = document.getElementById('costumeSelect').value
 
-        if (!gameValue || !charValue || !costValue) return
+        if (!charValue || !costValue) return
 
-        let gameData = l2dmaster.Master.find(game => game.gameId == gameValue)
+        let gameData = l2dmaster.Master[0]
         let fulldata = gameData.character.find(char => char.charId == charValue)
         let costdata = fulldata.live2d.find(cost => cost.costumeId == costValue)
 
@@ -766,10 +851,16 @@ $(document).ready(async () => {
 
         if (l2dviewer.isModelInList(`${fulldata.charName}_${costdata.costumeName}`)) return
 
+        // Show loading spinner
+        document.getElementById('loadingSpinner').style.display = 'flex';
+        
         let M = new HeroModel()
         await M.create(costdata.path)
         M.setName(fulldata.charName, costdata.costumeName)
         l2dviewer.addModel(M)
+        
+        // Hide loading spinner
+        document.getElementById('loadingSpinner').style.display = 'none';
 
         let modelsList = document.getElementById('ModelsList')
 
@@ -814,4 +905,38 @@ $(document).ready(async () => {
             }
         })
     })
+
+    // ========== SEARCH AND FILTER ==========
+    const characterSearch = document.getElementById('characterSearch');
+    
+    const updateCharacterSearch = () => {
+        const searchTerm = characterSearch.value.toLowerCase();
+        const gameData = l2dmaster.Master[0];
+        
+        if (searchTerm.trim() === '') {
+            setupCharacterSelect(gameData);
+        } else {
+            const filtered = gameData.character.filter(char => 
+                char.charName.toLowerCase().includes(searchTerm)
+            );
+            
+            let select = document.getElementById('characterSelect');
+            let inner = `<option value="">搜索结果</option>`;
+            filtered.forEach(character => {
+                inner += `<option value="${character.charId}">${character.charName}</option>`;
+            });
+            select.innerHTML = inner;
+        }
+    };
+    
+    characterSearch.addEventListener('input', updateCharacterSearch);
+    characterSearch.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            const charSelect = document.getElementById('characterSelect');
+            if (charSelect.options.length > 1) {
+                charSelect.selectedIndex = 1;
+                charSelect.onchange?.({ target: charSelect });
+            }
+        }
+    });
 })

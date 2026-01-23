@@ -1,218 +1,347 @@
-<!DOCTYPE html>
+<!doctype html>
 
 <html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Live2D Viewer Online</title>
+        <meta
+            name="KEYWords"
+            contect="l2d,live2d,Live2D Viewer,AzurLane,碧蓝航线,碧藍航線"
+        />
+        <meta
+            name="description"
+            content="Experience and interact with stunning Live2D models directly in your browser. No downloads required"
+        />
+        <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
+        <link rel="icon" href="./image/favicon.svg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" type="text/css" href="./css/index.css?260122b" />
+        <meta name="msvalidate.01" content="4469A91207A7AD3E4AAF52B1CB6B4B3E" />
+        <!-- Google tag (gtag.js) -->
+        <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-KZ19RNN5F0"
+        ></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
+            gtag("config", "G-KZ19RNN5F0");
+        </script>
+    </head>
 
-<head>
-    <meta charset="utf-8" />
-    <title>Live2D Viewer Online</title>
-    <meta name="KEYWords" contect="live2d,Live2D Viewer,AzurLane,碧蓝航线,碧藍航線">
-    <meta name='description' content='Live2D Viewer Online'>
-    <meta name="viewport" content="width=device-width, maximum-scale=1.0">
-    <link rel="icon" href="./image/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" type="text/css" href="./css/index.css">
-    <meta name="msvalidate.01" content="4469A91207A7AD3E4AAF52B1CB6B4B3E" />
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KZ19RNN5F0"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-KZ19RNN5F0');
-    </script>
-</head>
+    <body>
+        <noscript
+            ><iframe
+                src="https://www.googletagmanager.com/ns.html?id=GTM-WHR34GGG"
+                height="0"
+                width="0"
+                style="display: none; visibility: hidden"
+            ></iframe
+        ></noscript>
+        <div id="root">
+            <div class="container">
+                <main class="container-main" id="viewer-place">
+                    <div id="viewer"></div>
+                    <div id="text-container" class="text-container"></div>
+                    <!-- Loading Animation -->
+                    <div
+                        id="loadingSpinner"
+                        class="loading-spinner"
+                        style="display: none"
+                    >
+                        <div class="spinner"></div>
+                        <p id="loadingText">加载模型中...</p>
+                    </div>
+                </main>
 
-<body>
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WHR34GGG" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <div id="root">
-        <div class="container">
-            <main class="container-main" id="viewer-place">
-                <div id="viewer"></div>
-                <div id="text-container" class="text-container"></div>
-            </main>
+                <aside class="container-opt">
+                    <div class="opt_content">
+                        <div class="tab">
+                            <div class="tab-btn-list">
+                                <div
+                                    class="tab-btn btn-selecting"
+                                    id="Modelsbtn"
+                                >
+                                    <a onclick="toggleTabContainer('Models')"
+                                        >模型</a
+                                    >
+                                </div>
+                                <div class="tab-btn" id="CanvasSettingbtn">
+                                    <a
+                                        onclick="
+                                            toggleTabContainer('CanvasSetting')
+                                        "
+                                        >画布</a
+                                    >
+                                </div>
+                            </div>
+                        </div>
 
-            <aside class="container-opt">
-                <div class="opt_content">
-                    <div class="tab">
-                        <div class='tab-btn-list'>
-                            <div class='tab-btn btn-selecting' id="Modelsbtn"><a
-                                    onclick="toggleTabContainer('Models')">模型</a></div>
-                            <div class='tab-btn' id="CanvasSettingbtn"><a
-                                    onclick="toggleTabContainer('CanvasSetting')">画布</a></div>
+                        <!-- CONTENT (Models)-->
+                        <div class="tab-content shown" id="Models">
+                            <!-- SEARCH BOX -->
+                            <div class="search-box">
+                                <input
+                                    type="text"
+                                    id="characterSearch"
+                                    placeholder="搜索角色..."
+                                />
+                                <i class="fas fa-search search-icon"></i>
+                            </div>
+
+                            <!-- ADD Model CONTROLLER -->
+                            <div class="add-model-block">
+                                <!-- CHARACTOR SELECTION -->
+                                <div class="char-select">
+                                    <select id="characterSelect"></select>
+                                </div>
+
+                                <!-- COSTUME SELECTION -->
+                                <div class="costume-select">
+                                    <select id="costumeSelect"></select>
+                                </div>
+
+                                <!-- ADD BUTTON -->
+                                <button
+                                    class="add-btn circle-btn"
+                                    id="addL2DModelBtn"
+                                >
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                            <div class="Models-list" id="ModelsList"></div>
+                        </div>
+
+                        <!-- CONTENT (Models Setting)-->
+                        <div class="tab-content" id="ModelSetting">
+                            <div class="info">
+                                <button
+                                    class="circle-btn back-btn"
+                                    id="back-btn"
+                                >
+                                    <i class="fa-solid fa-angle-left"></i>
+                                </button>
+                                <p class="ModelName" id="info-ModelName"></p>
+                                <p
+                                    class="CostumeName"
+                                    id="info-CostumeName"
+                                ></p>
+                            </div>
+
+                            <div class="Models-list" id="ModelsSettingList">
+                                <button class="collapsible">显示</button>
+                                <div
+                                    class="collapsible-content"
+                                    id="display-collapsible"
+                                >
+                                    <div class="collapsible-list">
+                                        <div class="rangeOption">
+                                            <p>大小</p>
+                                            <input
+                                                type="range"
+                                                class="input-range"
+                                                min="0.01"
+                                                max="1"
+                                                step="0.01"
+                                                id="scaleRange"
+                                            />
+                                            <input
+                                                type="number"
+                                                min="0.01"
+                                                max="1"
+                                                step="0.01"
+                                                id="scaleNum"
+                                            />
+                                        </div>
+
+                                        <div class="rangeOption">
+                                            <p>旋转</p>
+                                            <input
+                                                type="range"
+                                                class="input-range"
+                                                min="0"
+                                                max="360"
+                                                step="0.01"
+                                                id="angleRange"
+                                            />
+                                            <input
+                                                type="number"
+                                                min="0"
+                                                max="360"
+                                                step="0.01"
+                                                id="angleNum"
+                                            />
+                                        </div>
+                                        <div class="rangeOption">
+                                            <p>嘴型</p>
+                                            <input
+                                                type="range"
+                                                class="input-range"
+                                                min="0"
+                                                max="1"
+                                                step="0.01"
+                                                id="paramMouthOpenYRange"
+                                            />
+                                            <input
+                                                type="number"
+                                                min="0"
+                                                max="1"
+                                                step="0.01"
+                                                id="paramMouthOpenYNum"
+                                            />
+                                        </div>
+                                        <div class="checkBoxOption">
+                                            <p>鼠标跟随</p>
+                                            <input
+                                                type="checkbox"
+                                                id="FocusingCheckbox"
+                                            />
+                                        </div>
+                                        <div class="checkBoxOption">
+                                            <p>呼吸</p>
+                                            <input
+                                                type="checkbox"
+                                                id="breathingCheckbox"
+                                            />
+                                        </div>
+                                        <div class="checkBoxOption">
+                                            <p>眨眼</p>
+                                            <input
+                                                type="checkbox"
+                                                id="eyeBlinkingCheckbox"
+                                            />
+                                        </div>
+                                        <div class="checkBoxOption">
+                                            <p>背景</p>
+                                            <input
+                                                type="checkbox"
+                                                id="foregroundCheckbox"
+                                            />
+                                        </div>
+                                        <div class="checkBoxOption">
+                                            <p>模型拖拽</p>
+                                            <input
+                                                type="checkbox"
+                                                id="dragCheckbox"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button class="collapsible">表情</button>
+                                <div class="collapsible-content">
+                                    <div
+                                        class="collapsible-list"
+                                        id="expressions-list"
+                                    ></div>
+                                </div>
+
+                                <button class="collapsible">姿势</button>
+                                <div class="collapsible-content">
+                                    <div
+                                        class="collapsible-list"
+                                        id="motion-list"
+                                    ></div>
+                                </div>
+
+                                <button class="collapsible">参数</button>
+                                <div class="collapsible-content">
+                                    <div
+                                        class="collapsible-list"
+                                        id="parameters-list"
+                                    ></div>
+                                </div>
+
+                                <button class="collapsible">部件</button>
+                                <div class="collapsible-content">
+                                    <div
+                                        class="collapsible-list"
+                                        id="partOpacity-list"
+                                    ></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CONTENT (Canvas Setting)-->
+                        <div class="tab-content" id="CanvasSetting">
+                            <div class="checkbox-text">
+                                <p>文本</p>
+                                <input
+                                    type="checkbox"
+                                    id="textCheckbox"
+                                    checked
+                                />
+                            </div>
+                            <div class="checkbox-text">
+                                <p>语音</p>
+                                <input
+                                    type="checkbox"
+                                    id="audioCheckbox"
+                                    checked
+                                />
+                            </div>
+                            <button class="collapsible">背景颜色</button>
+                            <div class="collapsible-content">
+                                <div
+                                    class="collapsible-list"
+                                    id="background-list"
+                                >
+                                    <div class="color-info">
+                                        <p>Color</p>
+                                        <input
+                                            type="color"
+                                            class="colorPicker"
+                                            id="colorPicker"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-
-                    <!-- CONTENT (Models)-->
-                    <div class="tab-content shown" id="Models">
-
-                        <!-- ADD Model CONTROLLER -->
-                        <div class="add-model-block">
-
-                        <!-- GAME SELECTION -->
-                        <div class="game-select">
-                            <select id="gameSelect"></select>
-                        </div>
-
-                        <!-- CHARACTOR SELECTION -->
-                        <div class="char-select">
-                            <select id="characterSelect"></select>
-                        </div>
-
-                        <!-- COSTUME SELECTION -->
-                        <div class="costume-select">
-                            <select id="costumeSelect"></select>
-                        </div>
-
-
-                            <!-- ADD BUTTON -->
-                            <button class="add-btn circle-btn" id="addL2DModelBtn"><i class="fas fa-plus"></i></button>
-                        </div>
-                        <div class="Models-list" id="ModelsList"></div>
-
-                    </div>
-
-                    <!-- CONTENT (Models Setting)-->
-                    <div class="tab-content" id='ModelSetting'>
-
-                        <div class="info">
-                            <button class="circle-btn back-btn" id="back-btn"><i
-                                    class="fa-solid fa-angle-left"></i></button>
-                            <p class="ModelName" id="info-ModelName"></p>
-                            <p class="CostumeName" id="info-CostumeName"></p>
-                        </div>
-
-                        <div class="Models-list" id="ModelsSettingList">
-
-
-                            <button class="collapsible">显示</button>
-                            <div class="collapsible-content" id="display-collapsible">
-                                <div class="collapsible-list">
-                                    <div class="rangeOption">
-                                        <p>大小</p>
-                                        <input type="range" class="input-range" min="0.01" max="1" step="0.01"
-                                            id="scaleRange">
-                                        <input type="number" min="0.01" max="1" step="0.01" id="scaleNum">
-                                    </div>
-
-                                    <div class="rangeOption">
-                                        <p>旋转</p>
-                                        <input type="range" class="input-range" min="0" max="360" step="0.01"
-                                            id="angleRange">
-                                        <input type="number" min="0" max="360" step="0.01" id="angleNum">
-                                    </div>
-                                    <div class="rangeOption">
-                                        <p>嘴型</p>
-                                        <input type="range" class="input-range" min="0" max="1" step="0.01"
-                                            id="paramMouthOpenYRange">
-                                        <input type="number" min="0" max="1" step="0.01" id="paramMouthOpenYNum">
-                                    </div>
-                                    <div class="checkBoxOption">
-                                        <p>鼠标跟随</p>
-                                        <input type="checkbox" id="FocusingCheckbox">
-                                    </div>
-                                    <div class="checkBoxOption">
-                                        <p>呼吸</p>
-                                        <input type="checkbox" id="breathingCheckbox">
-                                    </div>
-                                    <div class="checkBoxOption">
-                                        <p>眨眼</p>
-                                        <input type="checkbox" id="eyeBlinkingCheckbox">
-                                    </div>
-                                    <div class="checkBoxOption">
-                                        <p>背景</p>
-                                        <input type="checkbox" id="foregroundCheckbox">
-                                    </div>
-                                    <div class="checkBoxOption">
-                                        <p>模型拖拽</p>
-                                        <input type="checkbox" id="dragCheckbox">
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <button class="collapsible">表情</button>
-                            <div class="collapsible-content">
-                                <div class="collapsible-list" id="expressions-list">
-                                </div>
-                            </div>
-
-
-                            <button class="collapsible">姿势</button>
-                            <div class="collapsible-content">
-                                <div class="collapsible-list" id="motion-list">
-                                </div>
-                            </div>
-
-                            <button class="collapsible">参数</button>
-                            <div class="collapsible-content">
-                                <div class="collapsible-list" id="parameters-list">
-                                </div>
-                            </div>
-
-
-                            <button class="collapsible">部件</button>
-                            <div class="collapsible-content">
-                                <div class="collapsible-list" id="partOpacity-list">
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <!-- CONTENT (Canvas Setting)-->
-                    <div class="tab-content" id='CanvasSetting'>
-
-
-                        <div class="checkbox-text">
-                             <p>文本</p>
-                             <input type="checkbox" id="textCheckbox" checked>
-                        </div>
-                        <div class="checkbox-text">
-                             <p>语音</p>
-                             <input type="checkbox" id="audioCheckbox" checked>
-                        </div>
-                        <button class="collapsible">背景颜色</button>
-                        <div class="collapsible-content">
-                            <div class="collapsible-list" id="background-list">
-                                <div class="color-info">
-                                    <p>Color</p>
-                                    <input type="color" class="colorPicker" id="colorPicker" />
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-            </aside>
-
+                </aside>
+            </div>
         </div>
-    </div>
-</body>
+    </body>
 
-<!-- jquery -->
-<script src="./lib/jquery-3.7.1.min.js"></script>
-<!-- <script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/jquery/3.6.0/jquery.min.js"></script> -->
+    <!-- jquery -->
+    <script src="./lib/jquery-3.7.1.min.js"></script>
+    <!-- <script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/jquery/3.6.0/jquery.min.js"></script> -->
 
-<!-- font-awesome -->
-<script src="./lib/all.min.js"></script>
-<!-- <script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/font-awesome/6.0.0/js/all.min.js"></script> -->
+    <!-- font-awesome -->
+    <script src="./lib/all.min.js"></script>
+    <!-- <script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/font-awesome/6.0.0/js/all.min.js"></script> -->
 
-<!-- Pixi -->
-<script src="./lib/pixi-7.4.2.min.js" type="text/javascript"></script>
-<!-- <script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/pixi.js/6.2.2/browser/pixi.min.js"></script> -->
+    <!-- Pixi -->
+    <script src="./lib/pixi-7.4.2.min.js" type="text/javascript"></script>
+    <!-- <script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/pixi.js/6.2.2/browser/pixi.min.js"></script> -->
 
-<!-- live2d SDK -->
-<script src="./lib/live2dcubismcore.min.js" type="text/javascript"></script>
-<!-- <script src="https://cubism.live2d.com/sdk-web/cubismcore/live2dcubismcore.min.js"></script> -->
+    <!-- live2d SDK -->
+    <script src="./lib/live2dcubismcore.min.js" type="text/javascript"></script>
+    <!-- <script src="https://cubism.live2d.com/sdk-web/cubismcore/live2dcubismcore.min.js"></script> -->
 
-<!-- pixi-live2d-display ( Cubism 3 and Cubism 4) -->
-<script src="./lib/cubism4.min.js" type="text/javascript"></script>
-<!-- <script src="https://cdn.jsdelivr.net/npm/pixi-live2d-display/dist/cubism4.min.js" type="text/javascript"></script> -->
+    <!-- pixi-live2d-display ( Cubism 3 and Cubism 4) -->
+    <script src="./lib/cubism4.min.js" type="text/javascript"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/pixi-live2d-display/dist/cubism4.min.js" type="text/javascript"></script> -->
 
-<!-- ownjs -->
-<!-- <script src="./js/overwrite.js" type="text/javascript"></script> -->
-<!-- Ver.250912 -->
-<script src="./json/index.js?250912b" type="text/javascript"></script>
+    <!-- ownjs -->
+    <!-- <script src="./js/overwrite.js" type="text/javascript"></script> -->
+    <script src="./json/index.js?260122b" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        (function (c, l, a, r, i, t, y) {
+            c[a] =
+                c[a] ||
+                function () {
+                    (c[a].q = c[a].q || []).push(arguments);
+                };
+            t = l.createElement(r);
+            t.async = 1;
+            t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0];
+            y.parentNode.insertBefore(t, y);
+        })(window, document, "clarity", "script", "ng5jliqp8v");
+    </script>
 </html>
