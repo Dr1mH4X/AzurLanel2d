@@ -9,6 +9,7 @@ Github Action若访问速率低可git clone到本地运行
 # 运行
 
 ```
+cp 1.model.py src/
 python -m http.server
 ```
 

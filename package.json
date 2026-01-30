@@ -1,0 +1,29 @@
+{
+  "name": "l2d",
+  "version": "1.0.0",
+  "description": "自动抓取[l2d.su](https://l2d.su/)的模型资源",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tauri": "tauri",
+    "dev": "tauri dev",
+    "build": "tauri build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dr1mH4X/AzurLanel2d.git"
+  },
+  "keywords": [],
+  "author": "",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Dr1mH4X/AzurLanel2d/issues"
+  },
+  "homepage": "https://github.com/Dr1mH4X/AzurLanel2d#readme",
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.9.6"
+  }
+}
