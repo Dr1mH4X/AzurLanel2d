@@ -11,6 +11,7 @@ Github Action若访问速率低可git clone到本地运行
 ```
 uv venv
 .venv\Scripts\activate
+uv pip install -r requirements.txt
 python 1model.py
 python -m http.server
 ```
