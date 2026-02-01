@@ -11,7 +11,7 @@ Github Action若访问速率低可git clone到本地运行
 ```
 uv venv
 .venv\Scripts\activate
-python 1model.new.py
+python 1model.py
 python -m http.server
 ```
 
