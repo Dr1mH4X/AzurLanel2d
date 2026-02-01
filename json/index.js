@@ -621,6 +621,9 @@ const setupModelSetting = (M) => {
     let expressionslist = document.getElementById('expressions-list')
     let expressions = M.getExpressions()
     expressionslist.innerHTML = ''
+    
+    // 建立表情文件名映射表
+    let expressionFileNames = new Set()
     Array.from(expressions).forEach((exp, index)=>{
         let expbtn = document.createElement("button");
         let expbtnname = exp['Name']
@@ -628,9 +631,19 @@ const setupModelSetting = (M) => {
         expbtn.addEventListener('click', ()=>{
             M.loadExpression(index)
         })
+        
+        // 提取表情文件名（去掉路径和扩展名）
+        let filePath = exp['File']
+        let fileNameMatch = filePath.match(/(?:^|\/)(\w+(?:-\w+)*)(?:\.exp3\.json)?$/)
+        if (fileNameMatch) {
+            expressionFileNames.add(fileNameMatch[1])
+        }
 
         expressionslist.append(expbtn)
     })
+    
+    // 保存到window对象供参数设置使用
+    window._expressionFileNames = expressionFileNames
 
     //SET UP MOTIONS LIST
     let textCheckbox = document.getElementById('textCheckbox');
@@ -717,8 +730,13 @@ const setupModelSetting = (M) => {
 
     //SET UP MODEL PARAMETER LIST
     let parameterslist = document.getElementById('parameters-list')
+    let parameterslist2 = document.getElementById('parameters-list-2')
     let parameter = M.getAllParameters()
     parameterslist.innerHTML = ''
+    parameterslist2.innerHTML = ''
+    
+    // 获取表情文件名集合
+    let expressionFileNamesSet = window._expressionFileNames || new Set()
 
     parameter.map((param) => {
         let p_div = document.createElement("div");
@@ -763,7 +781,12 @@ const setupModelSetting = (M) => {
             M.setParameters(param.parameterIds, this.value)
         })
 
-        parameterslist.append(p_div)
+        // 判断参数名是否与表情文件名匹配
+        if (expressionFileNamesSet.has(param.parameterIds)) {
+            parameterslist2.append(p_div)
+        } else {
+            parameterslist.append(p_div)
+        }
     })
 
     //SET UP MODEL PartOpacity LIST
@@ -821,7 +844,7 @@ const setupModelSetting = (M) => {
 
 $(document).ready(async () => {
     let l2dmaster
-    await fetch('json/live2dMaster260122b.json')
+    await fetch('json/live2dMaster260122c.json')
         .then(response => {
             if (!response.ok) throw Error(response.statusText)
             return response.json()
@@ -908,6 +931,7 @@ $(document).ready(async () => {
 
     // ========== SEARCH AND FILTER ==========
     const characterSearch = document.getElementById('characterSearch');
+    const searchBtn = document.getElementById('searchBtn');
     
     const updateCharacterSearch = () => {
         const searchTerm = characterSearch.value.toLowerCase();
@@ -929,14 +953,27 @@ $(document).ready(async () => {
         }
     };
     
+    const performSearch = () => {
+        updateCharacterSearch();
+        const charSelect = document.getElementById('characterSelect');
+        if (charSelect.options.length > 1) {
+            charSelect.selectedIndex = 1;
+            charSelect.onchange?.({ target: charSelect });
+        }
+    };
+    
+    // 实时搜索过滤
     characterSearch.addEventListener('input', updateCharacterSearch);
+    
+    // 回车搜索
     characterSearch.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
-            const charSelect = document.getElementById('characterSelect');
-            if (charSelect.options.length > 1) {
-                charSelect.selectedIndex = 1;
-                charSelect.onchange?.({ target: charSelect });
-            }
+            performSearch();
         }
     });
+    
+    // 点击放大镜按钮搜索
+    if (searchBtn) {
+        searchBtn.addEventListener('click', performSearch);
+    }
 })
