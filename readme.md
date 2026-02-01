@@ -6,9 +6,12 @@
 
 Github Action若访问速率低可git clone到本地运行
 
-# 运行
+# 快速启动(uv)
 
 ```
+uv venv
+.venv\Scripts\activate
+python 1model.new.py
 python -m http.server
 ```
 
