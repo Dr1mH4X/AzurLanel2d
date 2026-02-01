@@ -2,3 +2,4 @@
 json/*
 !json/index.js
 live2d/
+log.txt
