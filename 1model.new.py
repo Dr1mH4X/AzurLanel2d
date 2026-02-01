@@ -285,4 +285,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    print("该未完成的脚本，使用同目录下的1model.py")  #    main()
