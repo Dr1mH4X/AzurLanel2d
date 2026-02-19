@@ -844,7 +844,7 @@ const setupModelSetting = (M) => {
 
 $(document).ready(async () => {
     let l2dmaster
-    await fetch('json/live2dMaster260122c.json')
+    await fetch('json/live2dMaster260212a.json')
         .then(response => {
             if (!response.ok) throw Error(response.statusText)
             return response.json()
