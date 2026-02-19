@@ -92,10 +92,6 @@ def download_file(url, local_filepath):
     return False
 
 
-# ----- 后续函数 (process_model3_json, process_live2d_master_json, main) 保持不变 -----
-# ----- 因为它们都调用了 download_file，所以会自动继承新的健壮性 -----
-
-
 def process_model3_json(model_local_path, model_full_url):
     """解析 model3.json 文件并下载其所有引用的资源"""
     print(f"    解析资源: {model_local_path}")
