@@ -1,4 +1,5 @@
 import json
+import logging
 import os
 import re
 import shutil
@@ -6,23 +7,24 @@ import time
 import urllib.parse
 
 import requests
+from tqdm import tqdm
 
 # --- 配置 ---
-# 网络请求设置
-MAX_RETRIES = 5  # 最大重试次数
-RETRY_DELAY = 10  # 每次重试前的等待时间（秒）
-TIMEOUT = (10, 30)  # 连接超时10秒，读取超时30秒
+MAX_RETRIES = 5
+RETRY_DELAY = 10
+TIMEOUT = (10, 30)
 
-# URL和路径设置
+MASTER_JSON_URL = "https://l2d.su/json/live2dMaster.json"
 INDEX_JS_URL = "https://l2d.su/json/index.js"
 BASE_URL = "https://l2d.su/json/"
 STATIC_HOST = "https://static.l2d.su/"
 
 TARGET_SUBDIR = "json"
 FINAL_INDEX_JS_NAME = "index.js"
-TEMP_INDEX_JS_NAME = f"index.temp.{int(time.time())}.js"
 
-# 全局会话，提高下载效率
+# 进度条字符
+SPINNERS = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"]
+
 session = requests.Session()
 session.headers.update(
     {
@@ -32,79 +34,59 @@ session.headers.update(
 
 
 def download_file(url, local_filepath):
-    """
-    使用全局会话下载文件，并包含超时和重试逻辑。
-    """
-    # 确保目录存在，这个操作只需要执行一次
+    """下载文件，包含超时和重试逻辑。成功返回 True。"""
     try:
         local_dir = os.path.dirname(local_filepath)
         if local_dir:
             os.makedirs(local_dir, exist_ok=True)
-    except IOError as e:
-        print(f"\n  X 创建目录失败: {local_dir} | 原因: {e}")
+    except IOError:
         return False
+
+    local_filepath = os.path.normpath(local_filepath)
 
     for attempt in range(MAX_RETRIES):
         try:
-            # 尝试下载
-            print(f"  -> 正在下载 (尝试 {attempt + 1}/{MAX_RETRIES}): {url}", end="\r")
-            response = session.get(url, stream=True, timeout=TIMEOUT)
-
-            # 检查HTTP状态码，如果是4xx或5xx，则抛出异常
+            p = urllib.parse.urlparse(url)
+            encoded_url = urllib.parse.urlunparse(
+                p._replace(path=urllib.parse.quote(p.path))
+            )
+            response = session.get(encoded_url, stream=True, timeout=TIMEOUT)
             response.raise_for_status()
 
-            # 写入文件
-            with open(local_filepath, "wb") as f:
+            tmp_path = local_filepath + ".tmp"
+            with open(tmp_path, "wb") as f:
                 for chunk in response.iter_content(chunk_size=8192):
-                    f.write(chunk)
+                    if chunk:
+                        f.write(chunk)
 
-            print(f"  √ 下载成功: {local_filepath:<80}")
-            return True  # 下载成功，立即返回
+            if os.path.exists(local_filepath):
+                os.replace(tmp_path, local_filepath)
+            return True
 
-        except (requests.exceptions.Timeout, requests.exceptions.ConnectionError) as e:
-            # 处理网络问题：超时或连接错误
-            print(f"\n  ! 网络问题 (尝试 {attempt + 1}/{MAX_RETRIES}): {e}")
-
+        except (requests.exceptions.Timeout, requests.exceptions.ConnectionError):
+            pass
         except requests.exceptions.HTTPError as e:
-            # 处理HTTP错误，例如 404, 503
-            status_code = e.response.status_code
-            print(
-                f"\n  ! HTTP错误 {status_code} (尝试 {attempt + 1}/{MAX_RETRIES}): {url}"
-            )
-            # 如果是客户端错误(4xx)，比如404 Not Found，重试无用，直接失败
-            if 400 <= status_code < 500:
-                print("  X 客户端错误，文件不存在或无权限，停止重试。")
+            if 400 <= e.response.status_code < 500:
                 return False
-            # 其他错误（如服务器5xx错误）可以继续重试
+        except IOError:
+            return False
 
-        except IOError as e:
-            # 处理文件写入错误
-            print(f"\n  X 保存文件失败: {local_filepath} | 原因: {e}")
-            return False  # 磁盘问题，重试无用
-
-        # 如果不是最后一次尝试，则等待后重试
         if attempt < MAX_RETRIES - 1:
-            print(f"  ... {RETRY_DELAY}秒后重试 ...")
             time.sleep(RETRY_DELAY)
 
-    # 如果所有尝试都失败了
-    print(f"\n  X 最终失败: 经过 {MAX_RETRIES} 次尝试后，下载 {url} 仍失败。")
     return False
 
 
 def process_model3_json(model_local_path, model_full_url):
-    """解析 model3.json 文件并下载其所有引用的资源"""
-    print(f"    解析资源: {model_local_path}")
+    """解析 model3.json 并下载其引用的所有子资源"""
     try:
         with open(model_local_path, "r", encoding="utf-8") as f:
             model_data = json.load(f)
-    except Exception as e:
-        print(f"    X 解析失败: {e}")
+    except Exception:
         return
 
     file_refs = model_data.get("FileReferences", {})
     if not file_refs:
-        print("    ! 未找到 FileReferences，跳过资源下载。")
         return
 
     model_base_url = os.path.dirname(model_full_url) + "/"
@@ -134,136 +116,239 @@ def process_model3_json(model_local_path, model_full_url):
         download_file(asset_url, local_asset_path)
 
 
-def process_live2d_master_json(master_json_path, version_string):
-    """处理live2dMaster.json，下载模型、资源并更新路径"""
-    print("\n--- 阶段 2: 处理 live2dMaster JSON 文件和模型资源 ---")
-    webversion_backup_path = os.path.join(
-        TARGET_SUBDIR, f"live2dMaster{version_string}webversion.json"
-    )
+def process_spine_dir(dir_local_path, dir_full_url):
+    """下载 spine 目录下的 .skel 和 .atlas 文件"""
+    dir_name = os.path.basename(dir_full_url.rstrip("/"))
+    for ext in [".skel", ".atlas"]:
+        file_url = f"{dir_full_url}/{dir_name}{ext}"
+        local_file_path = os.path.join(dir_local_path, f"{dir_name}{ext}")
+        download_file(file_url, local_file_path)
+
+
+def scan_local_resources():
+    """扫描本地 live2d/azurlane 目录，返回已有的资源集合"""
+    local_resources = set()
+    live2d_dir = os.path.join("live2d", "azurlane")
+
+    if os.path.exists(live2d_dir):
+        for item in os.listdir(live2d_dir):
+            if os.path.isdir(os.path.join(live2d_dir, item)):
+                local_resources.add(item)
+
+    return local_resources
+
+
+def extract_resource_dirname(url, resource_type):
+    """从 URL 中提取资源目录名"""
+    # spine: https://static.l2d.su/live2d/azurlane/tansuozhe_2-spine
+    # live2d: https://static.l2d.su/live2d/azurlane/xingdengbao_3/xingdengbao_3.model3.json
+
+    path = urllib.parse.urlparse(url).path.rstrip("/")
+    parts = path.split("/")
+
+    if resource_type == "spine":
+        # 返回最后一部分，如 tansuozhe_2-spine
+        return parts[-1]
+    else:  # live2d
+        # 返回倒数第二部分，如 xingdengbao_3
+        return parts[-2]
+
+
+def process_live2d_master_json(master_json_path):
+    """处理 live2dMaster.json，下载模型资源并更新路径为本地相对路径"""
+    webversion_backup_path = master_json_path.replace(".json", "webversion.json")
     try:
         shutil.copyfile(master_json_path, webversion_backup_path)
-        print(f"已创建Web版本备份: {webversion_backup_path}")
-    except (shutil.Error, IOError) as e:
-        print(f"创建备份文件失败: {e}")
-        return
+    except (shutil.Error, IOError):
+        pass
 
     try:
         with open(master_json_path, "r", encoding="utf-8") as f:
             data = json.load(f)
-    except (json.JSONDecodeError, IOError) as e:
-        print(f"读取或解析 {master_json_path} 失败: {e}")
+    except (json.JSONDecodeError, IOError):
         return
 
-    path_list = []
+    # 扫描本地已有的资源
+    local_resources = scan_local_resources()
+    logging.info(f"Local resources found: {len(local_resources)}")
+
+    # 构建统一的下载列表，用 _type 区分 live2d / spine
+    item_list = []
     for game in data.get("Master", []):
         for character in game.get("character", []):
-            for live2d_item in character.get("live2d", []):
-                if "path" in live2d_item:
-                    live2d_item["_charName"] = character.get("charName", "未知角色")
-                    live2d_item["_costumeName"] = live2d_item.get("costumeName", "默认")
-                    path_list.append(live2d_item)
+            for item in character.get("live2d", []):
+                if "path" in item:
+                    resource_dirname = extract_resource_dirname(item["path"], "live2d")
+                    if resource_dirname not in local_resources:
+                        item["_charName"] = character.get("charNameEn", "Unknown")
+                        item["_costumeName"] = item.get("costumeNameEn", "Default")
+                        item["_type"] = "live2d"
+                        item_list.append(item)
+            for item in character.get("spine", []):
+                if "path" in item:
+                    resource_dirname = extract_resource_dirname(item["path"], "spine")
+                    if resource_dirname not in local_resources:
+                        item["_charName"] = character.get("charNameEn", "Unknown")
+                        item["_costumeName"] = item.get("costumeNameEn", "Default")
+                        item["_type"] = "spine"
+                        item_list.append(item)
 
-    total_models = len(path_list)
-    print(f"共找到 {total_models} 个模型需要处理。")
-    downloaded_count = 0
-    for i, live2d_item in enumerate(path_list):
-        full_url = live2d_item["path"]
+    total = len(item_list)
+    if total == 0:
+        logging.info("All resources exist, no download needed")
+        return
 
-        if full_url.startswith(STATIC_HOST):
-            relative_path = full_url[len(STATIC_HOST) :]
-        else:
-            parsed_url = urllib.parse.urlparse(full_url)
-            relative_path = parsed_url.path.lstrip("/")
+    logging.info(f"Resources to download: {total}")
 
-        relative_path = relative_path.replace("\\", "/")
-        local_model_path = os.path.join(*relative_path.split("/"))
+    success_count = 0
+    failed_items = []
 
-        print(
-            f"\n[{i + 1}/{total_models}] 处理: {live2d_item['_charName']} - {live2d_item['_costumeName']}"
-        )
+    bar_fmt = "{l_bar}{bar}| {n_fmt}/{total_fmt} [{percentage:3.0f}%]"
+    with tqdm(total=total, desc="Model sync", bar_format=bar_fmt, ncols=80) as pbar:
+        for i, item in enumerate(item_list):
+            item_type = item.get("_type", "live2d")
+            char_name = item["_charName"]
+            costume_name = item["_costumeName"]
+            full_url = item["path"]
 
-        if download_file(full_url, local_model_path):
-            downloaded_count += 1
-            live2d_item["path"] = relative_path.replace("\\", "/")
-            print(f"  * 路径已更新为: {live2d_item['path']}")
-            process_model3_json(local_model_path, full_url)
-        else:
-            print(f"  X 模型主文件 {full_url} 下载失败，将跳过此模型的所有资源。")
+            # 转换为本地相对路径
+            if full_url.startswith(STATIC_HOST):
+                relative_path = full_url[len(STATIC_HOST) :]
+            else:
+                parsed = urllib.parse.urlparse(full_url)
+                relative_path = parsed.path.lstrip("/")
+            relative_path = relative_path.replace("\\", "/")
+            local_path = os.path.join(*relative_path.split("/"))
 
-    for item in path_list:
-        del item["_charName"]
-        del item["_costumeName"]
+            # 右侧动态日志：旋转动画 + 角色名 + 服装名 + 类型
+            spinner = SPINNERS[i % len(SPINNERS)]
+            type_tag = "L2D" if item_type == "live2d" else "SPN"
+            short_costume = (
+                costume_name[:8] + ".." if len(costume_name) > 10 else costume_name
+            )
+            pbar.set_postfix_str(
+                f"{spinner} {char_name}|{short_costume}|{type_tag}", refresh=False
+            )
+            pbar.refresh()
 
-    print(f"\n--- 模型处理完成 ---")
-    print(f"成功下载 {downloaded_count} / {total_models} 个模型的主文件及其资源。")
+            if download_file(full_url, local_path):
+                success_count += 1
+                item["path"] = relative_path
+
+                # 根据类型处理子资源
+                if item_type == "live2d":
+                    process_model3_json(local_path, full_url)
+                elif item_type == "spine":
+                    # Spine 直接创建目录并处理，不需要下载主 URL
+                    os.makedirs(local_path, exist_ok=True)
+                    process_spine_dir(local_path, full_url)
+                    item["path"] = relative_path
+                    success_count += 1
+            else:
+                failed_items.append(f"{char_name} - {costume_name}")
+
+            pbar.update(1)
+
+    # 清理临时元数据
+    for item in item_list:
+        item.pop("_charName", None)
+        item.pop("_costumeName", None)
+        item.pop("_type", None)
+
+    # 保存更新后的 JSON
     try:
         with open(master_json_path, "w", encoding="utf-8") as f:
             json.dump(data, f, ensure_ascii=False, indent=4)
-        print(f"已成功更新并保存修改后的主文件: {master_json_path}")
-    except IOError as e:
-        print(f"回写 {master_json_path} 失败: {e}")
+    except IOError:
+        pass
+
+    logging.info(f"Sync completed: {success_count}/{total} successful")
+    if failed_items:
+        logging.warning(f"Failed items ({len(failed_items)}):")
+        for name in failed_items:
+            logging.warning(f" - {name}")
 
 
 def main():
-    """主执行函数"""
-    os.makedirs(TARGET_SUBDIR, exist_ok=True)
-    print(f"--- 阶段 1: 更新JS和主JSON文件 ---")
-    print(f"已确保目录 '{TARGET_SUBDIR}/' 存在。")
-
-    if not download_file(INDEX_JS_URL, TEMP_INDEX_JS_NAME):
-        return
-
-    try:
-        with open(TEMP_INDEX_JS_NAME, "r", encoding="utf-8") as f:
-            index_js_content = f.read()
-    except IOError as e:
-        print(f"读取临时文件失败: {e}")
-        os.remove(TEMP_INDEX_JS_NAME)
-        return
-
-    pattern = re.compile(r"'(./json/)?(live2dMaster.*?\.json)\?([a-zA-Z0-9]+)'")
-    match = pattern.search(index_js_content)
-
-    if not match:
-        print("错误: 在 index.js 中未找到 live2dMaster.json 的版本信息。")
-        os.remove(TEMP_INDEX_JS_NAME)
-        return
-
-    original_fetch_path_str, json_filename_from_js, version_string = (
-        match.groups(0)[0],
-        match.group(2),
-        match.group(3),
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    log_file_path = os.path.join(script_dir, "log.txt")
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s - %(levelname)s - %(message)s",
+        handlers=[
+            logging.FileHandler(log_file_path, encoding="utf-8", mode="w"),  # 写入文件
+            # logging.StreamHandler(),  # 输出到控制台
+        ],
     )
-    print(f"成功找到信息: 版本号 -> {version_string}")
+    os.makedirs(TARGET_SUBDIR, exist_ok=True)
+    master_json_path = os.path.join(TARGET_SUBDIR, "live2dMaster.json")
 
-    if "GITHUB_OUTPUT" in os.environ:
-        with open(os.environ["GITHUB_OUTPUT"], "a") as f:
-            print(f"version_string={version_string}", file=f)
+    # --- 阶段 1: 获取 master JSON ---
+    # 方案 A: 直接访问 live2dMaster.json
+    bar_fmt = "{l_bar}{bar}| {n_fmt}/{total_fmt} [{percentage:3.0f}%]"
+    with tqdm(total=1, desc="Fetching data", bar_format=bar_fmt, ncols=80) as pbar:
+        pbar.set_postfix_str("Direct fetch live2dMaster.json ...", refresh=True)
+        if download_file(MASTER_JSON_URL, master_json_path):
+            pbar.update(1)
+            pbar.set_postfix_str("Fetch successful", refresh=True)
+        else:
+            # 方案 B: 从 index.js 提取版本号（fallback）
+            pbar.set_postfix_str(
+                "Direct fetch failed, trying index.js ...", refresh=True
+            )
+            temp_js = f"index.temp.{int(time.time())}.js"
+            if not download_file(INDEX_JS_URL, temp_js):
+                pbar.set_postfix_str("Fetch failed", refresh=True)
+                return
 
-    json_download_url = urllib.parse.urljoin(BASE_URL, json_filename_from_js)
-    new_json_filename = f"live2dMaster{version_string}.json"
-    master_json_path = os.path.join(TARGET_SUBDIR, new_json_filename)
+            try:
+                with open(temp_js, "r", encoding="utf-8") as f:
+                    js_content = f.read()
 
-    if not download_file(json_download_url, master_json_path):
-        os.remove(TEMP_INDEX_JS_NAME)
-        return
+                match = re.search(
+                    r"'(./json/)?(live2dMaster.*?\.json)\?([a-zA-Z0-9]+)'", js_content
+                )
+                if not match:
+                    pbar.set_postfix_str("Version info not found", refresh=True)
+                    return
 
-    new_local_path_in_js = f"'{TARGET_SUBDIR}/{new_json_filename}'"
-    modified_content = index_js_content.replace(match.group(0), new_local_path_in_js)
+                json_name, version = match.group(2), match.group(3)
+                json_url = urllib.parse.urljoin(BASE_URL, json_name)
 
-    final_index_js_path = os.path.join(TARGET_SUBDIR, FINAL_INDEX_JS_NAME)
-    with open(final_index_js_path, "w", encoding="utf-8") as f:
-        f.write(modified_content)
-    print(f"已创建修改后的主文件: {final_index_js_path}")
+                pbar.set_postfix_str(
+                    f"Version: {version}, downloading...", refresh=True
+                )
+                master_json_path = os.path.join(
+                    TARGET_SUBDIR, f"live2dMaster{version}.json"
+                )
 
-    original_js_backup_name = f"index_{version_string}.js"
-    backup_save_path = os.path.join(TARGET_SUBDIR, original_js_backup_name)
-    shutil.move(TEMP_INDEX_JS_NAME, backup_save_path)
-    print(f"原始JS文件已备份为: {backup_save_path}")
+                if not download_file(json_url, master_json_path):
+                    pbar.set_postfix_str("Download failed", refresh=True)
+                    return
 
-    process_live2d_master_json(master_json_path, version_string)
+                # 保存修改后的 index.js
+                modified = js_content.replace(
+                    match.group(0), f"'{TARGET_SUBDIR}/live2dMaster{version}.json'"
+                )
+                with open(
+                    os.path.join(TARGET_SUBDIR, FINAL_INDEX_JS_NAME),
+                    "w",
+                    encoding="utf-8",
+                ) as f:
+                    f.write(modified)
 
-    print("\n所有任务执行完毕！")
+                # 备份原始 js
+                shutil.move(temp_js, os.path.join(TARGET_SUBDIR, f"index_{version}.js"))
+
+                pbar.update(1)
+                pbar.set_postfix_str("Fetch successful", refresh=True)
+            finally:
+                if os.path.exists(temp_js):
+                    os.remove(temp_js)
+
+    # --- 阶段 2: 下载模型资源 ---
+    process_live2d_master_json(master_json_path)
+    logging.info("All tasks completed!")
 
 
 if __name__ == "__main__":
