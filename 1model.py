@@ -184,14 +184,10 @@ def process_live2d_master_json(master_json_path):
                         item["_costumeName"] = item.get("costumeNameEn", "Default")
                         item["_type"] = "live2d"
                         item_list.append(item)
-            for item in character.get("spine", []):
-                if "path" in item:
-                    resource_dirname = extract_resource_dirname(item["path"], "spine")
-                    if resource_dirname not in local_resources:
-                        item["_charName"] = character.get("charNameEn", "Unknown")
-                        item["_costumeName"] = item.get("costumeNameEn", "Default")
-                        item["_type"] = "spine"
-                        item_list.append(item)
+            # for item in character.get("spine", []):
+            #     if "path" in item:
+            #         resource_dirname = extract_resource_dirname(item["path"], "spine")
+            # NEED SPINE PATH
 
     total = len(item_list)
     if total == 0:
@@ -336,15 +332,20 @@ def fetch_master_json():
 def main():
     # 1. 初始化日志
     setup_logging()
+    try:
+        # 2. 获取数据
+        master_json_path = fetch_master_json()
 
-    # 2. 获取数据
-    master_json_path = fetch_master_json()
+        # 3. 处理资源
+        if master_json_path:
+            process_live2d_master_json(master_json_path)
 
-    # 3. 处理资源
-    if master_json_path:
-        process_live2d_master_json(master_json_path)
+        logging.info("All tasks completed!")
 
-    logging.info("All tasks completed!")
+    except KeyboardInterrupt:
+        # 捕获 Ctrl+C 中断
+        print("\n")  # 打印一个空行，避免和进度条挤在一起
+        logging.warning("(KeyboardInterrupt)Exiting...")
 
 
 if __name__ == "__main__":
