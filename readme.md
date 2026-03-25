@@ -2,7 +2,7 @@
 
 [1model.py](https://github.com/Dr1mH4X/AzurLanel2d/blob/main/1model.py)抓取模型资源
 
-[2model.py](https://github.com/Dr1mH4X/AzurLanel2d/blob/main/2audio.py)抓取音频资源
+~~[2model.py](https://github.com/Dr1mH4X/AzurLanel2d/blob/main/2audio.py)抓取音频资源~~
 
 Github Action若访问速率低可git clone到本地运行
 
@@ -18,6 +18,7 @@ python -m http.server
 
 ### TODO
 集成biliwiki的语音
+~~SPINE资源路径探测和下载~~
 
 ### 免责声明
 
