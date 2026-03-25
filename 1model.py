@@ -13,12 +13,10 @@ from tqdm import tqdm
 MAX_RETRIES = 5
 RETRY_DELAY = 10
 TIMEOUT = (10, 30)
-
 MASTER_JSON_URL = "https://l2d.su/json/live2dMaster.json"
 INDEX_JS_URL = "https://l2d.su/json/index.js"
 BASE_URL = "https://l2d.su/json/"
 STATIC_HOST = "https://static.l2d.su/"
-
 TARGET_SUBDIR = "json"
 FINAL_INDEX_JS_NAME = "index.js"
 
@@ -31,6 +29,20 @@ session.headers.update(
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
     }
 )
+
+
+def setup_logging():
+    """配置日志系统，输出到文件"""
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    log_file_path = os.path.join(script_dir, "log.txt")
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s - %(levelname)s - %(message)s",
+        handlers=[
+            logging.FileHandler(log_file_path, encoding="utf-8", mode="w"),
+            # logging.StreamHandler(), # 控制台查看
+        ],
+    )
 
 
 def download_file(url, local_filepath):
@@ -59,10 +71,8 @@ def download_file(url, local_filepath):
                     if chunk:
                         f.write(chunk)
 
-            if os.path.exists(local_filepath):
-                os.replace(tmp_path, local_filepath)
+            os.replace(tmp_path, local_filepath)
             return True
-
         except (requests.exceptions.Timeout, requests.exceptions.ConnectionError):
             pass
         except requests.exceptions.HTTPError as e:
@@ -129,28 +139,20 @@ def scan_local_resources():
     """扫描本地 live2d/azurlane 目录，返回已有的资源集合"""
     local_resources = set()
     live2d_dir = os.path.join("live2d", "azurlane")
-
     if os.path.exists(live2d_dir):
         for item in os.listdir(live2d_dir):
             if os.path.isdir(os.path.join(live2d_dir, item)):
                 local_resources.add(item)
-
     return local_resources
 
 
 def extract_resource_dirname(url, resource_type):
     """从 URL 中提取资源目录名"""
-    # spine: https://static.l2d.su/live2d/azurlane/tansuozhe_2-spine
-    # live2d: https://static.l2d.su/live2d/azurlane/xingdengbao_3/xingdengbao_3.model3.json
-
     path = urllib.parse.urlparse(url).path.rstrip("/")
     parts = path.split("/")
-
     if resource_type == "spine":
-        # 返回最后一部分，如 tansuozhe_2-spine
         return parts[-1]
-    else:  # live2d
-        # 返回倒数第二部分，如 xingdengbao_3
+    else:
         return parts[-2]
 
 
@@ -168,11 +170,9 @@ def process_live2d_master_json(master_json_path):
     except (json.JSONDecodeError, IOError):
         return
 
-    # 扫描本地已有的资源
     local_resources = scan_local_resources()
     logging.info(f"Local resources found: {len(local_resources)}")
 
-    # 构建统一的下载列表，用 _type 区分 live2d / spine
     item_list = []
     for game in data.get("Master", []):
         for character in game.get("character", []):
@@ -199,11 +199,9 @@ def process_live2d_master_json(master_json_path):
         return
 
     logging.info(f"Resources to download: {total}")
-
     success_count = 0
     failed_items = []
-
-    bar_fmt = "{l_bar}{bar}| {n_fmt}/{total_fmt} [{percentage:3.0f}%]"
+    bar_fmt = "{l_bar}{bar}| {n_fmt}/{total_fmt} [{percentage:3.0f}%] {postfix}"
     with tqdm(total=total, desc="Model sync", bar_format=bar_fmt, ncols=80) as pbar:
         for i, item in enumerate(item_list):
             item_type = item.get("_type", "live2d")
@@ -211,7 +209,6 @@ def process_live2d_master_json(master_json_path):
             costume_name = item["_costumeName"]
             full_url = item["path"]
 
-            # 转换为本地相对路径
             if full_url.startswith(STATIC_HOST):
                 relative_path = full_url[len(STATIC_HOST) :]
             else:
@@ -220,42 +217,38 @@ def process_live2d_master_json(master_json_path):
             relative_path = relative_path.replace("\\", "/")
             local_path = os.path.join(*relative_path.split("/"))
 
-            # 右侧动态日志：旋转动画 + 角色名 + 服装名 + 类型
             spinner = SPINNERS[i % len(SPINNERS)]
             type_tag = "L2D" if item_type == "live2d" else "SPN"
             short_costume = (
                 costume_name[:8] + ".." if len(costume_name) > 10 else costume_name
             )
-            pbar.set_postfix_str(
-                f"{spinner} {char_name}|{short_costume}|{type_tag}", refresh=False
+            status_text = (
+                f"{spinner} Downloading: {char_name} | {short_costume} | {type_tag}"
             )
+            pbar.set_postfix_str(status_text, refresh=True)
             pbar.refresh()
 
-            if download_file(full_url, local_path):
-                success_count += 1
-                item["path"] = relative_path
-
-                # 根据类型处理子资源
-                if item_type == "live2d":
-                    process_model3_json(local_path, full_url)
-                elif item_type == "spine":
-                    # Spine 直接创建目录并处理，不需要下载主 URL
-                    os.makedirs(local_path, exist_ok=True)
-                    process_spine_dir(local_path, full_url)
-                    item["path"] = relative_path
+            if item_type == "live2d":
+                if download_file(full_url, local_path):
                     success_count += 1
-            else:
-                failed_items.append(f"{char_name} - {costume_name}")
+                    item["path"] = relative_path
+                    process_model3_json(local_path, full_url)
+                else:
+                    failed_items.append(f"{char_name} - {costume_name}")
+
+            elif item_type == "spine":
+                os.makedirs(local_path, exist_ok=True)
+                process_spine_dir(local_path, full_url)
+                item["path"] = relative_path
+                success_count += 1
 
             pbar.update(1)
 
-    # 清理临时元数据
     for item in item_list:
         item.pop("_charName", None)
         item.pop("_costumeName", None)
         item.pop("_type", None)
 
-    # 保存更新后的 JSON
     try:
         with open(master_json_path, "w", encoding="utf-8") as f:
             json.dump(data, f, ensure_ascii=False, indent=4)
@@ -269,85 +262,88 @@ def process_live2d_master_json(master_json_path):
             logging.warning(f" - {name}")
 
 
-def main():
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    log_file_path = os.path.join(script_dir, "log.txt")
-    logging.basicConfig(
-        level=logging.INFO,
-        format="%(asctime)s - %(levelname)s - %(message)s",
-        handlers=[
-            logging.FileHandler(log_file_path, encoding="utf-8", mode="w"),  # 写入文件
-            # logging.StreamHandler(),  # 输出到控制台
-        ],
-    )
+def fetch_master_json():
+    """
+    获取 Master JSON 文件。
+    优先直接下载，失败则尝试从 index.js 解析版本号下载。
+    返回下载后的本地文件路径，失败返回 None。
+    """
     os.makedirs(TARGET_SUBDIR, exist_ok=True)
     master_json_path = os.path.join(TARGET_SUBDIR, "live2dMaster.json")
+    bar_fmt = "{l_bar}{bar}| {n_fmt}/{total_fmt} [{percentage:3.0f}%] {postfix}"
 
-    # --- 阶段 1: 获取 master JSON ---
-    # 方案 A: 直接访问 live2dMaster.json
-    bar_fmt = "{l_bar}{bar}| {n_fmt}/{total_fmt} [{percentage:3.0f}%]"
     with tqdm(total=1, desc="Fetching data", bar_format=bar_fmt, ncols=80) as pbar:
+        # 方案 A: 直接下载
         pbar.set_postfix_str("Direct fetch live2dMaster.json ...", refresh=True)
         if download_file(MASTER_JSON_URL, master_json_path):
             pbar.update(1)
             pbar.set_postfix_str("Fetch successful", refresh=True)
-        else:
-            # 方案 B: 从 index.js 提取版本号（fallback）
-            pbar.set_postfix_str(
-                "Direct fetch failed, trying index.js ...", refresh=True
+            return master_json_path
+
+        # 方案 B: 从 index.js 解析
+        pbar.set_postfix_str("Direct fetch failed, trying index.js ...", refresh=True)
+        temp_js = f"index.temp.{int(time.time())}.js"
+
+        if not download_file(INDEX_JS_URL, temp_js):
+            pbar.set_postfix_str("Fetch failed", refresh=True)
+            return None
+
+        try:
+            with open(temp_js, "r", encoding="utf-8") as f:
+                js_content = f.read()
+
+            match = re.search(
+                r"'(./json/)?(live2dMaster.*?\.json)\?([a-zA-Z0-9]+)'", js_content
             )
-            temp_js = f"index.temp.{int(time.time())}.js"
-            if not download_file(INDEX_JS_URL, temp_js):
-                pbar.set_postfix_str("Fetch failed", refresh=True)
-                return
+            if not match:
+                pbar.set_postfix_str("Version info not found", refresh=True)
+                return None
 
-            try:
-                with open(temp_js, "r", encoding="utf-8") as f:
-                    js_content = f.read()
+            json_name, version = match.group(2), match.group(3)
+            json_url = urllib.parse.urljoin(BASE_URL, json_name)
+            pbar.set_postfix_str(f"Version: {version}, downloading...", refresh=True)
 
-                match = re.search(
-                    r"'(./json/)?(live2dMaster.*?\.json)\?([a-zA-Z0-9]+)'", js_content
-                )
-                if not match:
-                    pbar.set_postfix_str("Version info not found", refresh=True)
-                    return
+            master_json_path = os.path.join(
+                TARGET_SUBDIR, f"live2dMaster{version}.json"
+            )
 
-                json_name, version = match.group(2), match.group(3)
-                json_url = urllib.parse.urljoin(BASE_URL, json_name)
+            if not download_file(json_url, master_json_path):
+                pbar.set_postfix_str("Download failed", refresh=True)
+                return None
 
-                pbar.set_postfix_str(
-                    f"Version: {version}, downloading...", refresh=True
-                )
-                master_json_path = os.path.join(
-                    TARGET_SUBDIR, f"live2dMaster{version}.json"
-                )
+            # 保存修改后的 index.js
+            modified = js_content.replace(
+                match.group(0), f"'{TARGET_SUBDIR}/live2dMaster{version}.json'"
+            )
+            with open(
+                os.path.join(TARGET_SUBDIR, FINAL_INDEX_JS_NAME),
+                "w",
+                encoding="utf-8",
+            ) as f:
+                f.write(modified)
 
-                if not download_file(json_url, master_json_path):
-                    pbar.set_postfix_str("Download failed", refresh=True)
-                    return
+            # 备份原始 js
+            shutil.move(temp_js, os.path.join(TARGET_SUBDIR, f"index_{version}.js"))
+            pbar.update(1)
+            pbar.set_postfix_str("Fetch successful", refresh=True)
+            return master_json_path
 
-                # 保存修改后的 index.js
-                modified = js_content.replace(
-                    match.group(0), f"'{TARGET_SUBDIR}/live2dMaster{version}.json'"
-                )
-                with open(
-                    os.path.join(TARGET_SUBDIR, FINAL_INDEX_JS_NAME),
-                    "w",
-                    encoding="utf-8",
-                ) as f:
-                    f.write(modified)
+        finally:
+            if os.path.exists(temp_js):
+                os.remove(temp_js)
 
-                # 备份原始 js
-                shutil.move(temp_js, os.path.join(TARGET_SUBDIR, f"index_{version}.js"))
 
-                pbar.update(1)
-                pbar.set_postfix_str("Fetch successful", refresh=True)
-            finally:
-                if os.path.exists(temp_js):
-                    os.remove(temp_js)
+def main():
+    # 1. 初始化日志
+    setup_logging()
 
-    # --- 阶段 2: 下载模型资源 ---
-    process_live2d_master_json(master_json_path)
+    # 2. 获取数据
+    master_json_path = fetch_master_json()
+
+    # 3. 处理资源
+    if master_json_path:
+        process_live2d_master_json(master_json_path)
+
     logging.info("All tasks completed!")
 
 
