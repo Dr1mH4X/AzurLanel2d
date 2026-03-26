@@ -147,32 +147,73 @@ def process_model3_json(model_local_path, model_full_url):
 
 
 def process_spine_dir(dir_local_path, dir_full_url):
-    """下载 spine 目录下的 .skel、.atlas 和 .webp 文件"""
+    """
+    Spine 资源下载逻辑重构：
+    1. 下载 .atlas 文件
+    2. 解析 .atlas 获取所有纹理文件名（支持多纹理页）
+    3. 下载 .skel 文件和所有纹理文件
+    """
     logging.info(f"[SPINE] Processing directory: {dir_full_url}")
 
-    # 从 URL 中提取目录名
+    # 1. 准备路径信息
     parsed = urllib.parse.urlparse(dir_full_url)
     path = parsed.path.rstrip("/")
     dir_name = os.path.basename(path)
 
-    # 文件基础名：去掉 "-spine" 后缀
     if dir_name.endswith("-spine"):
         file_basename = dir_name[:-6]  # 去掉 "-spine"
     else:
         file_basename = dir_name
 
-    # 确保本地目录存在
     os.makedirs(dir_local_path, exist_ok=True)
 
-    # 下载三种文件
-    for ext in [".skel", ".atlas", ".webp"]:
-        file_url = f"{dir_full_url}/{file_basename}{ext}"
-        local_file_path = os.path.join(dir_local_path, f"{file_basename}{ext}")
-        result = download_file(file_url, local_file_path)
-        if result:
-            logging.info(f"[SPINE] Downloaded: {file_basename}{ext}")
-        else:
-            logging.warning(f"[SPINE] Failed to download: {file_basename}{ext}")
+    # 2. 下载并解析 .atlas 文件
+    atlas_filename = f"{file_basename}.atlas"
+    atlas_url = f"{dir_full_url}/{atlas_filename}"
+    atlas_local_path = os.path.join(dir_local_path, atlas_filename)
+
+    if not download_file(atlas_url, atlas_local_path):
+        logging.error(f"[SPINE] Failed to download atlas file: {atlas_url}")
+        return
+
+    # 解析 atlas 寻找纹理文件名
+    texture_files = []
+    try:
+        with open(atlas_local_path, "r", encoding="utf-8") as f:
+            content = f.read()
+
+        # Spine atlas 格式：每页第一行通常是纹理文件名
+        # 格式示例: "niaohai_3.webp size: ..." 或直接 "texture.png"
+        # 我们匹配以常见图片扩展名结尾的行
+        for line in content.split("\n"):
+            line = line.strip()
+            # 简单有效的判断：行以图片后缀结尾
+            if line.endswith((".webp", ".png", ".jpg", ".jpeg")):
+                # 提取文件名（去掉后面可能存在的参数，虽然标准格式只在第一行）
+                filename = line.split()[0]
+                texture_files.append(filename)
+
+    except Exception as e:
+        logging.error(f"[SPINE] Failed to parse atlas: {e}")
+        return
+
+    logging.info(
+        f"[SPINE] Atlas parsed. Found {len(texture_files)} textures: {texture_files}"
+    )
+
+    # 3. 下载 .skel 文件
+    skel_filename = f"{file_basename}.skel"
+    skel_url = f"{dir_full_url}/{skel_filename}"
+    skel_local_path = os.path.join(dir_local_path, skel_filename)
+    download_file(skel_url, skel_local_path)
+
+    # 4. 下载所有纹理文件
+    for tex_filename in texture_files:
+        tex_url = f"{dir_full_url}/{tex_filename}"
+        tex_local_path = os.path.join(dir_local_path, tex_filename)
+        download_file(tex_url, tex_local_path)
+
+    logging.info(f"[SPINE] Finished processing: {file_basename}")
 
 
 def scan_local_resources():
@@ -194,50 +235,47 @@ def extract_resource_dirname(url, resource_type):
     """从 URL 中提取资源目录名"""
     path = urllib.parse.urlparse(url).path.rstrip("/")
     parts = path.split("/")
-
     match resource_type:
         case "spine":
             # spine 的 URL 是目录路径，最后一部分就是目录名
-            # 例如: /live2d/azurlane/niaohai_3-spine -> "niaohai_3-spine"
             return parts[-1]
         case "live2d":
             # live2d 的 URL 是文件路径，倒数第二部分是目录名
-            # 例如: /live2d/azurlane/mingji_2/mingji_2.model3.json -> "mingji_2"
             return parts[-2]
         case _:
             # 默认按 live2d 处理
             return parts[-2]
 
 
-# 2. 修改函数签名，增加 force_update 参数
-def process_live2d_master_json(master_json_path, force_update=False):
-    """处理 live2dMaster.json，下载模型资源并更新路径为本地相对路径"""
-    # 1. 备份
-    webversion_backup_path = master_json_path.replace(".json", "webversion.json")
-    try:
-        shutil.copyfile(master_json_path, webversion_backup_path)
-    except (shutil.Error, IOError):
-        pass
+# ---------------------------------------------------------
+# Helper functions for process_live2d_master_json
+# ---------------------------------------------------------
 
-    # 2. 读取 JSON
-    try:
-        with open(master_json_path, "r", encoding="utf-8") as f:
-            data = json.load(f)
-    except (json.JSONDecodeError, IOError):
-        return
 
-    # 3. 根据参数决定扫描逻辑
+def _normalize_path(url):
+    """将 URL 转换为本地相对路径"""
+    if url.startswith(STATIC_HOST):
+        relative_path = url[len(STATIC_HOST) :]
+    else:
+        parsed = urllib.parse.urlparse(url)
+        relative_path = parsed.path.lstrip("/")
+    return relative_path.replace("\\", "/")
+
+
+def _prepare_tasks_and_update_json(data, force_update):
+    """
+    1. 更新 JSON 中的路径
+    2. 生成下载任务列表
+    """
     if force_update:
-        local_resources = set()  # 空集合，模拟“本地无资源”状态
+        local_resources = set()
         logging.info("[MODE] Full update enabled. Ignoring existing local resources.")
     else:
         local_resources = scan_local_resources()
         logging.info(f"Local resources found: {len(local_resources)}")
 
-    # 用于存放需要下载的任务信息
     download_tasks = []
 
-    # --- 第一步：遍历所有数据，更新路径并收集下载任务 ---
     for game in data.get("Master", []):
         for character in game.get("character", []):
             # 处理 Live2D
@@ -246,16 +284,8 @@ def process_live2d_master_json(master_json_path, force_update=False):
                     continue
 
                 original_url = item["path"]
+                relative_path = _normalize_path(original_url)
 
-                # 统一转换路径逻辑
-                if original_url.startswith(STATIC_HOST):
-                    relative_path = original_url[len(STATIC_HOST) :]
-                else:
-                    parsed = urllib.parse.urlparse(original_url)
-                    relative_path = parsed.path.lstrip("/")
-                relative_path = relative_path.replace("\\", "/")
-
-                # 无论是否下载，都立即更新内存中的路径
                 item["path"] = relative_path
 
                 # 检查是否需要下载
@@ -277,14 +307,7 @@ def process_live2d_master_json(master_json_path, force_update=False):
                     continue
 
                 original_url = item["path"]
-
-                # 转换路径逻辑
-                if original_url.startswith(STATIC_HOST):
-                    relative_path = original_url[len(STATIC_HOST) :]
-                else:
-                    parsed = urllib.parse.urlparse(original_url)
-                    relative_path = parsed.path.lstrip("/")
-                relative_path = relative_path.replace("\\", "/")
+                relative_path = _normalize_path(original_url)
 
                 item["path"] = relative_path
 
@@ -301,16 +324,12 @@ def process_live2d_master_json(master_json_path, force_update=False):
                         }
                     )
 
-    # --- 第二步：保存 JSON ---
-    try:
-        with open(master_json_path, "w", encoding="utf-8") as f:
-            json.dump(data, f, ensure_ascii=False, indent=4)
-        logging.info("Updated master JSON paths to local relative paths.")
-    except IOError as e:
-        logging.error(f"Failed to save master JSON: {e}")
+    return download_tasks
 
-    # --- 第三步：执行下载任务 ---
-    total = len(download_tasks)
+
+def _execute_downloads(tasks):
+    """执行下载任务并显示进度条"""
+    total = len(tasks)
     if total == 0:
         logging.info("All resources exist, no download needed.")
         return
@@ -321,7 +340,7 @@ def process_live2d_master_json(master_json_path, force_update=False):
     bar_fmt = "{l_bar}{bar}| {n_fmt}/{total_fmt} [{percentage:3.0f}%] {postfix}"
 
     with tqdm(total=total, desc="Model sync", bar_format=bar_fmt, ncols=80) as pbar:
-        for i, task in enumerate(download_tasks):
+        for i, task in enumerate(tasks):
             item_type = task["type"]
             original_url = task["original_url"]
             relative_path = task["relative_path"]
@@ -343,15 +362,11 @@ def process_live2d_master_json(master_json_path, force_update=False):
             # 执行下载逻辑
             if item_type == "live2d":
                 logging.info(f"[SYNC] Processing live2d: {char_name} - {costume_name}")
-
-                # 转换为系统路径格式
                 local_path = os.path.join(*relative_path.split("/"))
 
-                # 下载主模型文件
                 if download_file(original_url, local_path):
                     success_count += 1
                     logging.info(f"[SYNC] Processing model3.json for: {costume_name}")
-                    # 下载子资源
                     process_model3_json(local_path, original_url)
                 else:
                     logging.warning(
@@ -361,7 +376,6 @@ def process_live2d_master_json(master_json_path, force_update=False):
 
             elif item_type == "spine":
                 logging.info(f"[SYNC] Processing spine: {char_name} - {costume_name}")
-                # Spine 下载逻辑
                 local_path = os.path.join(*relative_path.split("/"))
                 process_spine_dir(local_path, original_url)
                 success_count += 1
@@ -373,6 +387,37 @@ def process_live2d_master_json(master_json_path, force_update=False):
         logging.warning(f"Failed items ({len(failed_items)}):")
         for name in failed_items:
             logging.warning(f" - {name}")
+
+
+def process_live2d_master_json(master_json_path, force_update=False):
+    """处理 live2dMaster.json，下载模型资源并更新路径为本地相对路径"""
+    # 1. 备份
+    webversion_backup_path = master_json_path.replace(".json", "webversion.json")
+    try:
+        shutil.copyfile(master_json_path, webversion_backup_path)
+    except (shutil.Error, IOError):
+        pass
+
+    # 2. 读取 JSON
+    try:
+        with open(master_json_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+    except (json.JSONDecodeError, IOError):
+        return
+
+    # 3. 更新路径 & 收集任务
+    download_tasks = _prepare_tasks_and_update_json(data, force_update)
+
+    # 4. 保存 JSON
+    try:
+        with open(master_json_path, "w", encoding="utf-8") as f:
+            json.dump(data, f, ensure_ascii=False, indent=4)
+        logging.info("Updated master JSON paths to local relative paths.")
+    except IOError as e:
+        logging.error(f"Failed to save master JSON: {e}")
+
+    # 5. 执行下载
+    _execute_downloads(download_tasks)
 
 
 def fetch_master_json():
@@ -449,7 +494,6 @@ def fetch_master_json():
                 os.remove(temp_js)
 
 
-# -f 全量更新
 def main():
     parser = argparse.ArgumentParser(description="Live2D/Spine Resource Sync Tool")
     parser.add_argument(
