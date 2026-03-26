@@ -1,3 +1,4 @@
+import argparse
 import json
 import logging
 import os
@@ -208,7 +209,8 @@ def extract_resource_dirname(url, resource_type):
             return parts[-2]
 
 
-def process_live2d_master_json(master_json_path):
+# 2. 修改函数签名，增加 force_update 参数
+def process_live2d_master_json(master_json_path, force_update=False):
     """处理 live2dMaster.json，下载模型资源并更新路径为本地相对路径"""
     # 1. 备份
     webversion_backup_path = master_json_path.replace(".json", "webversion.json")
@@ -224,8 +226,13 @@ def process_live2d_master_json(master_json_path):
     except (json.JSONDecodeError, IOError):
         return
 
-    local_resources = scan_local_resources()
-    logging.info(f"Local resources found: {len(local_resources)}")
+    # 3. 根据参数决定扫描逻辑
+    if force_update:
+        local_resources = set()  # 空集合，模拟“本地无资源”状态
+        logging.info("[MODE] Full update enabled. Ignoring existing local resources.")
+    else:
+        local_resources = scan_local_resources()
+        logging.info(f"Local resources found: {len(local_resources)}")
 
     # 用于存放需要下载的任务信息
     download_tasks = []
@@ -248,7 +255,7 @@ def process_live2d_master_json(master_json_path):
                     relative_path = parsed.path.lstrip("/")
                 relative_path = relative_path.replace("\\", "/")
 
-                # 【关键】无论是否下载，都立即更新内存中的路径
+                # 无论是否下载，都立即更新内存中的路径
                 item["path"] = relative_path
 
                 # 检查是否需要下载
@@ -302,7 +309,7 @@ def process_live2d_master_json(master_json_path):
     except IOError as e:
         logging.error(f"Failed to save master JSON: {e}")
 
-    # --- 第三步：执行下载任务 (如果需要) ---
+    # --- 第三步：执行下载任务 ---
     total = len(download_tasks)
     if total == 0:
         logging.info("All resources exist, no download needed.")
@@ -369,11 +376,7 @@ def process_live2d_master_json(master_json_path):
 
 
 def fetch_master_json():
-    """
-    获取 Master JSON 文件。
-    优先直接下载，失败则尝试从 index.js 解析版本号下载。
-    返回下载后的本地文件路径，失败返回 None。
-    """
+    """获取 Master JSON 文件。"""
     logging.info("[MASTER] Starting fetch_master_json")
     os.makedirs(TARGET_SUBDIR, exist_ok=True)
     master_json_path = os.path.join(TARGET_SUBDIR, "live2dMaster.json")
@@ -446,22 +449,31 @@ def fetch_master_json():
                 os.remove(temp_js)
 
 
+# -f 全量更新
 def main():
-    # 1. 初始化日志
+    parser = argparse.ArgumentParser(description="Live2D/Spine Resource Sync Tool")
+    parser.add_argument(
+        "-f",
+        "--force",
+        action="store_true",
+        help="Force full update (ignore local cache and re-download everything)",
+    )
+    args = parser.parse_args()
+
     setup_logging()
     logging.info("=" * 50)
     logging.info("[START] Live2D Model Sync Started")
+    if args.force:
+        logging.info("[MODE] Full Update Mode Activated")
     logging.info("=" * 50)
 
     try:
-        # 2. 获取数据
         logging.info("[MAIN] Fetching master JSON...")
         master_json_path = fetch_master_json()
 
-        # 3. 处理资源
         if master_json_path:
             logging.info(f"[MAIN] Processing resources from: {master_json_path}")
-            process_live2d_master_json(master_json_path)
+            process_live2d_master_json(master_json_path, force_update=args.force)
         else:
             logging.warning(
                 "[MAIN] No master JSON obtained, skipping resource processing"
@@ -471,8 +483,7 @@ def main():
         logging.info("[END] All tasks completed!")
         logging.info("=" * 50)
     except KeyboardInterrupt:
-        # 捕获 Ctrl+C 中断
-        print("\n")  # 打印一个空行，避免和进度条挤在一起
+        print("\n")
         logging.warning("[MAIN] (KeyboardInterrupt) Exiting...")
 
 
