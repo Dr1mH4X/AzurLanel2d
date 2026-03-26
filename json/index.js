@@ -178,25 +178,35 @@ class l2dViewer {
     if (this._l2dModels.has(model.getIndexName())) {
       return;
     }
-
+    const isSpine = model instanceof SpineHeroModel;
     this._l2dModels.set(model.getIndexName(), model);
     this._containers.get("Models").addChild(model._Model);
 
-    model.setAnchor(0.5);
-    model.setScale(0.15);
+    // 不需要 this._spine.pivot.set(0.5, 0.5);
+    // 由 model.setAnchor(0.5) 统一处理
+
+    model.setScale(isSpine ? 0.5 : 0.15);
     model._Model.position.set(
       this._app.screen.width / 2.5,
       this._app.screen.height / 2,
     );
     model.pointerEventBind();
 
-    let foreground = PIXI.Sprite.from(PIXI.Texture.WHITE);
-    foreground.width = model._Model.internalModel.width;
-    foreground.height = model._Model.internalModel.height;
-    foreground.alpha = 0.17;
-    foreground.visible = false;
-    model.setForeground(foreground);
+    if (!isSpine) {
+      let foreground = PIXI.Sprite.from(PIXI.Texture.WHITE);
+      foreground.width = model._Model.internalModel.width;
+      foreground.height = model._Model.internalModel.height;
+      foreground.alpha = 0.17;
+      foreground.visible = false;
+      model.setForeground(foreground);
+    }
 
+    if (isSpine) {
+      const animations = model.getAnimations();
+      if (animations && animations.length > 0) {
+        model.setAnimation(animations[0], true);
+      }
+    }
     console.log("model loaded");
   }
 
@@ -478,6 +488,128 @@ class HeroModel {
   }
 }
 
+class SpineHeroModel {
+  _container = new PIXI.Container();
+
+  async create(spinePath) {
+    this._spinePath = spinePath;
+    const dirName = spinePath.split("/").pop();
+    const fileName = dirName.replace(/-spine$/, "");
+    const skeletonUrl = `${spinePath}/${fileName}.skel`;
+    const atlasUrl = `${spinePath}/${fileName}.atlas`;
+
+    // 1. 加载 atlas 文本
+    const atlasText = await fetch(atlasUrl).then((r) => r.text());
+
+    // 2. 加载 skeleton，让 pixi-spine 自动处理 atlas
+    const resource = await PIXI.Assets.load({
+      src: skeletonUrl,
+      data: {
+        atlasRawData: atlasText,
+      },
+    });
+
+    console.log("resource", resource);
+    console.log("resource.spineData", resource.spineData);
+
+    // 3. SkeletonData
+    const spineData = resource.spineData;
+
+    if (!spineData || !spineData.bones) {
+      console.error("加载失败：spineData 无效", resource);
+      throw new Error("Failed to parse Spine data: spineData is invalid");
+    }
+
+    // 4. 创建 Spine 实例
+    const spine = new PIXI.spine.Spine(resource.spineData);
+
+    spine.skeleton.setToSetupPose();
+    spine.autoUpdate = true;
+
+    this._spine = spine;
+    this._container.addChild(spine);
+    this._Model = this._container;
+
+    // 5. 提取动画列表
+    this._animations = [];
+    if (spineData.animations) {
+      for (const anim of spineData.animations) {
+        this._animations.push(anim.name);
+      }
+    }
+  }
+
+  setName(char, cost) {
+    this._ModelName = char;
+    this._costume = cost;
+  }
+
+  setAnchor(x, y) {
+    if (!y) y = x;
+    // Spine 是 Container，用 pivot 代替 anchor
+    this._spine.pivot.set(x, y);
+  }
+
+  setScale(val) {
+    this._spine.scale.set(val);
+  }
+
+  setAnimation(name, loop = true) {
+    if (!this._spine) return;
+    this._spine.state.setAnimation(0, name, loop);
+  }
+
+  getAnimations() {
+    return this._animations;
+  }
+
+  getPivot() {
+    return this._spine.pivot;
+  }
+
+  getScale() {
+    return this._spine.scale;
+  }
+
+  getIndexName() {
+    return `${this._ModelName}_${this._costume}`;
+  }
+
+  getUrl() {
+    return this._spinePath;
+  }
+
+  pointerEventBind() {
+    if (!this._spine) return;
+    const spineContainer = this._spine;
+
+    spineContainer.interactive = true;
+    spineContainer.buttonMode = true;
+    spineContainer.cursor = "pointer";
+
+    spineContainer.on("pointerdown", (e) => {
+      spineContainer.dragging = true;
+      spineContainer._pointerX = e.data.global.x - spineContainer.x;
+      spineContainer._pointerY = e.data.global.y - spineContainer.y;
+    });
+
+    spineContainer.on("pointermove", (e) => {
+      if (spineContainer.dragging) {
+        spineContainer.position.x = e.data.global.x - spineContainer._pointerX;
+        spineContainer.position.y = e.data.global.y - spineContainer._pointerY;
+      }
+    });
+
+    spineContainer.on("pointerupoutside", () => {
+      spineContainer.dragging = false;
+    });
+
+    spineContainer.on("pointerup", () => {
+      spineContainer.dragging = false;
+    });
+  }
+}
+
 // SET UP CHAR SELECT
 const setupCharacterSelect = (gameData) => {
   let select = document.getElementById("characterSelect");
@@ -507,8 +639,20 @@ const setupCostumeSelect = (character) => {
   let select = document.getElementById("costumeSelect");
   let inner = ``;
 
-  character.live2d.forEach((costume) => {
-    inner += `<option value="${costume.costumeId}">${costume.costumeName}</option>`;
+  const live2dList = character.live2d || [];
+  const spineList = character.spine || [];
+
+  const allCostumes = [
+    ...live2dList.map((c) => ({ ...c, type: "live2d" })),
+    ...spineList.map((c) => ({ ...c, type: "spine" })),
+  ];
+
+  allCostumes.forEach((costume) => {
+    const label =
+      costume.type === "spine"
+        ? `[Spine] ${costume.costumeName}`
+        : costume.costumeName;
+    inner += `<option value="${costume.costumeId}" data-type="${costume.type}">${label}</option>`;
   });
 
   select.innerHTML = inner;
@@ -533,6 +677,8 @@ const toggleTabContainer = (tabid) => {
 };
 
 const setupModelSetting = (M) => {
+  const isSpine = M instanceof SpineHeroModel;
+
   let info_ModelName = document.getElementById("info-ModelName");
   let info_CostumeName = document.getElementById("info-CostumeName");
 
@@ -549,6 +695,17 @@ const setupModelSetting = (M) => {
     let content = x.nextElementSibling;
     content.style.display = "none";
   });
+
+  if (isSpine) {
+    document.querySelectorAll(".collapsible").forEach((btn, index) => {
+      const labels = ["显示", "姿势"];
+      if (labels.includes(btn.textContent)) {
+        btn.style.display = "block";
+      } else {
+        btn.style.display = "none";
+      }
+    });
+  }
 
   //SET UP SCALE PARAMETER
   let scale_Range = document.getElementById("scaleRange");
@@ -578,92 +735,103 @@ const setupModelSetting = (M) => {
   //SET UP ANGLE PARAMETER
   let angle_Range = document.getElementById("angleRange");
   let angle_Num = document.getElementById("angleNum");
-  angle_Range.value = M.getAngle();
-  angle_Num.value = angle_Range.value;
-  angle_Range.oninput = function (e) {
-    angle_Num.value = this.value;
-    M.setAngle(this.value);
-  };
-  angle_Num.oninput = function (e) {
-    if (this.value == "") {
-      this.value = angle_Range.value;
-      return;
-    }
 
-    if (parseInt(this.value) < parseInt(this.min)) {
-      this.value = this.min;
-    }
-    if (parseInt(this.value) > parseInt(this.max)) {
-      this.value = this.max;
-    }
-    angle_Range.value = this.value;
-    M.setAngle(this.value);
-  };
+  if (isSpine) {
+    angle_Range.parentElement.style.display = "none";
+    angle_Num.parentElement.style.display = "none";
+  } else {
+    angle_Range.value = M.getAngle();
+    angle_Num.value = angle_Range.value;
+    angle_Range.oninput = function (e) {
+      angle_Num.value = this.value;
+      M.setAngle(this.value);
+    };
+    angle_Num.oninput = function (e) {
+      if (this.value == "") {
+        this.value = angle_Range.value;
+        return;
+      }
+
+      if (parseInt(this.value) < parseInt(this.min)) {
+        this.value = this.min;
+      }
+      if (parseInt(this.value) > parseInt(this.max)) {
+        this.value = this.max;
+      }
+      angle_Range.value = this.value;
+      M.setAngle(this.value);
+    };
+  }
 
   //SET UP INTERACTIVE
   let focusingCheckbox = document.getElementById("FocusingCheckbox");
-  focusingCheckbox.checked = M._Model.focusing;
-  focusingCheckbox.onchange = function (e) {
-    M.setLookatMouse(this.checked);
-  };
-
-  // SET UP BREATH
   let breathingCheckbox = document.getElementById("breathingCheckbox");
-  breathingCheckbox.checked = M._Model.breathing;
-  breathingCheckbox.onchange = function (e) {
-    M.setBreathing(this.checked);
-  };
-
-  //SET UP EYEBLINKING
   let eyeBlinkingCheckbox = document.getElementById("eyeBlinkingCheckbox");
-  eyeBlinkingCheckbox.checked = M._Model.eyeBlinking;
-  eyeBlinkingCheckbox.onchange = function (e) {
-    M.setEyeBlinking(this.checked);
-  };
-
-  // SET UP FOREGROUND
   let foregroundCheckbox = document.getElementById("foregroundCheckbox");
-  foregroundCheckbox.checked = M._Model.children[0].visible;
-  foregroundCheckbox.onchange = function (e) {
-    M.setForegroundVisible(this.checked);
-  };
-
-  //Drag
   let dragCheckbox = document.getElementById("dragCheckbox");
-  dragCheckbox.checked = M._Model.interactive;
-  dragCheckbox.onchange = function (e) {
-    M.setInteractive(this.checked);
-  };
+
+  if (isSpine) {
+    focusingCheckbox.parentElement.style.display = "none";
+    breathingCheckbox.parentElement.style.display = "none";
+    eyeBlinkingCheckbox.parentElement.style.display = "none";
+    foregroundCheckbox.parentElement.style.display = "none";
+    dragCheckbox.checked = true;
+  } else {
+    focusingCheckbox.checked = M._Model.focusing;
+    focusingCheckbox.onchange = function (e) {
+      M.setLookatMouse(this.checked);
+    };
+
+    breathingCheckbox.checked = M._Model.breathing;
+    breathingCheckbox.onchange = function (e) {
+      M.setBreathing(this.checked);
+    };
+
+    eyeBlinkingCheckbox.checked = M._Model.eyeBlinking;
+    eyeBlinkingCheckbox.onchange = function (e) {
+      M.setEyeBlinking(this.checked);
+    };
+
+    foregroundCheckbox.checked = M._Model.children[0].visible;
+    foregroundCheckbox.onchange = function (e) {
+      M.setForegroundVisible(this.checked);
+    };
+
+    dragCheckbox.checked = M._Model.interactive;
+    dragCheckbox.onchange = function (e) {
+      M.setInteractive(this.checked);
+    };
+  }
 
   //SET UP EXPRESSTIONS LIST
   let expressionslist = document.getElementById("expressions-list");
-  let expressions = M.getExpressions();
-  expressionslist.innerHTML = "";
+  if (!isSpine) {
+    let expressions = M.getExpressions();
+    expressionslist.innerHTML = "";
 
-  // 建立表情文件名映射表
-  let expressionFileNames = new Set();
-  Array.from(expressions).forEach((exp, index) => {
-    let expbtn = document.createElement("button");
-    let expbtnname = exp["Name"];
-    expbtn.innerHTML = expbtnname.replace(".exp3.json", "");
-    expbtn.addEventListener("click", () => {
-      M.loadExpression(index);
+    // 建立表情文件名映射表
+    let expressionFileNames = new Set();
+    Array.from(expressions).forEach((exp, index) => {
+      let expbtn = document.createElement("button");
+      let expbtnname = exp["Name"];
+      expbtn.innerHTML = expbtnname.replace(".exp3.json", "");
+      expbtn.addEventListener("click", () => {
+        M.loadExpression(index);
+      });
+
+      // 提取表情文件名（去掉路径和扩展名）
+      let filePath = exp["File"];
+      let fileNameMatch = filePath.match(
+        /(?:^|\/)(\w+(?:-\w+)*)(?:\.exp3\.json)?$/,
+      );
+      if (fileNameMatch) {
+        expressionFileNames.add(fileNameMatch[1]);
+      }
+
+      expressionslist.append(expbtn);
     });
-
-    // 提取表情文件名（去掉路径和扩展名）
-    let filePath = exp["File"];
-    let fileNameMatch = filePath.match(
-      /(?:^|\/)(\w+(?:-\w+)*)(?:\.exp3\.json)?$/,
-    );
-    if (fileNameMatch) {
-      expressionFileNames.add(fileNameMatch[1]);
-    }
-
-    expressionslist.append(expbtn);
-  });
-
-  // 保存到window对象供参数设置使用
-  window._expressionFileNames = expressionFileNames;
+    window._expressionFileNames = expressionFileNames;
+  }
 
   //SET UP MOTIONS LIST
   let textCheckbox = document.getElementById("textCheckbox");
@@ -680,22 +848,20 @@ const setupModelSetting = (M) => {
 
   function motionButtonClickHandler(key, index, audioFileName, textContent) {
     return new Promise((resolve) => {
-      // 如果有先前的音频正在播放，停止它
       if (currentAudioPlayer) {
         currentAudioPlayer.pause();
         currentAudioPlayer.currentTime = 0;
-        currentAudioPlayer = null; // 重置当前音频对象
+        currentAudioPlayer = null;
       }
 
       textContainer.style.opacity = 0;
 
-      // 如果有关联的音频文件名、复选框勾选状态以及文本框勾选状态，则创建新的音频对象并播放
       if (audioFileName && audioCheckbox.checked) {
         let audioFilePath = audioFileName;
         let audioPlayer = new Audio(audioFilePath);
 
         audioPlayer.onended = () => {
-          textContainer.style.opacity = 0; // 设置透明度为0，开始淡出
+          textContainer.style.opacity = 0;
           resolve();
         };
 
@@ -717,147 +883,168 @@ const setupModelSetting = (M) => {
     });
   }
   let motionslist = document.getElementById("motion-list");
-  let motions = M.getMotions();
   motionslist.innerHTML = "";
 
-  for (const key in motions) {
-    Array.from(motions[key]).forEach((m, index) => {
-      if (m["File"].includes("loop")) {
-        return;
-      }
-
+  if (isSpine) {
+    const animations = M.getAnimations() || [];
+    animations.forEach((animName) => {
       let motionbtn = document.createElement("button");
-      motionbtn.innerHTML = m["File"]
-        .replace("motions/", "")
-        .replace(".motion3.json", "");
+      motionbtn.innerHTML = animName;
 
-      motionbtn.addEventListener("click", async () => {
-        // 获取音频文件名和文本内容
-        let audioFileName = m["Audio"] || null;
-        let textContent = m["Text"] || "";
-
-        // 立即调用点击按钮的回调函数，不等待 Promise 解析
-        motionButtonClickHandler(key, index, audioFileName, textContent);
-
-        // 加载动作
-        M.loadMotion(key, index, "FORCE");
+      motionbtn.addEventListener("click", () => {
+        M.setAnimation(animName, true);
       });
 
       motionslist.append(motionbtn);
     });
+  } else {
+    let motions = M.getMotions();
+
+    for (const key in motions) {
+      Array.from(motions[key]).forEach((m, index) => {
+        if (m["File"].includes("loop")) {
+          return;
+        }
+
+        let motionbtn = document.createElement("button");
+        motionbtn.innerHTML = m["File"]
+          .replace("motions/", "")
+          .replace(".motion3.json", "");
+
+        motionbtn.addEventListener("click", async () => {
+          let audioFileName = m["Audio"] || null;
+          let textContent = m["Text"] || "";
+
+          motionButtonClickHandler(key, index, audioFileName, textContent);
+
+          M.loadMotion(key, index, "FORCE");
+        });
+
+        motionslist.append(motionbtn);
+      });
+    }
   }
 
   //SET UP MODEL PARAMETER LIST
   let parameterslist = document.getElementById("parameters-list");
   let parameterslist2 = document.getElementById("parameters-list-2");
-  let parameter = M.getAllParameters();
-  parameterslist.innerHTML = "";
-  parameterslist2.innerHTML = "";
 
-  // 获取表情文件名集合
-  let expressionFileNamesSet = window._expressionFileNames || new Set();
+  if (isSpine) {
+    parameterslist.innerHTML = "<p>Spine模型暂不支持参数调整</p>";
+    parameterslist2.innerHTML = "";
+  } else {
+    let parameter = M.getAllParameters();
+    parameterslist.innerHTML = "";
+    parameterslist2.innerHTML = "";
 
-  parameter.map((param) => {
-    let p_div = document.createElement("div");
-    p_div.className = "rangeOption";
-    p_div.innerHTML += `<p>${param.parameterIds}</p>`;
+    let expressionFileNamesSet = window._expressionFileNames || new Set();
 
-    let range = document.createElement("input");
-    range.type = "range";
-    range.className = "input-range";
-    range.setAttribute("step", 0.01);
-    range.setAttribute("min", param.min);
-    range.setAttribute("max", param.max);
-    range.value = param.defaultValue;
-    p_div.append(range);
+    parameter.map((param) => {
+      let p_div = document.createElement("div");
+      p_div.className = "rangeOption";
+      p_div.innerHTML += `<p>${param.parameterIds}</p>`;
 
-    let text = document.createElement("input");
-    text.type = "number";
-    text.setAttribute("step", 0.01);
-    text.setAttribute("min", param.min);
-    text.setAttribute("max", param.max);
-    text.value = param.defaultValue;
-    p_div.append(text);
+      let range = document.createElement("input");
+      range.type = "range";
+      range.className = "input-range";
+      range.setAttribute("step", 0.01);
+      range.setAttribute("min", param.min);
+      range.setAttribute("max", param.max);
+      range.value = param.defaultValue;
+      p_div.append(range);
 
-    range.addEventListener("input", function (e) {
-      text.value = this.value;
-      M.setParameters(param.parameterIds, this.value);
+      let text = document.createElement("input");
+      text.type = "number";
+      text.setAttribute("step", 0.01);
+      text.setAttribute("min", param.min);
+      text.setAttribute("max", param.max);
+      text.value = param.defaultValue;
+      p_div.append(text);
+
+      range.addEventListener("input", function (e) {
+        text.value = this.value;
+        M.setParameters(param.parameterIds, this.value);
+      });
+
+      text.addEventListener("input", function (e) {
+        if (this.value == "") {
+          this.value = range.value;
+          return;
+        }
+
+        if (parseInt(this.value) < parseInt(this.min)) {
+          this.value = this.min;
+        }
+        if (parseInt(this.value) > parseInt(this.max)) {
+          this.value = this.max;
+        }
+        range.value = this.value;
+        M.setParameters(param.parameterIds, this.value);
+      });
+
+      if (expressionFileNamesSet.has(param.parameterIds)) {
+        parameterslist2.append(p_div);
+      } else {
+        parameterslist.append(p_div);
+      }
     });
-
-    text.addEventListener("input", function (e) {
-      if (this.value == "") {
-        this.value = range.value;
-        return;
-      }
-
-      if (parseInt(this.value) < parseInt(this.min)) {
-        this.value = this.min;
-      }
-      if (parseInt(this.value) > parseInt(this.max)) {
-        this.value = this.max;
-      }
-      range.value = this.value;
-      M.setParameters(param.parameterIds, this.value);
-    });
-
-    // 判断参数名是否与表情文件名匹配
-    if (expressionFileNamesSet.has(param.parameterIds)) {
-      parameterslist2.append(p_div);
-    } else {
-      parameterslist.append(p_div);
-    }
-  });
+  }
 
   //SET UP MODEL PartOpacity LIST
   let partOpacityList = document.getElementById("partOpacity-list");
-  let partOpacity = M.getAllPartOpacity();
-  partOpacityList.innerHTML = "";
 
-  partOpacity.map((param) => {
-    let p_div = document.createElement("div");
-    p_div.className = "rangeOption";
-    p_div.innerHTML += `<p>${param.partId}</p>`;
+  if (isSpine) {
+    partOpacityList.innerHTML = "<p>Spine模型暂不支持部件调整</p>";
+  } else {
+    let partOpacity = M.getAllPartOpacity();
+    partOpacityList.innerHTML = "";
 
-    let range = document.createElement("input");
-    range.type = "range";
-    range.className = "input-range";
-    range.setAttribute("step", 0.1);
-    range.setAttribute("min", 0);
-    range.setAttribute("max", 1);
-    range.value = param.defaultValue;
-    p_div.append(range);
+    partOpacity.map((param) => {
+      let p_div = document.createElement("div");
+      p_div.className = "rangeOption";
+      p_div.innerHTML += `<p>${param.partId}</p>`;
 
-    let text = document.createElement("input");
-    text.type = "number";
-    text.setAttribute("step", 0.1);
-    text.setAttribute("min", 0);
-    text.setAttribute("max", 1);
-    text.value = param.defaultValue;
-    p_div.append(text);
+      let range = document.createElement("input");
+      range.type = "range";
+      range.className = "input-range";
+      range.setAttribute("step", 0.1);
+      range.setAttribute("min", 0);
+      range.setAttribute("max", 1);
+      range.value = param.defaultValue;
+      p_div.append(range);
 
-    range.addEventListener("input", function (e) {
-      text.value = this.value;
-      M.setPartOpacity(param.partId, this.value);
+      let text = document.createElement("input");
+      text.type = "number";
+      text.setAttribute("step", 0.1);
+      text.setAttribute("min", 0);
+      text.setAttribute("max", 1);
+      text.value = param.defaultValue;
+      p_div.append(text);
+
+      range.addEventListener("input", function (e) {
+        text.value = this.value;
+        M.setPartOpacity(param.partId, this.value);
+      });
+
+      text.addEventListener("input", function (e) {
+        if (this.value == "") {
+          this.value = range.value;
+          return;
+        }
+
+        if (parseInt(this.value) < parseInt(this.min)) {
+          this.value = this.min;
+        }
+        if (parseInt(this.value) > parseInt(this.max)) {
+          this.value = this.max;
+        }
+        range.value = this.value;
+        M.setPartOpacity(param.partId, this.value);
+      });
+
+      partOpacityList.append(p_div);
     });
-
-    text.addEventListener("input", function (e) {
-      if (this.value == "") {
-        this.value = range.value;
-        return;
-      }
-
-      if (parseInt(this.value) < parseInt(this.min)) {
-        this.value = this.min;
-      }
-      if (parseInt(this.value) > parseInt(this.max)) {
-        this.value = this.max;
-      }
-      range.value = this.value;
-      M.setPartOpacity(param.partId, this.value);
-    });
-
-    partOpacityList.append(p_div);
-  });
+  }
 };
 
 $(document).ready(async () => {
@@ -879,13 +1066,22 @@ $(document).ready(async () => {
 
   document.getElementById("addL2DModelBtn").onclick = async () => {
     let charValue = document.getElementById("characterSelect").value;
-    let costValue = document.getElementById("costumeSelect").value;
+    let costSelect = document.getElementById("costumeSelect");
+    let costValue = costSelect.value;
+    let costType =
+      costSelect.options[costSelect.selectedIndex]?.dataset?.type || "live2d";
 
     if (!charValue || !costValue) return;
 
     let gameData = l2dmaster.Master[0];
     let fulldata = gameData.character.find((char) => char.charId == charValue);
-    let costdata = fulldata.live2d.find((cost) => cost.costumeId == costValue);
+
+    let costdata;
+    if (costType === "spine") {
+      costdata = fulldata.spine.find((c) => c.costumeId == costValue);
+    } else {
+      costdata = fulldata.live2d.find((c) => c.costumeId == costValue);
+    }
 
     document.getElementById("characterSelect").selectedIndex = 0;
     document.getElementById("costumeSelect").innerHTML = "";
@@ -896,8 +1092,14 @@ $(document).ready(async () => {
     // Show loading spinner
     document.getElementById("loadingSpinner").style.display = "flex";
 
-    let M = new HeroModel();
-    await M.create(costdata.path);
+    let M;
+    if (costType === "spine") {
+      M = new SpineHeroModel();
+      await M.create(costdata.path);
+    } else {
+      M = new HeroModel();
+      await M.create(costdata.path);
+    }
     M.setName(fulldata.charName, costdata.costumeName);
     l2dviewer.addModel(M);
 
