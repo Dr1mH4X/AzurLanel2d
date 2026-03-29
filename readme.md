@@ -1,3 +1,17 @@
+<div align="center">
+  <h1>AzurLanel2d</h1>
+
+  <img src="https://count.getloli.com/get/@AzurLanel2d?theme=asoul" alt=":name" /></p>
+
+  <a href="https://github.com/Dr1mH4X/AzurLanel2d/releases">
+    <img src="https://img.shields.io/github/v/release/Dr1mH4X/AzurLanel2d?style=for-the-badge&color=blue&label=Latest%20Release" alt="AzurLanel2d Latest Release">
+  </a>
+
+  <a href="https://github.com/Dr1mH4X/AzurLanel2d/blob/main/LICENSE">
+    <img src="https://img.shields.io/badge/MIT-green?style=for-the-badge" alt="License">
+  </a>
+</div>
+
 自动抓取[l2d.su](https://l2d.su/)的模型资源
 
 [1model.py](https://github.com/Dr1mH4X/AzurLanel2d/blob/main/1model.py)抓取模型资源
