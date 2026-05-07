@@ -148,7 +148,7 @@ def process_model3_json(model_local_path, model_full_url):
 
 def process_spine_dir(dir_local_path, dir_full_url):
     """
-    Spine 资源下载逻辑重构：
+    Spine 资源下载逻辑：
     1. 下载 .atlas 文件
     2. 解析 .atlas 获取所有纹理文件名（支持多纹理页）
     3. 下载 .skel 文件和所有纹理文件
